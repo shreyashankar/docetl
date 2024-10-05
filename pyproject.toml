@@ -34,9 +34,12 @@ azure-ai-documentintelligence = { version = "^1.0.0b4", optional = true }
 paddlepaddle = { version = "^2.6.2", optional = true }
 paddleocr = { version = "^2.8.1", optional = true }
 pymupdf = { version = "^1.24.10", optional = true }
+fastapi = { version = "^0.115.0", optional = true }
+uvicorn = { version = "^0.31.0", optional = true }
 
 [tool.poetry.extras]
 parsing = ["python-docx", "openpyxl", "pydub", "python-pptx", "azure-ai-documentintelligence", "paddlepaddle", "paddleocr", "pymupdf"]
+server = ["fastapi", "uvicorn"]
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.2"
