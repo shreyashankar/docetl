@@ -1,16 +1,15 @@
-import yaml
-from docetl.api import Pipeline
+from docetl.runner import DSLRunner
 
 
 def run_pipeline_service(yaml_config: str):
-    config = yaml.safe_load(yaml_config)
-    pipeline = Pipeline.from_dict(config)
-    cost = pipeline.run()
+    try:
+        runner = DSLRunner.from_yaml(yaml_config)
+        cost = runner.run()
 
-    output_path = config["pipeline"]["output"]["path"]
-
-    return {
-        "message": "Pipeline executed successfully",
-        "cost": cost,
-        "output_file": output_path,
-    }
+        return {
+            "message": "Pipeline executed successfully",
+            "cost": cost,
+        }
+    except Exception as e:
+        print(f"Error occurred: {str(e)}")
+        raise e

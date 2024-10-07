@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useReducer, useMemo, useCallback, useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -11,108 +11,87 @@ import {
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
-import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+import { Draggable } from 'react-beautiful-dnd';
 import { FileText, Maximize2, Minimize2, Plus, Play, GripVertical, Trash2, ChevronDown, Zap, Edit2, Settings } from 'lucide-react';
 import { Operation, SchemaItem, SchemaType } from '@/app/types';
 import { usePipelineContext } from '@/contexts/PipelineContext';
+import { useToast } from "@/hooks/use-toast"
+import { Skeleton } from "@/components/ui/skeleton"
+import { debounce } from 'lodash';
+import { Guardrails, OutputSchema, PromptInput } from './operations/args';
+import createOperationComponent from './operations/components';
 
-const SchemaForm: React.FC<{
-    schema: SchemaItem[];
-    onUpdate: (newSchema: SchemaItem[]) => void;
-    level?: number;
-    isList?: boolean;
-  }> = ({ schema, onUpdate, level = 0, isList = false }) => {
-    const addItem = () => {
-      if (isList) return;
-      onUpdate([...schema, { key: '', type: 'string' }]);
-    };
-  
-    const updateItem = (index: number, item: SchemaItem) => {
-      const newSchema = [...schema];
-      newSchema[index] = item;
-      onUpdate(newSchema);
-    };
-  
-    const removeItem = (index: number) => {
-      if (isList) return;
-      const newSchema = schema.filter((_, i) => i !== index);
-      onUpdate(newSchema);
-    };
-  
-    return (
-      <div style={{ marginLeft: `${level * 20}px` }}>
-        {schema.map((item, index) => (
-          <div key={index} className="flex flex-wrap items-center space-x-2 mb-2">
-            {!isList && (
-              <Input
-                value={item.key}
-                onChange={(e) => updateItem(index, { ...item, key: e.target.value })}
-                placeholder="Key"
-                className="w-1/3 min-w-[150px]"
-              />
-            )}
-            <Select
-              value={item.type}
-              onValueChange={(value: SchemaType) => {
-                updateItem(index, {
-                  ...item,
-                  type: value,
-                  subType: value === 'list' ? { key: '0', type: 'string' } :
-                           value === 'dict' ? [{ key: '', type: 'string' }] :
-                           undefined
-                });
-              }}
-            >
-              <SelectTrigger className={`w-1/3 min-w-[150px] ${isList ? 'flex-grow' : ''}`}>
-                <SelectValue placeholder="Type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="string">string</SelectItem>
-                <SelectItem value="float">float</SelectItem>
-                <SelectItem value="int">int</SelectItem>
-                <SelectItem value="boolean">boolean</SelectItem>
-                <SelectItem value="list">list</SelectItem>
-                <SelectItem value="dict">dict</SelectItem>
-              </SelectContent>
-            </Select>
-            {!isList && (
-              <Button variant="ghost" size="sm" onClick={() => removeItem(index)} className="p-1">
-                <Trash2 size={16} />
-              </Button>
-            )}
-            {item.type === 'list' && item.subType && (
-              <div className="w-full mt-2 ml-4 flex items-center">
-                <span className="mr-2 text-sm text-gray-500">List type:</span>
-                <SchemaForm
-                  schema={[item.subType as SchemaItem]}
-                  onUpdate={(newSubSchema) => updateItem(index, { ...item, subType: newSubSchema[0] })}
-                  level={0}
-                  isList={true}
-                />
-              </div>
-            )}
-            {item.type === 'dict' && item.subType && (
-              <div className="w-full mt-2 ml-4">
-                <SchemaForm
-                  schema={item.subType as SchemaItem[]}
-                  onUpdate={(newSubSchema) => updateItem(index, { ...item, subType: newSubSchema })}
-                  level={level + 1}
-                />
-              </div>
-            )}
-          </div>
-        ))}
-        {!isList && (
-          <Button variant="outline" size="sm" onClick={addItem} className="mt-2">
-            <Plus size={16} className="mr-2" /> Add Field
-          </Button>
-        )}
-      </div>
-    );
+// Separate components
+const OperationHeader: React.FC<{
+  name: string;
+  type: string;
+  onEdit: (name: string) => void;
+  onDelete: () => void;
+  onRunOperation: () => void;
+  onToggleSettings: () => void;
+}> = React.memo(({ name, type, onEdit, onDelete, onRunOperation, onToggleSettings }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedName, setEditedName] = useState(name);
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+    setEditedName(name);
   };
 
-// Settings Modal Component
+  const handleEditComplete = () => {
+    setIsEditing(false);
+    onEdit(editedName);
+  };
+
+  return (
+    <div className="relative flex items-center justify-between py-3 px-4">
+      {/* Left side buttons */}
+      <div className="flex space-x-1 absolute left-1">
+        <Button variant="ghost" size="sm" className="p-0.25 h-6 w-6" onClick={onToggleSettings}>
+          <Settings size={14} className="text-gray-500" />
+        </Button>
+        <Button variant="ghost" size="sm" className="p-0.25 h-6 w-6" disabled={true}>
+          <Zap size={14} className="text-yellow-500" />
+        </Button>
+        <Button variant="ghost" size="sm" className="p-0.25 h-6 w-6" onClick={onRunOperation}>
+          <Play size={14} className="text-green-500" />
+        </Button>
+      </div>
+
+      {/* Centered title */}
+      <div className="flex-grow flex justify-center">
+        {isEditing ? (
+          <Input
+            value={editedName}
+            onChange={(e) => setEditedName(e.target.value)}
+            onBlur={handleEditComplete}
+            onKeyPress={(e) => e.key === 'Enter' && handleEditComplete()}
+            className="text-sm font-medium w-1/2 font-mono text-center"
+            autoFocus
+          />
+        ) : (
+          <span 
+            className={`text-sm font-medium cursor-pointer ${type === 'LLM' ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text' : ''}`}
+            onClick={handleEditClick}
+          >
+            {name} ({type})
+          </span>
+        )}
+      </div>
+
+      {/* Right side delete button */}
+      <Button 
+        variant="ghost" 
+        size="sm" 
+        onClick={onDelete}
+        className="hover:bg-red-100 absolute right-1 p-1 h-7 w-7"
+      >
+        <Trash2 size={15} className="text-red-500" />
+      </Button>
+    </div>
+  );
+});
+
 const SettingsModal: React.FC<{
   opName: string;
   opType: string;
@@ -120,16 +99,14 @@ const SettingsModal: React.FC<{
   onClose: () => void;
   otherKwargs: Record<string, string>;
   onSettingsSave: (newSettings: Record<string, string>) => void;
-}> = ({ opName, opType, isOpen, onClose, otherKwargs, onSettingsSave }) => {
-  const [localSettings, setLocalSettings] = useState<Array<{ id: number; key: string; value: string }>>(
+}> = React.memo(({ opName, opType, isOpen, onClose, otherKwargs, onSettingsSave }) => {
+  const [localSettings, setLocalSettings] = React.useState<Array<{ id: number; key: string; value: string }>>(
     Object.entries(otherKwargs).map(([key, value], index) => ({ id: index, key, value }))
   );
 
   useEffect(() => {
     setLocalSettings(Object.entries(otherKwargs).map(([key, value], index) => ({ id: index, key, value })));
   }, [otherKwargs]);
-
-  if (!isOpen) return null;
 
   const handleSettingsChange = (id: number, newKey: string, newValue: string) => {
     setLocalSettings(prev => prev.map(setting => 
@@ -161,6 +138,8 @@ const SettingsModal: React.FC<{
     return localSettings.every(({ key, value }) => key !== '' && value !== '') &&
            new Set(keys).size === keys.length;
   };
+
+  if (!isOpen) return null;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -200,221 +179,289 @@ const SettingsModal: React.FC<{
       </DialogContent>
     </Dialog>
   );
+});
+
+// Action types
+type Action =
+  | { type: 'SET_OPERATION'; payload: Operation }
+  | { type: 'UPDATE_NAME'; payload: string }
+  | { type: 'UPDATE_PROMPT'; payload: string }
+  | { type: 'UPDATE_SCHEMA'; payload: SchemaItem[] }
+  | { type: 'UPDATE_GUARDRAILS'; payload: string[] }
+  | { type: 'TOGGLE_EDITING' }
+  | { type: 'TOGGLE_SCHEMA' }
+  | { type: 'TOGGLE_GUARDRAILS' }
+  | { type: 'TOGGLE_SETTINGS' }
+  | { type: 'SET_RUN_INDEX'; payload: number }
+  | { type: 'UPDATE_SETTINGS'; payload: Record<string, string> };
+
+// State type
+type State = {
+  operation: Operation | undefined;
+  isEditing: boolean;
+  isSchemaExpanded: boolean;
+  isGuardrailsExpanded: boolean;
+  isSettingsOpen: boolean;
 };
 
-export const OperationCard: React.FC<{ 
-  operation: Operation; 
-  index: number; 
-  onDelete: (id: string) => void;
-  onUpdate: (id: string, updatedOperation: Operation) => void;
-}> = ({ operation, index, onDelete, onUpdate }) => {
-  const [schema, setSchema] = useState<SchemaItem[]>(
-    operation.outputSchema 
-      ? Object.entries(operation.outputSchema).map(([key, type]) => ({ key, type: type as SchemaType }))
-      : []
-  );
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedName, setEditedName] = useState(operation.name);
-  const [isSchemaExpanded, setIsSchemaExpanded] = useState(schema.length === 0);
-  const [isGuardrailsExpanded, setIsGuardrailsExpanded] = useState(false);
-  const [guardrails, setGuardrails] = useState<string[]>(operation.validate || []);
-  const { setOutputs, setIsLoadingOutputs } = usePipelineContext();
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [otherKwargs, setOtherKwargs] = useState<Record<string, string>>(operation.otherKwargs || {});
+// Reducer function
+function operationReducer(state: State, action: Action): State {
+  switch (action.type) {
+    case 'SET_OPERATION':
+      return { ...state, operation: action.payload };
+    case 'UPDATE_NAME':
+      return state.operation ? { ...state, operation: { ...state.operation, name: action.payload } } : state;
+    case 'UPDATE_PROMPT':
+      return state.operation ? { ...state, operation: { ...state.operation, prompt: action.payload } } : state;
+    case 'UPDATE_SCHEMA':
+      return state.operation
+        ? {
+            ...state,
+            operation: {
+              ...state.operation,
+              output: {
+                ...state.operation.output,
+                schema: action.payload
+              }
+            }
+          }
+        : state;
+  
+    case 'UPDATE_GUARDRAILS':
+      return state.operation ? { ...state, operation: { ...state.operation, validate: action.payload } } : state;
+    case 'TOGGLE_EDITING':
+      return { ...state, isEditing: !state.isEditing };
+    case 'TOGGLE_SCHEMA':
+      return { ...state, isSchemaExpanded: !state.isSchemaExpanded };
+    case 'TOGGLE_GUARDRAILS':
+      return { ...state, isGuardrailsExpanded: !state.isGuardrailsExpanded };
+    case 'TOGGLE_SETTINGS':
+      return { ...state, isSettingsOpen: !state.isSettingsOpen };
+    case 'UPDATE_SETTINGS':
+      return state.operation ? { ...state, operation: { ...state.operation, otherKwargs: action.payload } } : state;
+    case 'SET_RUN_INDEX':
+      return state.operation ? { ...state, operation: { ...state.operation, runIndex: action.payload } } : state;
+    default:
+      return state;
+  }
+}
 
-  const handleSchemaUpdate = (newSchema: SchemaItem[]) => {
-    setSchema(newSchema);
-    const newOutputSchema = newSchema.reduce((acc, item) => {
-      acc[item.key] = item.type;
-      return acc;
-    }, {} as Record<string, string>);
-    onUpdate(operation.id, { ...operation, outputSchema: newOutputSchema });
-  };
+// Initial state
+const initialState: State = {
+  operation: undefined,
+  isEditing: false,
+  isSchemaExpanded: false,
+  isGuardrailsExpanded: false,
+  isSettingsOpen: false,
+};
 
-  const handleNameEdit = () => {
-    onUpdate(operation.id, { ...operation, name: editedName });
-    setIsEditing(false);
-  };
+// Main component
+export const OperationCard: React.FC<{ index: number }> = ({ index }) => {
+  const [state, dispatch] = useReducer(operationReducer, initialState);
+  const { operation, isEditing, isSchemaExpanded, isGuardrailsExpanded, isSettingsOpen } = state;
 
-  const handleRunOperation = async () => {
-    setIsLoadingOutputs(true);
-    try {
-      const response = await fetch('/debate_intermediates/extract_themes_and_viewpoints.json');
-      let data = await response.json();
-      if (data.length > 0 && 'date' in data[0]) {
-        data.sort((a: { date: string }, b: { date: string }) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const { setOutput, isLoadingOutputs, setIsLoadingOutputs, numOpRun, setNumOpRun, currentFile, operations, setOperations, pipelineName, sampleSize, setCost, defaultModel } = usePipelineContext();
+  const { toast } = useToast();
+
+  const operationRef = useRef(operation);
+
+  useEffect(() => {
+    operationRef.current = operation;
+  }, [operation]);
+
+  useEffect(() => {
+    dispatch({ type: 'SET_OPERATION', payload: operations[index] });
+
+    // Also dispatch the runIndex update
+    if (operations[index].runIndex !== undefined) {
+      dispatch({ type: 'SET_RUN_INDEX', payload: operations[index].runIndex });
+    }
+
+  }, [operations, index]);
+
+  const schemaItems = useMemo(() => {
+    return operation?.output?.schema || [];
+  }, [operation?.output?.schema]);
+
+  const debouncedUpdate = useCallback(
+    debounce(() => {
+      if (operationRef.current) {
+        const updatedOperation = { ...operationRef.current };
+        setOperations(prev => prev.map(op => op.id === updatedOperation.id ? updatedOperation : op));
       }
-      setOutputs(data);
+    }, 500),
+    [setOperations]
+  );
+
+  const handleOperationUpdate = useCallback((updatedOperation: Operation) => {
+    dispatch({ type: 'SET_OPERATION', payload: updatedOperation });
+    debouncedUpdate();
+  }, [debouncedUpdate]);
+
+  const handlePromptChange = useCallback((value: string) => {
+    dispatch({ type: 'UPDATE_PROMPT', payload: value });
+    debouncedUpdate();
+  }, [debouncedUpdate]);
+
+  const handleRunOperation = useCallback(async () => {
+    if (!operation) return;
+    setIsLoadingOutputs(true);
+    setNumOpRun(prevNum => {
+      const newNum = prevNum + 1;
+      dispatch({ type: 'SET_RUN_INDEX', payload: newNum });
+      return newNum;
+    });
+    try {
+      const response = await fetch('/api/runPipeline', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          default_model: defaultModel,
+          data: currentFile,
+          operations: operations,
+          operation_id: operation.id,
+          name: `${pipelineName}.yaml`,
+          sample_size: sampleSize
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Failed to run pipeline: ${errorData.error || response.statusText}`);
+      }
+
+      const { apiResponse, outputPath, inputPath } = await response.json();
+      const runCost = apiResponse.cost || 0;
+      setCost(prevCost => prevCost + runCost);
+
+      toast({
+        title: "Operation Cost",
+        description: `The operation cost $${runCost.toFixed(4)}`,
+        duration: 3000,
+      });
+
+      setOutput({
+        path: outputPath,
+        operationId: operation.id,
+        inputPath: inputPath
+      });
     } catch (error) {
-      console.error('Error fetching outputs:', error);
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : String(error),
+        variant: "destructive",
+      });
     } finally {
       setIsLoadingOutputs(false);
     }
+  }, [operation, currentFile, operations, setOutput, setIsLoadingOutputs, setNumOpRun, toast]);
+
+  const handleSettingsSave = useCallback((newSettings: Record<string, string>) => {
+    dispatch({ type: 'UPDATE_SETTINGS', payload: newSettings });
+    if (operation) {
+      const updatedOperation = { ...operation, otherKwargs: newSettings };
+      setOperations(prev => prev.map(op => op.id === updatedOperation.id ? updatedOperation : op));
+    }
+  }, [operation, setOperations]);
+
+  const handleSchemaUpdate = (newSchema: SchemaItem[]) => {
+    dispatch({ type: 'UPDATE_SCHEMA', payload: newSchema });
+    debouncedUpdate();
   };
 
-  const handleGuardrailChange = (index: number, value: string) => {
-    const newGuardrails = [...guardrails];
-    newGuardrails[index] = value;
-    setGuardrails(newGuardrails);
-    onUpdate(operation.id, { ...operation, validate: newGuardrails });
-  };
-
-  const addGuardrail = () => {
-    const newGuardrails = [...guardrails, ''];
-    setGuardrails(newGuardrails);
-    onUpdate(operation.id, { ...operation, validate: newGuardrails });
-  };
-
-  const removeGuardrail = (index: number) => {
-    const newGuardrails = guardrails.filter((_, i) => i !== index);
-    setGuardrails(newGuardrails);
-    onUpdate(operation.id, { ...operation, validate: newGuardrails });
-  };
-
-  const handleSettingsSave = (newSettings: Record<string, string>) => {
-    setOtherKwargs(newSettings);
-    onUpdate(operation.id, { ...operation, otherKwargs: newSettings });
-  };
+  if (!operation) {
+    return <SkeletonCard />;
+  }
 
   return (
+    <div className="flex items-start w-full">
+      <div className="mr-1 w-8 h-8 flex-shrink-0 flex items-center justify-center bg-gray-100 text-gray-600 font-mono text-xs rounded-sm shadow-sm">
+      {isLoadingOutputs ? (
+          <div className="animate-spin rounded-full h-3 w-3 border-t-2 border-b-2 border-gray-900"></div>
+        ) : operation.runIndex ? (
+          <>[{operation.runIndex}]</>
+        ) : (
+          <>[ ]</>
+        )}
+      </div>
     <Draggable draggableId={operation.id} index={index}>
-    {(provided) => (
-      <Card className="mb-3 relative rounded-sm bg-white shadow-sm">
-        <div
-          className="absolute left-0 top-0 bottom-0 w-6 flex items-center justify-center cursor-move hover:bg-gray-100"
-          {...provided.dragHandleProps}
-        >
-          <GripVertical size={16} />
-        </div>
-        <div
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          className="ml-6"
-        >
-          <CardHeader className="flex justify-between items-center py-3 px-4">
-            <div className="flex space-x-2 absolute left-8 top-3">
-              <Button variant="ghost" size="sm" className="p-1 h-7 w-7" onClick={() => setIsSettingsOpen(true)}>
-                <Settings size={15} className="text-gray-500" />
-              </Button>
-              <Button variant="ghost" size="sm" className="p-1 h-7 w-7">
-                <Zap size={15} className="text-yellow-500" />
-              </Button>
-              <Button variant="ghost" size="sm" className="p-1 h-7 w-7" onClick={handleRunOperation}>
-                <Play size={15} className="text-green-500" />
-              </Button>
-            </div>
-            {isEditing ? (
-              <Input
-                value={editedName}
-                onChange={(e) => setEditedName(e.target.value)}
-                onBlur={handleNameEdit}
-                onKeyPress={(e) => e.key === 'Enter' && handleNameEdit()}
-                className="text-sm font-medium w-1/2 font-mono"
-                autoFocus
-              />
-            ) : (
-              <span 
-                className={`text-sm font-medium cursor-pointer ${operation.llmType === 'LLM' ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text' : ''}`}
-                onClick={() => setIsEditing(true)}
-              >
-                {operation.name} ({operation.type})
-              </span>
-            )}
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              onClick={() => onDelete(operation.id)}
-              className="hover:bg-red-100 absolute top-3 right-3 p-1 h-7 w-7"
-            >
-              <Trash2 size={15} className="text-red-500" />
-            </Button>
-          </CardHeader>
-          <CardContent className="py-3 px-4">
-          {operation.llmType === 'LLM' && (
-              <>
-                <Textarea placeholder="Enter prompt" className="mb-3 rounded-sm text-sm font-mono" rows={3} />
-                <div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setIsSchemaExpanded(!isSchemaExpanded)}
-                    className="mb-2 p-0"
-                  >
-                    <ChevronDown
-                      size={16}
-                      className={`mr-1 transition-transform duration-200 ${
-                        isSchemaExpanded ? 'transform rotate-180' : ''
-                      }`}
-                    />
-                    <h4 className="text-sm font-semibold">Output Types</h4>
-                  </Button>
-                  {isSchemaExpanded && (
-                    <SchemaForm schema={schema} onUpdate={handleSchemaUpdate} />
-                  )}
-                </div>
-              </>
-            )}
-          </CardContent>
-          <div className="border-t border-red-500">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsGuardrailsExpanded(!isGuardrailsExpanded)}
-              className="w-full text-red-500 hover:bg-red-50 flex justify-between items-center"
-            >
-              <span>Guardrails ({guardrails.length})</span>
-              <ChevronDown
-                size={16}
-                className={`transition-transform duration-200 ${
-                  isGuardrailsExpanded ? 'transform rotate-180' : ''
-                }`}
-              />
-            </Button>
-            {isGuardrailsExpanded && (
-              <div className="p-4 bg-red-50">
-                {guardrails.map((guardrail, index) => (
-                  <div key={index} className="flex items-center mb-2">
-                    <Input
-                      value={guardrail}
-                      onChange={(e) => handleGuardrailChange(index, e.target.value)}
-                      placeholder="Enter guardrail"
-                      className="flex-grow text-sm text-red-700 font-mono"
-                    />
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => removeGuardrail(index)}
-                      className="ml-2 p-1 h-7 w-7 hover:bg-red-100"
-                    >
-                      <Trash2 size={15} className="text-red-500" />
-                    </Button>
-                  </div>
-                ))}
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={addGuardrail}
-                  className="mt-2 text-red-500 border-red-500 hover:bg-red-100"
-                >
-                  <Plus size={16} className="mr-2" /> Add Guardrail
-                </Button>
-              </div>
-            )}
+      {(provided) => (
+        <Card ref={provided.innerRef} {...provided.draggableProps} className="mb-2 relative rounded-sm bg-white shadow-sm w-full">
+          <div {...provided.dragHandleProps} className="absolute left-0 top-0 bottom-0 w-5 flex items-center justify-center cursor-move hover:bg-gray-100">
+            <GripVertical size={14} />
           </div>
-
-          <SettingsModal
-            opName={operation.name}
-            opType={operation.type}
-            isOpen={isSettingsOpen}
-            onClose={() => setIsSettingsOpen(false)}
-            otherKwargs={otherKwargs}
-            onSettingsSave={handleSettingsSave}
+          <div className="ml-5">
+          <OperationHeader
+            name={operation.name}
+            type={operation.type}
+            onEdit={(name) => {
+              dispatch({ type: 'UPDATE_NAME', payload: name });
+              debouncedUpdate();
+            }}
+            onDelete={() => setOperations(prev => prev.filter(op => op.id !== operation.id))}
+            onRunOperation={handleRunOperation}
+            onToggleSettings={() => dispatch({ type: 'TOGGLE_SETTINGS' })}
           />
-
-        </div>
-      </Card>
-    )}
-  </Draggable>
+            <CardContent className="py-2 px-3">
+              {createOperationComponent(operation, handleOperationUpdate,isSchemaExpanded, () => dispatch({ type: 'TOGGLE_SCHEMA' }))}
+{/*               
+              {operation.llmType === 'LLM' && (
+                <>
+                  <PromptInput
+                    prompt={operation.prompt || ''}
+                    onChange={handlePromptChange}
+                />
+                  <OutputSchema
+                    schema={schemaItems}
+                    onUpdate={handleSchemaUpdate}
+                    isExpanded={isSchemaExpanded}
+                    onToggle={() => dispatch({ type: 'TOGGLE_SCHEMA' })}
+                  />
+                </>
+              )} */}
+            </CardContent>
+            {operation.llmType === 'LLM' && (
+              <Guardrails
+                guardrails={operation.validate || []}
+                onUpdate={(newGuardrails) => dispatch({ type: 'UPDATE_GUARDRAILS', payload: newGuardrails })}
+                isExpanded={isGuardrailsExpanded}
+                onToggle={() => dispatch({ type: 'TOGGLE_GUARDRAILS' })}
+              />
+            )}
+            <SettingsModal
+              opName={operation.name}
+              opType={operation.type}
+              isOpen={isSettingsOpen}
+              onClose={() => dispatch({ type: 'TOGGLE_SETTINGS' })}
+              otherKwargs={operation.otherKwargs || {}}
+              onSettingsSave={handleSettingsSave}
+            />
+          </div>
+        </Card>
+      )}
+    </Draggable>
+    </div>
   );
 };
 
+const SkeletonCard: React.FC = () => (
+  <div className="flex items-start w-full">
+    <div className="mr-1 w-8 h-8 flex-shrink-0 flex items-center justify-center bg-gray-200 rounded-sm">
+      <Skeleton className="h-3 w-3" />
+    </div>
+    <Card className="mb-2 relative rounded-sm bg-white shadow-sm w-full">
+      <CardHeader className="flex justify-between items-center py-2 px-3">
+        <Skeleton className="h-3 w-1/3" />
+        <Skeleton className="h-3 w-1/4" />
+      </CardHeader>
+      <CardContent>
+        <Skeleton className="h-16 w-full mb-1" />
+        <Skeleton className="h-3 w-2/3" />
+      </CardContent>
+    </Card>
+  </div>
+);
+
+export default OperationCard;

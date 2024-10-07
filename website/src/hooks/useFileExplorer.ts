@@ -18,19 +18,9 @@ export const useFileExplorer = () => {
     setFiles(updatedFiles);
   };
 
-  useEffect(() => {
-    // Fetch debate transcripts
-    fetch('/debate_transcripts.json')
-      .then(response => response.json())
-      .then(data => {
-        const updatedFiles = files.map(file => 
-          file.name === 'debate_transcripts.json' 
-            ? { ...file, content: JSON.stringify(data, null, 2) } 
-            : file
-        );
-        handleFilesUpdate(updatedFiles);
-      });
-  }, []);
+  const handleFileDelete = (file: File) => {
+    setFiles(prevFiles => prevFiles.filter(f => f.name !== file.name));
+  };
 
   return {
     files,
@@ -38,5 +28,6 @@ export const useFileExplorer = () => {
     handleFileClick,
     handleFileUpload,
     handleFilesUpdate,
+    handleFileDelete,
   };
 };

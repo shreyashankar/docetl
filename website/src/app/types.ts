@@ -1,17 +1,18 @@
 export type File = {
     name: string;
-    content: string;
+    path: string;
 };
 
 export type Operation = {
     id: string;
     llmType: 'LLM' | 'non-LLM';
-    type: 'map' | 'reduce' | 'filter' | 'equijoin' | 'resolve' | 'parallel-map' | 'unnest' | 'split' | 'gather';
+    type: 'map' | 'reduce' | 'filter' | 'resolve' | 'parallel_map' | 'unnest' | 'split' | 'gather';
     name: string;
     prompt?: string;
-    outputSchema?: Record<string, string>;
+    output?: {schema: SchemaItem[]};
     validate?: string[];
     otherKwargs?: Record<string, any>;
+    runIndex?: number;
 };
 
 export type OutputRow = Record<string, string>;
@@ -41,5 +42,11 @@ export interface BookmarkContextType {
     bookmarks: Bookmark[];
     addBookmark: (text: string, source: string, color: string, notes: UserNote[]) => void;
     removeBookmark: (id: string) => void;
+}
+
+export interface OutputType {
+    path: string;
+    operationId: string;
+    inputPath?: string;
 }
   
