@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export type DataType = Record<string, any>
-export type ColumnType<T extends DataType> = ColumnDef<T>
+export type ColumnType<T extends DataType> = ColumnDef<T> & { initialWidth?: number }
 
 const ColumnResizer = <T extends DataType>({ header }: { header: Header<T, unknown> }) => {
   return (
@@ -52,31 +52,35 @@ interface ResizableRow<T extends DataType> extends Row<T> {
 
 const RowResizer = <T extends DataType>({ row }: { row: ResizableRow<T> }) => {
   return (
-    <div
-      onMouseDown={(e) => {
-        e.preventDefault();
-        const startY = e.clientY;
-        const startHeight = row.getSize();
-        
-        const onMouseMove = (e: MouseEvent) => {
-          const newHeight = Math.max(startHeight + e.clientY - startY, 30);
-          row.setSize(newHeight);
-        };
-        
-        const onMouseUp = () => {
-          document.removeEventListener('mousemove', onMouseMove);
-          document.removeEventListener('mouseup', onMouseUp);
-        };
-        
-        document.addEventListener('mousemove', onMouseMove);
-        document.addEventListener('mouseup', onMouseUp);
-      }}
-      className={`h-2 cursor-row-resize bg-slate-400 opacity-0 hover:opacity-100`}
-      style={{
-        userSelect: 'none',
-        touchAction: 'none',
-      }}
-    />
+    <tr>
+      <td colSpan={100}>
+        <div
+          onMouseDown={(e) => {
+            e.preventDefault();
+            const startY = e.clientY;
+            const startHeight = row.getSize();
+            
+            const onMouseMove = (e: MouseEvent) => {
+              const newHeight = Math.max(startHeight + e.clientY - startY, 30);
+              row.setSize(newHeight);
+            };
+            
+            const onMouseUp = () => {
+              document.removeEventListener('mousemove', onMouseMove);
+              document.removeEventListener('mouseup', onMouseUp);
+            };
+            
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+          }}
+          className={`h-2 cursor-row-resize bg-slate-400 opacity-0 hover:opacity-100`}
+          style={{
+            userSelect: 'none',
+            touchAction: 'none',
+          }}
+        />
+      </td>
+    </tr>
   );
 };
 
@@ -91,7 +95,15 @@ interface ResizableDataTableProps<T extends DataType> {
     columns, 
     startingRowHeight = 60  // Default starting height
   }: ResizableDataTableProps<T>) {
-    const [columnSizing, setColumnSizing] = useState<ColumnSizingState>({})
+    const [columnSizing, setColumnSizing] = useState<ColumnSizingState>(() => {
+      const initialSizing: ColumnSizingState = {};
+      columns.forEach(column => {
+        if (column.initialWidth) {
+          initialSizing[column.id as string] = column.initialWidth;
+        }
+      });
+      return initialSizing;
+    })
     const [rowSizing, setRowSizing] = useState<Record<string, number>>({})
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   

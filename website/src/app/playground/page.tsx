@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import { FileText, Maximize2, Minimize2, Plus, Play, GripVertical, Trash2, ChevronDown, Zap, Upload } from 'lucide-react';
+import { FileText, Maximize2, Minimize2, Plus, Play, GripVertical, Trash2, ChevronDown, Zap, Upload, Scroll } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { DropResult } from 'react-beautiful-dnd';
@@ -81,14 +81,14 @@ const CodeEditorPipelineApp: React.FC = () => {
   const [showOutput, setShowOutput] = useState(true);
   const [showDatasetView, setShowDatasetView] = useState(false);
 
-  const { operations, currentFile, setOperations, setCurrentFile } = usePipelineContext();
-  const { files, handleFileClick, handleFileUpload, handleFilesUpdate } = useFileExplorer();
+  const { operations, currentFile, setOperations, setCurrentFile, cost } = usePipelineContext();
+  const { files, handleFileClick, handleFileUpload, handleFileDelete } = useFileExplorer();
 
   const handleAddOperation = (llmType: string, type: string, name: string) => {
     const newOperation: Operation = {
       id: String(Date.now()),
       llmType: llmType as 'LLM' | 'non-LLM',
-      type: type as 'map' | 'reduce' | 'filter' | 'equijoin' | 'resolve' | 'parallel-map' | 'unnest' | 'split' | 'gather',
+      type: type as 'map' | 'reduce' | 'filter' | 'resolve' | 'parallel_map' | 'unnest' | 'split' | 'gather',
       name: name,
     };
     setOperations([...operations, newOperation]);
@@ -104,25 +104,18 @@ const CodeEditorPipelineApp: React.FC = () => {
     setOperations(items);
   };
 
-  const handleRunAll = () => {
-    console.log("Running all operations");
-    // Implement the actual run all logic here
-  };
-
-  const handleDeleteOperation = (id: string) => {
-    setOperations(operations.filter(op => op.id !== id));
-  };
-
-  const handleUpdateOperation = (id: string, updatedOperation: Operation) => {
-    setOperations(operations.map(op => op.id === id ? updatedOperation : op));
-  };
-
   return (
     <BookmarkProvider>
-    <SpotlightOverlay>
+    {/* <SpotlightOverlay> */}
     <div className="h-screen flex flex-col bg-gray-50">
-      <div className="bg-white p-1 flex justify-end items-center border-b">
-        <div className="flex items-center space-x-1">
+      <div className="p-1 flex justify-between items-center border-b">
+        <div className="flex-1"></div>
+        <div className="flex items-center">
+          <Scroll className="mr-2 text-primary" size={20} />
+          <h1 className="text-lg font-bold text-primary">DocETL</h1>
+        </div>
+        <div className="flex-1 flex justify-end items-center space-x-2">
+          <span className="text-sm font-medium text-gray-600">Cost: ${cost.toFixed(2)}</span>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -184,10 +177,12 @@ const CodeEditorPipelineApp: React.FC = () => {
                     onFileClick={(file) => {
                       handleFileClick(file);
                       setCurrentFile(file);
-                      setShowDatasetView(true);
                     }} 
                     onFileUpload={handleFileUpload}
-                    onFilesUpdate={handleFilesUpdate}
+                    onFileDelete={handleFileDelete}
+                    setCurrentFile={setCurrentFile}
+                    setShowDatasetView={setShowDatasetView}
+                    currentFile={currentFile}
                   />
                 </ResizablePanel>
                 <ResizableHandle withHandle className="h-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-200" />
@@ -204,12 +199,7 @@ const CodeEditorPipelineApp: React.FC = () => {
             <ResizablePanelGroup direction="vertical">
               <ResizablePanel defaultSize={70} minSize={30}>
                 <PipelineGUI 
-                  operations={operations} 
-                  onAddOperation={handleAddOperation}
                   onDragEnd={handleDragEnd}
-                  onRunAll={handleRunAll}
-                  onDeleteOperation={handleDeleteOperation}
-                  onUpdateOperation={handleUpdateOperation}
                 />
               </ResizablePanel>
               {showOutput && <ResizableHandle withHandle className="h-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-200" />}
@@ -230,7 +220,7 @@ const CodeEditorPipelineApp: React.FC = () => {
           )}
         </ResizablePanelGroup>
       </div>
-    </SpotlightOverlay>
+    {/* </SpotlightOverlay> */}
     </BookmarkProvider>
   );
 };

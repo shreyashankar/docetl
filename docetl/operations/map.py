@@ -366,11 +366,14 @@ class ParallelMapOperation(BaseOperation):
             local_output_schema = {
                 key: output_schema[key] for key in prompt_config["output_keys"]
             }
+            model = prompt_config.get("model", self.default_model)
+            if not model:
+                model = self.default_model
 
             # Start of Selection
             # If there are tools, we need to pass in the tools
             response = self.runner.api.call_llm(
-                prompt_config.get("model", self.default_model),
+                model,
                 "parallel_map",
                 [{"role": "user", "content": prompt}],
                 local_output_schema,

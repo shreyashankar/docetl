@@ -36,7 +36,7 @@ const BookmarksPanel: React.FC = () => {
   };
 
   return (
-    <div className="h-full p-4 bg-white flex flex-col">
+    <div className="h-full p-4 flex flex-col">
       <h2 className="text-sm font-bold mb-2 flex items-center uppercase">
         <Bookmark className="mr-2" size={16} />
         Bookmarks

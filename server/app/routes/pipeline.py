@@ -11,4 +11,4 @@ async def run_pipeline(request: PipelineRequest):
         result = run_pipeline_service(request.yaml_config)
         return result
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=500, detail=str(e))

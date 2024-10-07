@@ -207,6 +207,9 @@ class DSLRunner(ConfigWrapper):
         self.console.rule("[cyan]Saving Output[/cyan]")
         output_config = self.config["pipeline"]["output"]
         if output_config["type"] == "file":
+            # Create the directory if it doesn't exist
+            os.makedirs(os.path.dirname(output_config["path"]), exist_ok=True)
+
             with open(output_config["path"], "w") as file:
                 json.dump(data, file, indent=2)
             self.console.print(
