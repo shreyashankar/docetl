@@ -17,18 +17,33 @@ export const initialOperations: Operation[] = [
       ]
     }
   },
+  // {
+  //   id: '2',
+  //   llmType: 'LLM',
+  //   type: 'map',
+  //   name: 'extract_candidates',
+  //   prompt: 'Extract the candidates participating in the debate and their respective parties. Here is the transcript: \n {{ input.content }}',
+  //   output: {
+  //     schema: [
+  //       { key: 'candidates', type: 'list', subType: { key: 'candidate', type: 'string' } }
+  //     ]
+  //   }
+  // },
   {
-    id: '2',
+    id: '3',
     llmType: 'LLM',
-    type: 'map',
-    name: 'extract_candidates',
-    prompt: 'Extract the candidates participating in the debate and their respective parties. Here is the transcript: \n {{ input.content }}',
+    type: 'resolve',
+    name: 'resolve_year',
+    otherKwargs: {
+      comparison_prompt: 'Are {{ input1.year }} and {{ input2.year }} the same year?',
+      resolution_prompt: 'What is the year of the debate? Canonicalize the following years: {% for input in inputs %} {{ input.year }} {% endfor %}',
+    },
     output: {
       schema: [
-        { key: 'candidates', type: 'list', subType: { key: 'candidate', type: 'string' } }
+        { key: 'year', type: 'string' }
       ]
     }
-  },
+  }
 ];
 
 export const mockSampleSize = 5;
