@@ -120,7 +120,10 @@ def truncate_sample_data(
                     remaining_tokens = available_tokens - current_tokens
 
                     # Encode the value
-                    encoder = tiktoken.encoding_for_model(model)
+                    try:
+                        encoder = tiktoken.encoding_for_model(model)
+                    except Exception:
+                        encoder = tiktoken.encoding_for_model("gpt-4o")
                     encoded_value = encoder.encode(str(data[key]))
 
                     # Calculate how many tokens to keep

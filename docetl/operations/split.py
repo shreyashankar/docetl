@@ -51,9 +51,15 @@ class SplitOperation(BaseOperation):
         split_key = self.config["split_key"]
         method = self.config["method"]
         method_kwargs = self.config["method_kwargs"]
-        encoder = tiktoken.encoding_for_model(
-            self.config["method_kwargs"].get("model", self.default_model).split("/")[-1]
-        )
+        try:
+            encoder = tiktoken.encoding_for_model(
+                self.config["method_kwargs"]
+                .get("model", self.default_model)
+                .split("/")[-1]
+            )
+        except Exception:
+            encoder = tiktoken.encoding_for_model("gpt-4o")
+
         results = []
         cost = 0.0
 
