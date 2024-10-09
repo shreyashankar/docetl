@@ -231,6 +231,7 @@ class EquijoinOperation(BaseOperation):
                 f"[yellow]Warning: {dropped_pairs} pairs will be dropped due to the comparison limit. "
                 f"Proceeding with {limit_comparisons} randomly sampled pairs. "
                 f"Do you want to continue?[/yellow]",
+                self.console,
             ):
                 raise ValueError("Operation cancelled by user due to pair limit.")
 

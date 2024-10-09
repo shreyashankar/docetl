@@ -353,6 +353,9 @@ class ReduceOperation(BaseOperation):
 
             total_cost += cost
 
+            # Add the counts of items in the group to the result
+            result[f"_counts_prereduce_{self.config['name']}"] = len(group_elems)
+
             # Apply pass-through at the group level
             if (
                 result is not None

@@ -498,7 +498,8 @@ class ReduceOptimizer:
         # Ask user if they agree with the decomposition assessment
         user_agrees = Confirm.ask(
             f"Do you agree with the decomposition assessment? "
-            f"[bold]{'Recommended' if should_decompose['should_decompose'] else 'Not recommended'}[/bold]"
+            f"[bold]{'Recommended' if should_decompose['should_decompose'] else 'Not recommended'}[/bold]",
+            self.console,
         )
 
         # If user disagrees, invert the decomposition decision

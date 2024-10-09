@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { ColumnType } from '@/components/ResizableDataTable';
 import ResizableDataTable from '@/components/ResizableDataTable';
 import { usePipelineContext } from '@/contexts/PipelineContext';
@@ -12,6 +12,8 @@ import {
 import BookmarkableText from '@/components/BookmarkableText';
 import { Operation, OutputRow } from '@/app/types';
 import { Parser } from 'json2csv';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 export const Output: React.FC = () => {
   const { output, isLoadingOutputs, operations } = usePipelineContext();
@@ -19,8 +21,16 @@ export const Output: React.FC = () => {
   const [inputCount, setInputCount] = useState<number>(0);
   const [outputCount, setOutputCount] = useState<number>(0);
 
-  const operation = operations.find((op: Operation) => op.id === output?.operationId);
-  const opName = operation?.name;
+  const [operation, setOperation] = useState<Operation | undefined>(undefined);
+  const [opName, setOpName] = useState<string | undefined>(undefined);
+  const [isResolveOrReduce, setIsResolveOrReduce] = useState<boolean>(false);
+
+  useEffect(() => {
+    const foundOperation = operations.find((op: Operation) => op.id === output?.operationId);
+    setOperation(foundOperation);
+    setOpName(foundOperation?.name);
+    setIsResolveOrReduce(foundOperation?.type === 'resolve' || foundOperation?.type === 'reduce');
+  }, [operations, output]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -110,7 +120,7 @@ export const Output: React.FC = () => {
       : [];
   }, [outputs, operation?.output?.schema]);
   
-  const OutputContent = () => (
+  const TableContent = () => (
     <div className="flex-grow overflow-y-auto">
       {isLoadingOutputs ? (
         <div className="flex items-center justify-center h-full">
@@ -128,6 +138,111 @@ export const Output: React.FC = () => {
       ) : (
         <p className="text-center text-muted-foreground">No outputs available.</p>
       )}
+    </div>
+  );
+
+  const VisualizeContent = () => {
+
+    const visualizationColumn = useMemo(() => {
+      if (!opName) return null;
+      const reduceColumnName = `_counts_prereduce_${opName}`;
+      const resolveColumnName = `_kv_pairs_preresolve_${opName}`;
+      return outputs.length > 0 && reduceColumnName in outputs[0] 
+        ? { name: reduceColumnName, type: 'reduce' }
+        : outputs.length > 0 && resolveColumnName in outputs[0]
+        ? { name: resolveColumnName, type: 'resolve' }
+        : null;
+    }, [outputs, opName, operation]);
+
+    if (!visualizationColumn || !operation) {
+      return <p className="text-center text-muted-foreground">No visualization data available.</p>;
+    }
+
+    if (operation.type === 'reduce') {
+      const reduceKeys = operation.otherKwargs?.reduce_key || [];
+      return (
+        <div className="flex-grow overflow-y-auto">
+          {outputs
+            .sort((a, b) => Number(b[visualizationColumn.name]) - Number(a[visualizationColumn.name]))
+            .map((row, index) => (
+            <div key={index} className="mb-2">
+              <h3 className="text-sm font-semibold mb-2">
+                {reduceKeys.map((key: string) => `${key}: ${row[key]}`).join(', ')} ({row[visualizationColumn.name]})
+              </h3>
+              <div className="flex">
+                {Array.from({ length: Number(row[visualizationColumn.name]) }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="w-4 h-10 bg-primary mr-1"
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    } else if (operation.type === 'resolve') {
+      const groupedData = useMemo(() => {
+        const intersectionKeys = new Set(
+          outputs.flatMap(row => {
+            const kvPairs = row[visualizationColumn.name];
+            return Object.keys(kvPairs).filter(key => key in row);
+          })
+        );
+
+        let groupedByIntersection: { [key: string]: any[] } = {};
+        outputs.forEach(row => {
+          const kvPairs = row[visualizationColumn.name];
+          const key = Array.from(intersectionKeys)
+            .map(k => row[k])
+            .join('|');
+          if (!groupedByIntersection[key]) {
+            groupedByIntersection[key] = [];
+          }
+          groupedByIntersection[key].push({ row, oldValues: kvPairs });
+        });
+
+        return groupedByIntersection;
+      }, [outputs, visualizationColumn.name]);
+
+      return (
+        <div className="flex-grow overflow-y-auto">
+          {Object.entries(groupedData)
+            .sort(([, groupA], [, groupB]) => groupB.length - groupA.length)
+            .map(([key, group]: [string, any[]]) => (
+            <div key={key} className="mb-2">
+              <h3 className="text-sm font-semibold mb-2">{key} ({group.length})</h3>
+              <div className="flex">
+                {group.map((item, index) => (
+                  <TooltipProvider key={index}>
+                    <Tooltip delayDuration={0}>
+                      <TooltipTrigger>
+                        <Button
+                          className="w-4 h-10 p-0 mr-1"
+                          variant="default"
+                        />
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom" align="center" className="max-w-[300px]">
+                        <p className="text-xs">Document values before resolution:</p>
+                        <pre>{JSON.stringify(item.oldValues, null, 2)}</pre>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    } else {
+      return <p className="text-center text-muted-foreground">Visualization not supported for this operation type.</p>;
+    }
+  };
+
+  const ConsoleContent = () => (
+    <div className="flex-grow overflow-y-auto bg-black text-white p-4 font-mono rounded-lg">
+      <p className="mb-2">Console output will be displayed here.</p>
+      {/* Add actual console output logic here */}
     </div>
   );
 
@@ -184,7 +299,24 @@ export const Output: React.FC = () => {
           </Dialog> */}
         </div>
       </div>
-      <OutputContent />
+      <Tabs defaultValue="table" className="w-full">
+        <TabsList>
+          <TabsTrigger value="table">Table</TabsTrigger>
+          <TabsTrigger value="console">Console</TabsTrigger>
+          <TabsTrigger value="visualize" disabled={!isResolveOrReduce}>Visualize Input Distribution</TabsTrigger>
+        </TabsList>
+        <TabsContent value="table">
+          <TableContent />
+        </TabsContent>
+        <TabsContent value="console">
+          <ConsoleContent />
+        </TabsContent>
+        <TabsContent value="visualize">
+          <div>
+            <VisualizeContent />
+          </div>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };

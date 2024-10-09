@@ -204,6 +204,7 @@ class ResolveOperation(BaseOperation):
                 f"This may result in a large number of comparisons. "
                 f"We recommend specifying at least one blocking key or condition, or using the optimizer to automatically come up with these. "
                 f"Do you want to continue without blocking?[/yellow]",
+                self.console,
             ):
                 raise ValueError("Operation cancelled by user.")
 

@@ -29,18 +29,34 @@ export const initialOperations: Operation[] = [
   //     ]
   //   }
   // },
+  // {
+  //   id: '3',
+  //   llmType: 'LLM',
+  //   type: 'resolve',
+  //   name: 'resolve_year',
+  //   otherKwargs: {
+  //     comparison_prompt: 'Are {{ input1.year }} and {{ input2.year }} the same year?',
+  //     resolution_prompt: 'What is the year of the debate? Canonicalize the following years: {% for input in inputs %} {{ input.year }} {% endfor %}',
+  //   },
+  //   output: {
+  //     schema: [
+  //       { key: 'year', type: 'string' }
+  //     ]
+  //   }
+  // },
   {
-    id: '3',
+    id: '4',
     llmType: 'LLM',
-    type: 'resolve',
-    name: 'resolve_year',
+    type: 'reduce',
+    name: 'reduce_themes',
     otherKwargs: {
-      comparison_prompt: 'Are {{ input1.year }} and {{ input2.year }} the same year?',
-      resolution_prompt: 'What is the year of the debate? Canonicalize the following years: {% for input in inputs %} {{ input.year }} {% endfor %}',
+      associative: true,
+      reduce_key: ['year'],
     },
+    prompt: 'summarize the themes discussed in the debate. here are the transcripts: \n {% for input in inputs %}{{ input.content }}\n{% endfor %}',
     output: {
       schema: [
-        { key: 'year', type: 'string' }
+        { key: 'summary', type: 'string' }
       ]
     }
   }
