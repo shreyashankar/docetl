@@ -1,0 +1,1859 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docetl.com/operators/cluster/">
+      
+      
+        <link rel="prev" href="../equijoin/">
+      
+      
+        <link rel="next" href="../split/">
+      
+      
+      <link rel="icon" href="../../assets/docetl-favicon-color.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Cluster - docetl docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CSource+Code+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cluster-operation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="docetl docs" class="md-header__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 80v48c0 17.7 14.3 32 32 32h64V80c0-26.5-21.5-48-48-48S0 53.5 0 80m112-48c10 13.4 16 30 16 48v304c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96zm352 448c61.9 0 112-50.1 112-112 0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7v5.3c0 53-43 96-96 96h272"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            docetl docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cluster
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../.." class="md-tabs__link">
+          
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/presidential-debate-themes/" class="md-tabs__link">
+          
+  
+    
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api-reference/docetl/" class="md-tabs__link">
+          
+  
+    
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../community/" class="md-tabs__link">
+          
+  
+    
+  
+  Community
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="docetl docs" class="md-nav__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 80v48c0 17.7 14.3 32 32 32h64V80c0-26.5-21.5-48-48-48S0 53.5 0 80m112-48c10 13.4 16 30 16 48v304c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96zm352 448c61.9 0 112-50.1 112-112 0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7v5.3c0 53-43 96-96 96h272"/></svg>
+
+    </a>
+    docetl docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tutorial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../best-practices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Best Practices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Core Concepts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Core Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/operators/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Operators & Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/schemas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Output Schemas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/pipelines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pipelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/optimization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    LLM-Powered Operators
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            LLM-Powered Operators
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../map/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resolve/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resolve
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reduce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reduce
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-map/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parallel Map
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../filter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../equijoin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Equijoin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Cluster
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Cluster
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-grouping-concepts-from-a-knowledge-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Example: Grouping concepts from a knowledge-graph
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#required-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional Parameters
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_5" id="__nav_1_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Auxiliary Operators
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            Auxiliary Operators
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../split/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Split
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gather/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unnest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unnest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_6" id="__nav_1_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Optimization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            Optimization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Example
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/python-api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python API Example
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python-api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../examples/presidential-debate-themes/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Examples
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../api-reference/docetl/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    API Reference
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../community/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Community
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-grouping-concepts-from-a-knowledge-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Example: Grouping concepts from a knowledge-graph
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#required-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional Parameters
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="cluster-operation">Cluster operation</h1>
+<p>The Cluster operation in DocETL groups all items into a binary tree
+using <a href="https://en.wikipedia.org/wiki/Hierarchical_clustering#Agglomerative_clustering_example">agglomerative
+clustering</a>
+of the embedding of some keys, and annotates each item with the path
+through this tree down to the item (Note that the path is reversed,
+starting with the most specific grouping, and ending in the root of
+the tree, the cluster that encompasses all your input).</p>
+<p>Each cluster is summarized using an llm prompt, taking the summaries
+of its children as inputs (or for the leaf nodes, the actual items).</p>
+<h2 id="example-grouping-concepts-from-a-knowledge-graph">🚀 Example: Grouping concepts from a knowledge-graph</h2>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster_concepts</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster</span>
+<span class="w">  </span><span class="nt">max_batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">  </span><span class="nt">embedding_keys</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">concept</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">description</span>
+<span class="w">  </span><span class="nt">output_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">categories</span><span class="w"> </span><span class="c1"># This is optional, and defaults to &quot;clusters&quot;</span>
+<span class="w">  </span><span class="nt">summary_schema</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">concept</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">str</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">str</span>
+<span class="w">  </span><span class="nt">summary_prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">The following describes two related concepts. What concept</span>
+<span class="w">    </span><span class="no">encompasses both? Try not to be too broad; it might be that one of</span>
+<span class="w">    </span><span class="no">these two concepts already encompasses the other; in that case,</span>
+<span class="w">    </span><span class="no">you should just use that concept.</span>
+
+<span class="w">    </span><span class="no">{{left.concept}}:</span>
+<span class="w">    </span><span class="no">{{left.description}}</span>
+
+<span class="w">    </span><span class="no">{{right.concept}}:</span>
+<span class="w">    </span><span class="no">{{right.description}}</span>
+
+<span class="w">    </span><span class="no">Provide the title of the super-concept, and a description.</span>
+</code></pre></div>
+<p>This cluster operation processes a set of concepts, each with a title
+and a description, and groups them into a tree of categories.</p>
+<details class="example">
+<summary>Sample Input and Output</summary>
+<p>Input:
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Shed&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A shed is typically a simple, single-story roofed structure, often used for storage, for hobbies, or as a workshop, and typically serving as outbuilding, such as in a back garden or on an allotment. Sheds vary considerably in their size and complexity of construction, from simple open-sided ones designed to cover bicycles or garden items to large wood-framed structures with shingled roofs, windows, and electrical outlets. Sheds used on farms or in the industry can be large structures. The main types of shed construction are metal sheathing over a metal frame, plastic sheathing and frame, all-wood construction (the roof may be asphalt shingled or sheathed in tin), and vinyl-sided sheds built over a wooden frame. Small sheds may include a wooden or plastic floor, while more permanent ones may be built on a concrete pad or foundation. Sheds may be lockable to deter theft or entry by children, domestic animals, wildlife, etc.&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Barn&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A barn is an agricultural building usually on farms and used for various purposes. In North America, a barn refers to structures that house livestock, including cattle and horses, as well as equipment and fodder, and often grain.[2] As a result, the term barn is often qualified e.g. tobacco barn, dairy barn, cow house, sheep barn, potato barn. In the British Isles, the term barn is restricted mainly to storage structures for unthreshed cereals and fodder, the terms byre or shippon being applied to cow shelters, whereas horses are kept in buildings known as stables.[2][3] In mainland Europe, however, barns were often part of integrated structures known as byre-dwellings (or housebarns in US literature). In addition, barns may be used for equipment storage, as a covered workplace, and for activities such as threshing.&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tree house&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A tree house, tree fort or treeshed, is a platform or building constructed around, next to or among the trunk or branches of one or more mature trees while above ground level. Tree houses can be used for recreation, work space, habitation, a hangout space and observation. People occasionally connect ladders or staircases to get up to the platforms.&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Castle&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A castle is a type of fortified structure built during the Middle Ages predominantly by the nobility or royalty and by military orders. Scholars usually consider a castle to be the private fortified residence of a lord or noble. This is distinct from a mansion, palace, and villa, whose main purpose was exclusively for pleasance and are not primarily fortresses but may be fortified.[a] Use of the term has varied over time and, sometimes, has also been applied to structures such as hill forts and 19th- and 20th-century homes built to resemble castles. Over the Middle Ages, when genuine castles were built, they took on a great many forms with many different features, although some, such as curtain walls, arrowslits, and portcullises, were commonplace.&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fortress&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A fortification (also called a fort, fortress, fastness, or stronghold) is a military construction designed for the defense of territories in warfare, and is used to establish rule in a region during peacetime. The term is derived from Latin fortis (&#39;strong&#39;) and facere (&#39;to make&#39;). From very early history to modern times, defensive walls have often been necessary for cities to survive in an ever-changing world of invasion and conquest. Some settlements in the Indus Valley Civilization were the first small cities to be fortified. In ancient Greece, large stone walls had been built in Mycenaean Greece, such as the ancient site of Mycenae (known for the huge stone blocks of its &#39;cyclopean&#39; walls). A Greek phrourion was a fortified collection of buildings used as a military garrison, and is the equivalent of the Roman castellum or fortress. These constructions mainly served the purpose of a watch tower, to guard certain roads, passes, and borders. Though smaller than a real fortress, they acted as a border guard rather than a real strongpoint to watch and maintain the border.&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></p>
+<p>Output:
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Shed&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A shed is typically a simple, single-story roofed structure, often used for storage, for hobbies, or as a workshop, and typically serving as outbuilding, such as in a back garden or on an allotment. Sheds vary considerably in their size and complexity of construction, from simple open-sided ones designed to cover bicycles or garden items to large wood-framed structures with shingled roofs, windows, and electrical outlets. Sheds used on farms or in the industry can be large structures. The main types of shed construction are metal sheathing over a metal frame, plastic sheathing and frame, all-wood construction (the roof may be asphalt shingled or sheathed in tin), and vinyl-sided sheds built over a wooden frame. Small sheds may include a wooden or plastic floor, while more permanent ones may be built on a concrete pad or foundation. Sheds may be lockable to deter theft or entry by children, domestic animals, wildlife, etc.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;categories&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9907871670904073</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Outbuildings&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Outbuildings are structures that are separate from a main building, typically located on a property for purposes such as storage, workshops, or housing animals and equipment. This category includes structures like sheds and barns, which serve specific functions like storing tools, equipment, or livestock.&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.148880974178631</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Auxiliary Structures&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Auxiliary structures are secondary or additional buildings that serve various practical purposes related to a main dwelling or property. This category encompasses structures like tree houses and outbuildings, which provide functional, recreational, or storage spaces, often designed to enhance the usability of the property.&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.292957924480073</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Military and Support Structures&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Military and support structures refer to various types of constructions designed for specific functions related to defense and utility. This concept encompasses fortified structures, such as castles and fortresses, built for protection and military purposes, as well as auxiliary structures that serve practical roles for main buildings, including storage, recreation, and additional facilities. Together, these structures enhance the safety, functionality, and usability of a property or territory.&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Barn&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A barn is an agricultural building usually on farms and used for various purposes. In North America, a barn refers to structures that house livestock, including cattle and horses, as well as equipment and fodder, and often grain.[2] As a result, the term barn is often qualified e.g. tobacco barn, dairy barn, cow house, sheep barn, potato barn. In the British Isles, the term barn is restricted mainly to storage structures for unthreshed cereals and fodder, the terms byre or shippon being applied to cow shelters, whereas horses are kept in buildings known as stables.[2][3] In mainland Europe, however, barns were often part of integrated structures known as byre-dwellings (or housebarns in US literature). In addition, barns may be used for equipment storage, as a covered workplace, and for activities such as threshing.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;categories&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9907871670904073</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Outbuildings&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Outbuildings are structures that are separate from a main building, typically located on a property for purposes such as storage, workshops, or housing animals and equipment. This category includes structures like sheds and barns, which serve specific functions like storing tools, equipment, or livestock.&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.148880974178631</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Auxiliary Structures&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Auxiliary structures are secondary or additional buildings that serve various practical purposes related to a main dwelling or property. This category encompasses structures like tree houses and outbuildings, which provide functional, recreational, or storage spaces, often designed to enhance the usability of the property.&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.292957924480073</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Military and Support Structures&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Military and support structures refer to various types of constructions designed for specific functions related to defense and utility. This concept encompasses fortified structures, such as castles and fortresses, built for protection and military purposes, as well as auxiliary structures that serve practical roles for main buildings, including storage, recreation, and additional facilities. Together, these structures enhance the safety, functionality, and usability of a property or territory.&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tree house&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A tree house, tree fort or treeshed, is a platform or building constructed around, next to or among the trunk or branches of one or more mature trees while above ground level. Tree houses can be used for recreation, work space, habitation, a hangout space and observation. People occasionally connect ladders or staircases to get up to the platforms.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;categories&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.148880974178631</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Auxiliary Structures&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Auxiliary structures are secondary or additional buildings that serve various practical purposes related to a main dwelling or property. This category encompasses structures like tree houses and outbuildings, which provide functional, recreational, or storage spaces, often designed to enhance the usability of the property.&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.292957924480073</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Military and Support Structures&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Military and support structures refer to various types of constructions designed for specific functions related to defense and utility. This concept encompasses fortified structures, such as castles and fortresses, built for protection and military purposes, as well as auxiliary structures that serve practical roles for main buildings, including storage, recreation, and additional facilities. Together, these structures enhance the safety, functionality, and usability of a property or territory.&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Castle&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A castle is a type of fortified structure built during the Middle Ages predominantly by the nobility or royalty and by military orders. Scholars usually consider a castle to be the private fortified residence of a lord or noble. This is distinct from a mansion, palace, and villa, whose main purpose was exclusively for pleasance and are not primarily fortresses but may be fortified.[a] Use of the term has varied over time and, sometimes, has also been applied to structures such as hill forts and 19th- and 20th-century homes built to resemble castles. Over the Middle Ages, when genuine castles were built, they took on a great many forms with many different features, although some, such as curtain walls, arrowslits, and portcullises, were commonplace.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;categories&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9152435235428339</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fortified structures&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fortified structures refer to buildings designed to protect from attacks and enhance defense. This category encompasses various forms of military architecture, including castles and fortresses. Castles serve as private residences for nobility or military orders with substantial fortification features, while fortresses are broader military constructions aimed at defending territories and establishing control. Both types share the common purpose of defense against invasion, though they serve different social and functional roles.&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.292957924480073</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Military and Support Structures&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Military and support structures refer to various types of constructions designed for specific functions related to defense and utility. This concept encompasses fortified structures, such as castles and fortresses, built for protection and military purposes, as well as auxiliary structures that serve practical roles for main buildings, including storage, recreation, and additional facilities. Together, these structures enhance the safety, functionality, and usability of a property or territory.&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fortress&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A fortification (also called a fort, fortress, fastness, or stronghold) is a military construction designed for the defense of territories in warfare, and is used to establish rule in a region during peacetime. The term is derived from Latin fortis (&#39;strong&#39;) and facere (&#39;to make&#39;). From very early history to modern times, defensive walls have often been necessary for cities to survive in an ever-changing world of invasion and conquest. Some settlements in the Indus Valley Civilization were the first small cities to be fortified. In ancient Greece, large stone walls had been built in Mycenaean Greece, such as the ancient site of Mycenae (known for the huge stone blocks of its &#39;cyclopean&#39; walls). A Greek phrourion was a fortified collection of buildings used as a military garrison, and is the equivalent of the Roman castellum or fortress. These constructions mainly served the purpose of a watch tower, to guard certain roads, passes, and borders. Though smaller than a real fortress, they acted as a border guard rather than a real strongpoint to watch and maintain the border.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;categories&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9152435235428339</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fortified structures&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fortified structures refer to buildings designed to protect from attacks and enhance defense. This category encompasses various forms of military architecture, including castles and fortresses. Castles serve as private residences for nobility or military orders with substantial fortification features, while fortresses are broader military constructions aimed at defending territories and establishing control. Both types share the common purpose of defense against invasion, though they serve different social and functional roles.&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.292957924480073</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;concept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Military and Support Structures&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Military and support structures refer to various types of constructions designed for specific functions related to defense and utility. This concept encompasses fortified structures, such as castles and fortresses, built for protection and military purposes, as well as auxiliary structures that serve practical roles for main buildings, including storage, recreation, and additional facilities. Together, these structures enhance the safety, functionality, and usability of a property or territory.&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></p>
+</details>
+<h2 id="required-parameters">Required Parameters</h2>
+<ul>
+<li><code>name</code>: A unique name for the operation.</li>
+<li><code>type</code>: Must be set to "cluster".</li>
+<li><code>embedding_keys</code>: A list of keys to use for the embedding that is clustered on</li>
+<li><code>summary_prompt</code>: The prompt used to summarize a cluster based on its children. Access input variables with <code>left.keyname</code> or <code>right.keyname</code>.</li>
+<li><code>summary_schema</code>: The schema for the summary of each cluster. This is the output schema for the <code>summary_prompt</code> based llm call.</li>
+</ul>
+<h2 id="optional-parameters">Optional Parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>output_key</code></td>
+<td>The name of the output key where the cluster path will be inserted in the items.</td>
+<td>"clusters"</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>The language model to use</td>
+<td>Falls back to <code>default_model</code></td>
+</tr>
+<tr>
+<td><code>embedding_model</code></td>
+<td>The embedding model to use</td>
+<td>"text-embedding-3-small"</td>
+</tr>
+<tr>
+<td><code>tools</code></td>
+<td>List of tool definitions for LLM use</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td>Timeout for each LLM call in seconds</td>
+<td>120</td>
+</tr>
+<tr>
+<td><code>max_retries_per_timeout</code></td>
+<td>Maximum number of retries per timeout</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>validate</code></td>
+<td>List of Python expressions to validate the output</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>sample</code></td>
+<td>Number of items to sample for this operation</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../equijoin/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Equijoin">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Equijoin
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../split/" class="md-footer__link md-footer__link--next" aria-label="Next: Split">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Split
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.follow", "navigation.footer", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

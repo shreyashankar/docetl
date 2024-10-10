@@ -1,0 +1,3735 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docetl.com/api-reference/python/">
+      
+      
+        <link rel="prev" href="../optimizers/">
+      
+      
+        <link rel="next" href="../../community/">
+      
+      
+      <link rel="icon" href="../../assets/docetl-favicon-color.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Python API - docetl docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CSource+Code+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="docetl docs" class="md-header__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 80v48c0 17.7 14.3 32 32 32h64V80c0-26.5-21.5-48-48-48S0 53.5 0 80m112-48c10 13.4 16 30 16 48v304c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96zm352 448c61.9 0 112-50.1 112-112 0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7v5.3c0 53-43 96-96 96h272"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            docetl docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/presidential-debate-themes/" class="md-tabs__link">
+          
+  
+    
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../docetl/" class="md-tabs__link">
+          
+  
+    
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../community/" class="md-tabs__link">
+          
+  
+    
+  
+  Community
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="docetl docs" class="md-nav__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 80v48c0 17.7 14.3 32 32 32h64V80c0-26.5-21.5-48-48-48S0 53.5 0 80m112-48c10 13.4 16 30 16 48v304c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96zm352 448c61.9 0 112-50.1 112-112 0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7v5.3c0 53-43 96-96 96h272"/></svg>
+
+    </a>
+    docetl docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../.." class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../examples/presidential-debate-themes/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Examples
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    API Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docetl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docetl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docetl.cli
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docetl.operations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docetl.optimizers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Python API
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Python API
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.BaseOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      BaseOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.MapOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      MapOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.ResolveOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      ResolveOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.ReduceOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReduceOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.ParallelMapOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParallelMapOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.FilterOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      FilterOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.EquijoinOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      EquijoinOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.SplitOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      SplitOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.GatherOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatherOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.UnnestOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnnestOp
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset-and-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataset and Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dataset and Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.Dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.ParsingTool" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParsingTool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.PipelineStep" class="md-nav__link">
+    <span class="md-ellipsis">
+      PipelineStep
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.PipelineOutput" class="md-nav__link">
+    <span class="md-ellipsis">
+      PipelineOutput
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.api.Pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docetl.api.Pipeline.optimize" class="md-nav__link">
+    <span class="md-ellipsis">
+      optimize
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.api.Pipeline.run" class="md-nav__link">
+    <span class="md-ellipsis">
+      run
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.api.Pipeline.to_yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_yaml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../community/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Community
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.BaseOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      BaseOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.MapOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      MapOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.ResolveOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      ResolveOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.ReduceOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReduceOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.ParallelMapOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParallelMapOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.FilterOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      FilterOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.EquijoinOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      EquijoinOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.SplitOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      SplitOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.GatherOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatherOp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.UnnestOp" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnnestOp
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset-and-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataset and Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dataset and Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.Dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.ParsingTool" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParsingTool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.PipelineStep" class="md-nav__link">
+    <span class="md-ellipsis">
+      PipelineStep
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.schemas.PipelineOutput" class="md-nav__link">
+    <span class="md-ellipsis">
+      PipelineOutput
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.api.Pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docetl.api.Pipeline.optimize" class="md-nav__link">
+    <span class="md-ellipsis">
+      optimize
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.api.Pipeline.run" class="md-nav__link">
+    <span class="md-ellipsis">
+      run
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docetl.api.Pipeline.to_yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_yaml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="python-api">Python API</h1>
+<h2 id="operations">Operations</h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="docetl.schemas.BaseOp" class="doc doc-heading">
+            <code>docetl.schemas.BaseOp</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+
+
+              <details class="quote">
+                <summary>Source code in <code>docetl/schemas.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BaseOp</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="docetl.schemas.MapOp" class="doc doc-heading">
+            <code>docetl.schemas.MapOp</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="docetl.schemas.BaseOp" href="#docetl.schemas.BaseOp">BaseOp</a></code></p>
+
+
+              <details class="quote">
+                <summary>Source code in <code>docetl/schemas.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MapOp</span><span class="p">(</span><span class="n">BaseOp</span><span class="p">):</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;map&quot;</span>
+    <span class="n">output</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">prompt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">optimize</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">recursively_optimize</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">sample_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">tools</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">validation_rules</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;validate&quot;</span><span class="p">)</span>
+    <span class="n">num_retries_on_validate_failure</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">gleaning</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">drop_keys</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">clustering_method</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;drop_keys&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">validate_drop_keys</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">v</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="docetl.schemas.ResolveOp" class="doc doc-heading">
+            <code>docetl.schemas.ResolveOp</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="docetl.schemas.BaseOp" href="#docetl.schemas.BaseOp">BaseOp</a></code></p>
+
+
+              <details class="quote">
+                <summary>Source code in <code>docetl/schemas.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ResolveOp</span><span class="p">(</span><span class="n">BaseOp</span><span class="p">):</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;resolve&quot;</span>
+    <span class="n">comparison_prompt</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">resolution_prompt</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">output</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">embedding_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">resolution_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">comparison_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">blocking_keys</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">blocking_threshold</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">blocking_conditions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nb">input</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">embedding_batch_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">compare_batch_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">limit_comparisons</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">optimize</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="docetl.schemas.ReduceOp" class="doc doc-heading">
+            <code>docetl.schemas.ReduceOp</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="docetl.schemas.BaseOp" href="#docetl.schemas.BaseOp">BaseOp</a></code></p>
+
+
+              <details class="quote">
+                <summary>Source code in <code>docetl/schemas.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ReduceOp</span><span class="p">(</span><span class="n">BaseOp</span><span class="p">):</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;reduce&quot;</span>
+    <span class="n">reduce_key</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span>
+    <span class="n">output</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">prompt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">optimize</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">synthesize_resolve</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nb">input</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">pass_through</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">associative</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">fold_prompt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">fold_batch_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">value_sampling</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="docetl.schemas.ParallelMapOp" class="doc doc-heading">
+            <code>docetl.schemas.ParallelMapOp</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="docetl.schemas.BaseOp" href="#docetl.schemas.BaseOp">BaseOp</a></code></p>
+
+
+              <details class="quote">
+                <summary>Source code in <code>docetl/schemas.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ParallelMapOp</span><span class="p">(</span><span class="n">BaseOp</span><span class="p">):</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;parallel_map&quot;</span>
+    <span class="n">prompts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+    <span class="n">output</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">optimize</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">recursively_optimize</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">sample_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">drop_keys</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">clustering_method</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;drop_keys&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">validate_drop_keys</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">v</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="docetl.schemas.FilterOp" class="doc doc-heading">
+            <code>docetl.schemas.FilterOp</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="docetl.schemas.BaseOp" href="#docetl.schemas.BaseOp">BaseOp</a></code></p>
+
+
+              <details class="quote">
+                <summary>Source code in <code>docetl/schemas.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">FilterOp</span><span class="p">(</span><span class="n">BaseOp</span><span class="p">):</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;filter&quot;</span>
+    <span class="n">output</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">prompt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">optimize</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">recursively_optimize</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">sample_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">validation_rules</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;validate&quot;</span><span class="p">)</span>
+    <span class="n">num_retries_on_validate_failure</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="docetl.schemas.EquijoinOp" class="doc doc-heading">
+            <code>docetl.schemas.EquijoinOp</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="docetl.schemas.BaseOp" href="#docetl.schemas.BaseOp">BaseOp</a></code></p>
+
+
+              <details class="quote">
+                <summary>Source code in <code>docetl/schemas.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">EquijoinOp</span><span class="p">(</span><span class="n">BaseOp</span><span class="p">):</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;equijoin&quot;</span>
+    <span class="n">left</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">right</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">comparison_prompt</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">output</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">blocking_threshold</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">blocking_conditions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">limits</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">comparison_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">optimize</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">embedding_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">embedding_batch_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">compare_batch_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">limit_comparisons</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">blocking_keys</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="docetl.schemas.SplitOp" class="doc doc-heading">
+            <code>docetl.schemas.SplitOp</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="docetl.schemas.BaseOp" href="#docetl.schemas.BaseOp">BaseOp</a></code></p>
+
+
+              <details class="quote">
+                <summary>Source code in <code>docetl/schemas.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SplitOp</span><span class="p">(</span><span class="n">BaseOp</span><span class="p">):</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;split&quot;</span>
+    <span class="n">split_key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">method_kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="docetl.schemas.GatherOp" class="doc doc-heading">
+            <code>docetl.schemas.GatherOp</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="docetl.schemas.BaseOp" href="#docetl.schemas.BaseOp">BaseOp</a></code></p>
+
+
+              <details class="quote">
+                <summary>Source code in <code>docetl/schemas.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GatherOp</span><span class="p">(</span><span class="n">BaseOp</span><span class="p">):</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;gather&quot;</span>
+    <span class="n">content_key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">doc_id_key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">order_key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">peripheral_chunks</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+    <span class="n">doc_header_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="docetl.schemas.UnnestOp" class="doc doc-heading">
+            <code>docetl.schemas.UnnestOp</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="docetl.schemas.BaseOp" href="#docetl.schemas.BaseOp">BaseOp</a></code></p>
+
+
+              <details class="quote">
+                <summary>Source code in <code>docetl/schemas.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">UnnestOp</span><span class="p">(</span><span class="n">BaseOp</span><span class="p">):</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;unnest&quot;</span>
+    <span class="n">unnest_key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">keep_empty</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">expand_fields</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">recursive</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">depth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="dataset-and-pipeline">Dataset and Pipeline</h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="docetl.schemas.Dataset" class="doc doc-heading">
+            <code>docetl.schemas.Dataset</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+
+
+        <p>Represents a dataset configuration in the pipeline.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.schemas.Dataset.type">type</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The type of the dataset. Must be either 'file' or 'memory'.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.schemas.Dataset.path">path</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The path to the dataset file or the in-memory data, depending on the type.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.schemas.Dataset.source">source</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The source of the dataset. Currently, only 'local' is supported. Defaults to 'local'.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.schemas.Dataset.parsing">parsing</span></code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>[str, str]]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A list of parsing tools to apply to the data. Each parsing tool
+                                      is represented by a dictionary with 'input_key', 'function', and
+                                      'output_key' keys. Defaults to None.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><span class="nt">datasets</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">my_dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input.json</span>
+<span class="w">    </span><span class="nt">parsing</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">input_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file_path</span>
+<span class="w">        </span><span class="nt">function</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">txt_to_string</span>
+<span class="w">        </span><span class="nt">output_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">content</span>
+</code></pre></div>
+</details>
+
+<details class="note" open>
+  <summary>Note</summary>
+  <p>The parsing tools are applied in the order they are listed. Each parsing tool takes the output
+of the previous tool as its input, allowing for chained processing of the data.</p>
+</details>
+              <details class="quote">
+                <summary>Source code in <code>docetl/schemas.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a dataset configuration in the pipeline.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        type (str): The type of the dataset. Must be either &#39;file&#39; or &#39;memory&#39;.</span>
+<span class="sd">        path (str): The path to the dataset file or the in-memory data, depending on the type.</span>
+<span class="sd">        source (str): The source of the dataset. Currently, only &#39;local&#39; is supported. Defaults to &#39;local&#39;.</span>
+<span class="sd">        parsing (Optional[List[Dict[str, str]]]): A list of parsing tools to apply to the data. Each parsing tool</span>
+<span class="sd">                                                  is represented by a dictionary with &#39;input_key&#39;, &#39;function&#39;, and</span>
+<span class="sd">                                                  &#39;output_key&#39; keys. Defaults to None.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        ```yaml</span>
+<span class="sd">        datasets:</span>
+<span class="sd">          my_dataset:</span>
+<span class="sd">            type: file</span>
+<span class="sd">            path: input.json</span>
+<span class="sd">            parsing:</span>
+<span class="sd">              - input_key: file_path</span>
+<span class="sd">                function: txt_to_string</span>
+<span class="sd">                output_key: content</span>
+<span class="sd">        ```</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        The parsing tools are applied in the order they are listed. Each parsing tool takes the output</span>
+<span class="sd">        of the previous tool as its input, allowing for chained processing of the data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">path</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">source</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;local&quot;</span>
+    <span class="n">parsing</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="docetl.schemas.ParsingTool" class="doc doc-heading">
+            <code>docetl.schemas.ParsingTool</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+
+
+        <p>Represents a parsing tool used for custom data parsing in the pipeline.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.schemas.ParsingTool.name">name</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the parsing tool. This should be unique within the pipeline configuration.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.schemas.ParsingTool.function_code">function_code</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The Python code defining the parsing function. This code will be executed
+                 to parse the input data according to the specified logic. It should return a list of strings, where each string is its own document.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><span class="nt">parsing_tools</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ocr_parser</span>
+<span class="w">    </span><span class="nt">function_code</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">import pytesseract</span>
+<span class="w">      </span><span class="no">from pdf2image import convert_from_path</span>
+<span class="w">      </span><span class="no">def ocr_parser(filename: str) -&gt; List[str]:</span>
+<span class="w">          </span><span class="no">images = convert_from_path(filename)</span>
+<span class="w">          </span><span class="no">text = &quot;&quot;</span>
+<span class="w">          </span><span class="no">for image in images:</span>
+<span class="w">              </span><span class="no">text += pytesseract.image_to_string(image)</span>
+<span class="w">          </span><span class="no">return [text]</span>
+</code></pre></div>
+</details>
+              <details class="quote">
+                <summary>Source code in <code>docetl/schemas.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ParsingTool</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a parsing tool used for custom data parsing in the pipeline.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        name (str): The name of the parsing tool. This should be unique within the pipeline configuration.</span>
+<span class="sd">        function_code (str): The Python code defining the parsing function. This code will be executed</span>
+<span class="sd">                             to parse the input data according to the specified logic. It should return a list of strings, where each string is its own document.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        ```yaml</span>
+<span class="sd">        parsing_tools:</span>
+<span class="sd">          - name: ocr_parser</span>
+<span class="sd">            function_code: |</span>
+<span class="sd">              import pytesseract</span>
+<span class="sd">              from pdf2image import convert_from_path</span>
+<span class="sd">              def ocr_parser(filename: str) -&gt; List[str]:</span>
+<span class="sd">                  images = convert_from_path(filename)</span>
+<span class="sd">                  text = &quot;&quot;</span>
+<span class="sd">                  for image in images:</span>
+<span class="sd">                      text += pytesseract.image_to_string(image)</span>
+<span class="sd">                  return [text]</span>
+<span class="sd">        ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">function_code</span><span class="p">:</span> <span class="nb">str</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="docetl.schemas.PipelineStep" class="doc doc-heading">
+            <code>docetl.schemas.PipelineStep</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+
+
+        <p>Represents a step in the pipeline.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.schemas.PipelineStep.name">name</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the step.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.schemas.PipelineStep.operations">operations</span></code></td>
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="typing.Union">Union</span>[<span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>], str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A list of operations to be applied in this step.
+Each operation can be either a string (the name of the operation) or a dictionary
+(for more complex configurations).</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.schemas.PipelineStep.input">input</span></code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The input for this step. It can be either the name of a dataset
+or the name of a previous step. If not provided, the step will use the output
+of the previous step as its input.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><span class="c1"># Simple step with a single operation</span>
+<span class="n">process_step</span> <span class="o">=</span> <span class="n">PipelineStep</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;process_step&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;my_dataset&quot;</span><span class="p">,</span>
+    <span class="n">operations</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;process&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Step with multiple operations</span>
+<span class="n">summarize_step</span> <span class="o">=</span> <span class="n">PipelineStep</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;summarize_step&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;process_step&quot;</span><span class="p">,</span>
+    <span class="n">operations</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;summarize&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Step with a more complex operation configuration</span>
+<span class="n">custom_step</span> <span class="o">=</span> <span class="n">PipelineStep</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;custom_step&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;previous_step&quot;</span><span class="p">,</span>
+    <span class="n">operations</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;custom_operation&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;prompt&quot;</span><span class="p">:</span> <span class="s2">&quot;Perform a custom analysis on the following text:&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+</details>        <p>These examples show different ways to configure pipeline steps, from simple
+single-operation steps to more complex configurations with custom parameters.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>docetl/schemas.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">PipelineStep</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a step in the pipeline.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        name (str): The name of the step.</span>
+<span class="sd">        operations (List[Union[Dict[str, Any], str]]): A list of operations to be applied in this step.</span>
+<span class="sd">            Each operation can be either a string (the name of the operation) or a dictionary</span>
+<span class="sd">            (for more complex configurations).</span>
+<span class="sd">        input (Optional[str]): The input for this step. It can be either the name of a dataset</span>
+<span class="sd">            or the name of a previous step. If not provided, the step will use the output</span>
+<span class="sd">            of the previous step as its input.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        ```python</span>
+<span class="sd">        # Simple step with a single operation</span>
+<span class="sd">        process_step = PipelineStep(</span>
+<span class="sd">            name=&quot;process_step&quot;,</span>
+<span class="sd">            input=&quot;my_dataset&quot;,</span>
+<span class="sd">            operations=[&quot;process&quot;]</span>
+<span class="sd">        )</span>
+
+<span class="sd">        # Step with multiple operations</span>
+<span class="sd">        summarize_step = PipelineStep(</span>
+<span class="sd">            name=&quot;summarize_step&quot;,</span>
+<span class="sd">            input=&quot;process_step&quot;,</span>
+<span class="sd">            operations=[&quot;summarize&quot;]</span>
+<span class="sd">        )</span>
+
+<span class="sd">        # Step with a more complex operation configuration</span>
+<span class="sd">        custom_step = PipelineStep(</span>
+<span class="sd">            name=&quot;custom_step&quot;,</span>
+<span class="sd">            input=&quot;previous_step&quot;,</span>
+<span class="sd">            operations=[</span>
+<span class="sd">                {</span>
+<span class="sd">                    &quot;custom_operation&quot;: {</span>
+<span class="sd">                        &quot;model&quot;: &quot;gpt-4&quot;,</span>
+<span class="sd">                        &quot;prompt&quot;: &quot;Perform a custom analysis on the following text:&quot;</span>
+<span class="sd">                    }</span>
+<span class="sd">                }</span>
+<span class="sd">            ]</span>
+<span class="sd">        )</span>
+<span class="sd">        ```</span>
+
+<span class="sd">    These examples show different ways to configure pipeline steps, from simple</span>
+<span class="sd">    single-operation steps to more complex configurations with custom parameters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">operations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="nb">str</span><span class="p">]]</span>
+    <span class="nb">input</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="docetl.schemas.PipelineOutput" class="doc doc-heading">
+            <code>docetl.schemas.PipelineOutput</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+
+
+        <p>Represents the output configuration for a pipeline.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.schemas.PipelineOutput.type">type</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The type of output. This could be 'file', 'database', etc.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.schemas.PipelineOutput.path">path</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The path where the output will be stored. This could be a file path,
+        database connection string, etc., depending on the type.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.schemas.PipelineOutput.intermediate_dir">intermediate_dir</span></code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The directory to store intermediate results,
+                              if applicable. Defaults to None.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><span class="n">output</span> <span class="o">=</span> <span class="n">PipelineOutput</span><span class="p">(</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;file&quot;</span><span class="p">,</span>
+    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/path/to/output.json&quot;</span><span class="p">,</span>
+    <span class="n">intermediate_dir</span><span class="o">=</span><span class="s2">&quot;/path/to/intermediate/results&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+</details>
+              <details class="quote">
+                <summary>Source code in <code>docetl/schemas.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">PipelineOutput</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents the output configuration for a pipeline.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        type (str): The type of output. This could be &#39;file&#39;, &#39;database&#39;, etc.</span>
+<span class="sd">        path (str): The path where the output will be stored. This could be a file path,</span>
+<span class="sd">                    database connection string, etc., depending on the type.</span>
+<span class="sd">        intermediate_dir (Optional[str]): The directory to store intermediate results,</span>
+<span class="sd">                                          if applicable. Defaults to None.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        ```python</span>
+<span class="sd">        output = PipelineOutput(</span>
+<span class="sd">            type=&quot;file&quot;,</span>
+<span class="sd">            path=&quot;/path/to/output.json&quot;,</span>
+<span class="sd">            intermediate_dir=&quot;/path/to/intermediate/results&quot;</span>
+<span class="sd">        )</span>
+<span class="sd">        ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">path</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">intermediate_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="docetl.api.Pipeline" class="doc doc-heading">
+            <code>docetl.api.Pipeline</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents first">
+
+
+        <p>Represents a complete document processing pipeline.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.api.Pipeline.name">name</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the pipeline.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.api.Pipeline.datasets">datasets</span></code></td>
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[str, <a class="autorefs autorefs-internal" title="docetl.schemas.Dataset" href="#docetl.schemas.Dataset">Dataset</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A dictionary of datasets used in the pipeline,
+                           where keys are dataset names and values are Dataset objects.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.api.Pipeline.operations">operations</span></code></td>
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="docetl.schemas.OpType">OpType</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A list of operations to be performed in the pipeline.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.api.Pipeline.steps">steps</span></code></td>
+            <td>
+                  <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="docetl.schemas.PipelineStep" href="#docetl.schemas.PipelineStep">PipelineStep</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A list of steps that make up the pipeline.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.api.Pipeline.output">output</span></code></td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="docetl.schemas.PipelineOutput" href="#docetl.schemas.PipelineOutput">PipelineOutput</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The output configuration for the pipeline.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.api.Pipeline.parsing_tools">parsing_tools</span></code></td>
+            <td>
+                  <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="docetl.schemas.ParsingTool" href="#docetl.schemas.ParsingTool">ParsingTool</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A list of parsing tools used in the pipeline.
+                               Defaults to an empty list.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="docetl.api.Pipeline.default_model">default_model</span></code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The default language model to use for operations
+                           that require one. Defaults to None.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">custom_parser</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="c1"># this will convert the text in the column to uppercase</span>
+    <span class="c1"># You should return a list of strings, where each string is a separate document</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">text</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span>
+
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;document_processing_pipeline&quot;</span><span class="p">,</span>
+    <span class="n">datasets</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;input_data&quot;</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;file&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/path/to/input.json&quot;</span><span class="p">,</span> <span class="n">parsing</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;custom_parser&quot;</span><span class="p">,</span> <span class="s2">&quot;input_key&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span> <span class="s2">&quot;output_key&quot;</span><span class="p">:</span> <span class="s2">&quot;uppercase_content&quot;</span><span class="p">}]),</span>
+    <span class="p">},</span>
+    <span class="n">parsing_tools</span><span class="o">=</span><span class="p">[</span><span class="n">custom_parser</span><span class="p">],</span>
+    <span class="n">operations</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">MapOp</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;process&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;map&quot;</span><span class="p">,</span>
+            <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Determine what type of document this is: {{ input.uppercase_content }}&quot;</span><span class="p">,</span>
+            <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;document_type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">}}</span>
+        <span class="p">),</span>
+        <span class="n">ReduceOp</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;summarize&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;reduce&quot;</span><span class="p">,</span>
+            <span class="n">reduce_key</span><span class="o">=</span><span class="s2">&quot;document_type&quot;</span><span class="p">,</span>
+            <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Summarize the processed contents: {</span><span class="si">% f</span><span class="s2">or item in inputs %}{{ item.uppercase_content }} {</span><span class="si">% e</span><span class="s2">ndfor %}&quot;</span><span class="p">,</span>
+            <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">}}</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">PipelineStep</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;process_step&quot;</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;input_data&quot;</span><span class="p">,</span> <span class="n">operations</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;process&quot;</span><span class="p">]),</span>
+        <span class="n">PipelineStep</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;summarize_step&quot;</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;process_step&quot;</span><span class="p">,</span> <span class="n">operations</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;summarize&quot;</span><span class="p">])</span>
+    <span class="p">],</span>
+    <span class="n">output</span><span class="o">=</span><span class="n">PipelineOutput</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;file&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/path/to/output.json&quot;</span><span class="p">),</span>
+    <span class="n">default_model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+</details>        <p>This example shows a complete pipeline configuration with datasets, operations,
+steps, and output settings.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>docetl/api.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Pipeline</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a complete document processing pipeline.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        name (str): The name of the pipeline.</span>
+<span class="sd">        datasets (Dict[str, Dataset]): A dictionary of datasets used in the pipeline,</span>
+<span class="sd">                                       where keys are dataset names and values are Dataset objects.</span>
+<span class="sd">        operations (List[OpType]): A list of operations to be performed in the pipeline.</span>
+<span class="sd">        steps (List[PipelineStep]): A list of steps that make up the pipeline.</span>
+<span class="sd">        output (PipelineOutput): The output configuration for the pipeline.</span>
+<span class="sd">        parsing_tools (List[ParsingTool]): A list of parsing tools used in the pipeline.</span>
+<span class="sd">                                           Defaults to an empty list.</span>
+<span class="sd">        default_model (Optional[str]): The default language model to use for operations</span>
+<span class="sd">                                       that require one. Defaults to None.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        ```python</span>
+<span class="sd">        def custom_parser(text: str) -&gt; List[str]:</span>
+<span class="sd">            # this will convert the text in the column to uppercase</span>
+<span class="sd">            # You should return a list of strings, where each string is a separate document</span>
+<span class="sd">            return [text.upper()]</span>
+
+<span class="sd">        pipeline = Pipeline(</span>
+<span class="sd">            name=&quot;document_processing_pipeline&quot;,</span>
+<span class="sd">            datasets={</span>
+<span class="sd">                &quot;input_data&quot;: Dataset(type=&quot;file&quot;, path=&quot;/path/to/input.json&quot;, parsing=[{&quot;name&quot;: &quot;custom_parser&quot;, &quot;input_key&quot;: &quot;content&quot;, &quot;output_key&quot;: &quot;uppercase_content&quot;}]),</span>
+<span class="sd">            },</span>
+<span class="sd">            parsing_tools=[custom_parser],</span>
+<span class="sd">            operations=[</span>
+<span class="sd">                MapOp(</span>
+<span class="sd">                    name=&quot;process&quot;,</span>
+<span class="sd">                    type=&quot;map&quot;,</span>
+<span class="sd">                    prompt=&quot;Determine what type of document this is: {{ input.uppercase_content }}&quot;,</span>
+<span class="sd">                    output={&quot;schema&quot;: {&quot;document_type&quot;: &quot;string&quot;}}</span>
+<span class="sd">                ),</span>
+<span class="sd">                ReduceOp(</span>
+<span class="sd">                    name=&quot;summarize&quot;,</span>
+<span class="sd">                    type=&quot;reduce&quot;,</span>
+<span class="sd">                    reduce_key=&quot;document_type&quot;,</span>
+<span class="sd">                    prompt=&quot;Summarize the processed contents: {% for item in inputs %}{{ item.uppercase_content }} {% endfor %}&quot;,</span>
+<span class="sd">                    output={&quot;schema&quot;: {&quot;summary&quot;: &quot;string&quot;}}</span>
+<span class="sd">                )</span>
+<span class="sd">            ],</span>
+<span class="sd">            steps=[</span>
+<span class="sd">                PipelineStep(name=&quot;process_step&quot;, input=&quot;input_data&quot;, operations=[&quot;process&quot;]),</span>
+<span class="sd">                PipelineStep(name=&quot;summarize_step&quot;, input=&quot;process_step&quot;, operations=[&quot;summarize&quot;])</span>
+<span class="sd">            ],</span>
+<span class="sd">            output=PipelineOutput(type=&quot;file&quot;, path=&quot;/path/to/output.json&quot;),</span>
+<span class="sd">            default_model=&quot;gpt-4o-mini&quot;</span>
+<span class="sd">        )</span>
+<span class="sd">        ```</span>
+
+<span class="sd">    This example shows a complete pipeline configuration with datasets, operations,</span>
+<span class="sd">    steps, and output settings.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">datasets</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dataset</span><span class="p">],</span>
+        <span class="n">operations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">OpType</span><span class="p">],</span>
+        <span class="n">steps</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PipelineStep</span><span class="p">],</span>
+        <span class="n">output</span><span class="p">:</span> <span class="n">PipelineOutput</span><span class="p">,</span>
+        <span class="n">parsing_tools</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ParsingTool</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="n">default_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">rate_limits</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span> <span class="o">=</span> <span class="n">datasets</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operations</span> <span class="o">=</span> <span class="n">operations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="n">steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">output</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parsing_tools</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span>
+                <span class="n">tool</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tool</span><span class="p">,</span> <span class="n">ParsingTool</span><span class="p">)</span>
+                <span class="k">else</span> <span class="n">ParsingTool</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">tool</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">function_code</span><span class="o">=</span><span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="n">tool</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">tool</span> <span class="ow">in</span> <span class="n">parsing_tools</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_model</span> <span class="o">=</span> <span class="n">default_model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rate_limits</span> <span class="o">=</span> <span class="n">rate_limits</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_env</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_load_env</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+        <span class="kn">import</span> <span class="nn">os</span>
+
+        <span class="c1"># Get the current working directory</span>
+        <span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+
+        <span class="c1"># Load .env file from the current working directory if it exists</span>
+        <span class="n">env_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cwd</span><span class="p">,</span> <span class="s2">&quot;.env&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">env_file</span><span class="p">):</span>
+            <span class="n">load_dotenv</span><span class="p">(</span><span class="n">env_file</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">max_threads</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+        <span class="n">resume</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Pipeline&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Optimize the pipeline using the Optimizer.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            max_threads (Optional[int]): Maximum number of threads to use for optimization.</span>
+<span class="sd">            model (str): The model to use for optimization. Defaults to &quot;gpt-4o&quot;.</span>
+<span class="sd">            resume (bool): Whether to resume optimization from a previous state. Defaults to False.</span>
+<span class="sd">            timeout (int): Timeout for optimization in seconds. Defaults to 60.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Pipeline: An optimized version of the pipeline.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_dict</span><span class="p">()</span>
+        <span class="n">optimizer</span> <span class="o">=</span> <span class="n">Optimizer</span><span class="p">(</span>
+            <span class="n">config</span><span class="p">,</span>
+            <span class="n">base_name</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+            <span class="n">yaml_file_suffix</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">max_threads</span><span class="o">=</span><span class="n">max_threads</span><span class="p">,</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+            <span class="n">resume</span><span class="o">=</span><span class="n">resume</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">optimize</span><span class="p">()</span>
+        <span class="n">optimized_config</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">clean_optimized_config</span><span class="p">()</span>
+
+        <span class="n">updated_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">datasets</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">,</span>
+            <span class="n">operations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">operations</span><span class="p">,</span>
+            <span class="n">steps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">,</span>
+            <span class="n">output</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">,</span>
+            <span class="n">default_model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">default_model</span><span class="p">,</span>
+            <span class="n">parsing_tools</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parsing_tools</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">updated_pipeline</span><span class="o">.</span><span class="n">_update_from_dict</span><span class="p">(</span><span class="n">optimized_config</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">updated_pipeline</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_threads</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run the pipeline using the DSLRunner.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            max_threads (Optional[int]): Maximum number of threads to use for execution.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The total cost of running the pipeline.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_dict</span><span class="p">()</span>
+        <span class="n">runner</span> <span class="o">=</span> <span class="n">DSLRunner</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">max_threads</span><span class="o">=</span><span class="n">max_threads</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">to_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert the Pipeline object to a YAML string and save it to a file.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path (str): Path to save the YAML file.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_dict</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">yaml</span><span class="o">.</span><span class="n">safe_dump</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[green]Pipeline saved to </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">[/green]&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert the Pipeline object to a dictionary representation.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict[str, Any]: Dictionary representation of the Pipeline.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;datasets&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="n">name</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;operations&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">op</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
+                <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">operations</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;pipeline&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">step</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
+                    <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span>
+                <span class="p">],</span>
+                <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;default_model&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_model</span><span class="p">,</span>
+            <span class="s2">&quot;parsing_tools&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="p">[</span><span class="n">tool</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">tool</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parsing_tools</span><span class="p">]</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parsing_tools</span>
+                <span class="k">else</span> <span class="kc">None</span>
+            <span class="p">),</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rate_limits</span><span class="p">:</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;rate_limits&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rate_limits</span>
+        <span class="k">return</span> <span class="n">d</span>
+
+    <span class="k">def</span> <span class="nf">_update_from_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the Pipeline object from a dictionary representation.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            config (Dict[str, Any]): Dictionary representation of the Pipeline.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">name</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">(</span>
+                <span class="nb">type</span><span class="o">=</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">],</span>
+                <span class="n">source</span><span class="o">=</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">],</span>
+                <span class="n">path</span><span class="o">=</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">],</span>
+                <span class="n">parsing</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;parsing&quot;</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;datasets&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;operations&quot;</span><span class="p">]:</span>
+            <span class="n">op_type</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">op_type</span> <span class="o">==</span> <span class="s2">&quot;map&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MapOp</span><span class="p">(</span><span class="o">**</span><span class="n">op</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">op_type</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">op_type</span> <span class="o">==</span> <span class="s2">&quot;resolve&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ResolveOp</span><span class="p">(</span><span class="o">**</span><span class="n">op</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">op_type</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">op_type</span> <span class="o">==</span> <span class="s2">&quot;reduce&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ReduceOp</span><span class="p">(</span><span class="o">**</span><span class="n">op</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">op_type</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">op_type</span> <span class="o">==</span> <span class="s2">&quot;parallel_map&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ParallelMapOp</span><span class="p">(</span><span class="o">**</span><span class="n">op</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">op_type</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">op_type</span> <span class="o">==</span> <span class="s2">&quot;filter&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FilterOp</span><span class="p">(</span><span class="o">**</span><span class="n">op</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">op_type</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">op_type</span> <span class="o">==</span> <span class="s2">&quot;equijoin&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EquijoinOp</span><span class="p">(</span><span class="o">**</span><span class="n">op</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">op_type</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">op_type</span> <span class="o">==</span> <span class="s2">&quot;split&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SplitOp</span><span class="p">(</span><span class="o">**</span><span class="n">op</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">op_type</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">op_type</span> <span class="o">==</span> <span class="s2">&quot;gather&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">GatherOp</span><span class="p">(</span><span class="o">**</span><span class="n">op</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">op_type</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">op_type</span> <span class="o">==</span> <span class="s2">&quot;unnest&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">UnnestOp</span><span class="p">(</span><span class="o">**</span><span class="n">op</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">op_type</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="p">[</span><span class="n">PipelineStep</span><span class="p">(</span><span class="o">**</span><span class="n">step</span><span class="p">)</span> <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;pipeline&quot;</span><span class="p">][</span><span class="s2">&quot;steps&quot;</span><span class="p">]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">PipelineOutput</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;pipeline&quot;</span><span class="p">][</span><span class="s2">&quot;output&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_model</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;default_model&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parsing_tools</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">[</span><span class="n">ParsingTool</span><span class="p">(</span><span class="o">**</span><span class="n">tool</span><span class="p">)</span> <span class="k">for</span> <span class="n">tool</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;parsing_tools&quot;</span><span class="p">,</span> <span class="p">[])]</span>
+            <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;parsing_tools&quot;</span><span class="p">)</span>
+            <span class="k">else</span> <span class="p">[]</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="docetl.api.Pipeline.optimize" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">optimize</span><span class="p">(</span><span class="n">max_threads</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;gpt-4o&#39;</span><span class="p">,</span> <span class="n">resume</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Optimize the pipeline using the Optimizer.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>max_threads</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[int]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Maximum number of threads to use for optimization.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>model</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The model to use for optimization. Defaults to "gpt-4o".</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;gpt-4o&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>resume</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to resume optimization from a previous state. Defaults to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>timeout</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timeout for optimization in seconds. Defaults to 60.</p>
+              </div>
+            </td>
+            <td>
+                  <code>60</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>Pipeline</code></td>            <td>
+                  <code><a class="autorefs autorefs-internal" title="docetl.api.Pipeline" href="#docetl.api.Pipeline">Pipeline</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>An optimized version of the pipeline.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>docetl/api.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">max_threads</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="n">resume</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Pipeline&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Optimize the pipeline using the Optimizer.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        max_threads (Optional[int]): Maximum number of threads to use for optimization.</span>
+<span class="sd">        model (str): The model to use for optimization. Defaults to &quot;gpt-4o&quot;.</span>
+<span class="sd">        resume (bool): Whether to resume optimization from a previous state. Defaults to False.</span>
+<span class="sd">        timeout (int): Timeout for optimization in seconds. Defaults to 60.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Pipeline: An optimized version of the pipeline.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_dict</span><span class="p">()</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">Optimizer</span><span class="p">(</span>
+        <span class="n">config</span><span class="p">,</span>
+        <span class="n">base_name</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+        <span class="n">yaml_file_suffix</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="n">max_threads</span><span class="o">=</span><span class="n">max_threads</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+        <span class="n">resume</span><span class="o">=</span><span class="n">resume</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">optimize</span><span class="p">()</span>
+    <span class="n">optimized_config</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">clean_optimized_config</span><span class="p">()</span>
+
+    <span class="n">updated_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="n">datasets</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">,</span>
+        <span class="n">operations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">operations</span><span class="p">,</span>
+        <span class="n">steps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">,</span>
+        <span class="n">output</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">,</span>
+        <span class="n">default_model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">default_model</span><span class="p">,</span>
+        <span class="n">parsing_tools</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parsing_tools</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">updated_pipeline</span><span class="o">.</span><span class="n">_update_from_dict</span><span class="p">(</span><span class="n">optimized_config</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">updated_pipeline</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="docetl.api.Pipeline.run" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">run</span><span class="p">(</span><span class="n">max_threads</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Run the pipeline using the DSLRunner.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>max_threads</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[int]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Maximum number of threads to use for execution.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>float</code></td>            <td>
+                  <code>float</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The total cost of running the pipeline.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>docetl/api.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_threads</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run the pipeline using the DSLRunner.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        max_threads (Optional[int]): Maximum number of threads to use for execution.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The total cost of running the pipeline.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_dict</span><span class="p">()</span>
+    <span class="n">runner</span> <span class="o">=</span> <span class="n">DSLRunner</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">max_threads</span><span class="o">=</span><span class="n">max_threads</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="docetl.api.Pipeline.to_yaml" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">to_yaml</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Convert the Pipeline object to a YAML string and save it to a file.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>path</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to save the YAML file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>None</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>docetl/api.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert the Pipeline object to a YAML string and save it to a file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path (str): Path to save the YAML file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_dict</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">yaml</span><span class="o">.</span><span class="n">safe_dump</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[green]Pipeline saved to </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">[/green]&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../optimizers/" class="md-footer__link md-footer__link--prev" aria-label="Previous: docetl.optimizers">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                docetl.optimizers
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../community/" class="md-footer__link md-footer__link--next" aria-label="Next: Community">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Community
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.follow", "navigation.footer", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

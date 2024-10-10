@@ -1,0 +1,1548 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docetl.com/examples/presidential-debate-themes/">
+      
+      
+        <link rel="prev" href="../../python-api/">
+      
+      
+        <link rel="next" href="../mining-product-reviews/">
+      
+      
+      <link rel="icon" href="../../assets/docetl-favicon-color.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Reporting on Themes from Presidential Debates - docetl docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CSource+Code+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#presidential-debate-themes-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="docetl docs" class="md-header__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 80v48c0 17.7 14.3 32 32 32h64V80c0-26.5-21.5-48-48-48S0 53.5 0 80m112-48c10 13.4 16 30 16 48v304c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96zm352 448c61.9 0 112-50.1 112-112 0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7v5.3c0 53-43 96-96 96h272"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            docetl docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Reporting on Themes from Presidential Debates
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+    
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api-reference/docetl/" class="md-tabs__link">
+          
+  
+    
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../community/" class="md-tabs__link">
+          
+  
+    
+  
+  Community
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="docetl docs" class="md-nav__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 80v48c0 17.7 14.3 32 32 32h64V80c0-26.5-21.5-48-48-48S0 53.5 0 80m112-48c10 13.4 16 30 16 48v304c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96zm352 448c61.9 0 112-50.1 112-112 0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7v5.3c0 53-43 96-96 96h272"/></svg>
+
+    </a>
+    docetl docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../.." class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Examples
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Reporting on Themes from Presidential Debates
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Reporting on Themes from Presidential Debates
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-extract-themes-and-viewpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Extract Themes and Viewpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-unnest-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Unnest Themes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-summarize-theme-evolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Summarize Theme Evolution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-need-for-theme-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Need for Theme Resolution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-optimized-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Optimized Pipeline
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial Results
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-pipeline-with-optimized-reduce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Pipeline (with Optimized Reduce)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mining-product-reviews/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mining Product Reviews for Polarizing Features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ollama/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Medical Document Classification with Ollama
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../split-gather/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Split and Gather for Legal Document Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-parsing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Datasets With Custom Parsing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rate-limiting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adding Rate Limiting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../api-reference/docetl/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    API Reference
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../community/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Community
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-extract-themes-and-viewpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Extract Themes and Viewpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-unnest-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Unnest Themes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-summarize-theme-evolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Summarize Theme Evolution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-need-for-theme-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Need for Theme Resolution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-optimized-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Optimized Pipeline
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial Results
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-pipeline-with-optimized-reduce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Pipeline (with Optimized Reduce)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="presidential-debate-themes-analysis">Presidential Debate Themes Analysis</h1>
+<p>This tutorial explains how to analyze themes in presidential debates using the DocETL pipeline. We'll cover the pipeline structure, explain each operation, and discuss the importance of theme resolution.</p>
+<h2 id="pipeline-overview">Pipeline Overview</h2>
+<p>Our goal is to build a pipeline that will:</p>
+<ol>
+<li>Extract key themes and viewpoints from presidential debate transcripts</li>
+<li>Analyze how these themes have evolved over time, with references to specific debates and quotes</li>
+</ol>
+<p>You can take a look at the raw data <a href="https://github.com/ucbepic/docetl/tree/main/example_data/debates/data.json">here</a>.</p>
+<p>Let's examine the pipeline structure and its operations:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">pipeline</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">debate_analysis</span>
+<span class="w">      </span><span class="nt">input</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">debates</span>
+<span class="w">      </span><span class="nt">operations</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extract_themes_and_viewpoints</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest_themes</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">summarize_theme_evolution</span>
+</code></pre></div>
+<details class="example">
+<summary>Full Pipeline Configuration</summary>
+<div class="highlight"><pre><span></span><code><span class="nt">datasets</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">debates</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;data.json&quot;</span>
+
+<span class="nt">default_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o-mini</span>
+
+<span class="nt">operations</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extract_themes_and_viewpoints</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">map</span>
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">themes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;list[{theme:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">viewpoints:</span><span class="nv"> </span><span class="s">str}]&quot;</span>
+<span class="w">    </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Analyze the following debate transcript for {{ input.title }} on {{ input.date }}:</span>
+
+<span class="w">      </span><span class="no">{{ input.content }}</span>
+
+<span class="w">      </span><span class="no">Extract the main themes discussed in this debate and the viewpoints of the candidates on these themes.</span>
+<span class="w">      </span><span class="no">Return a list of themes and corresponding viewpoints in the following format:</span>
+<span class="w">      </span><span class="no">[</span>
+<span class="w">        </span><span class="no">{</span>
+<span class="w">          </span><span class="no">&quot;theme&quot;: &quot;Theme 1&quot;,</span>
+<span class="w">          </span><span class="no">&quot;viewpoints&quot;: &quot;Candidate A&#39;s viewpoint... Candidate B&#39;s viewpoint...&quot;</span>
+<span class="w">        </span><span class="no">},</span>
+<span class="w">        </span><span class="no">{</span>
+<span class="w">          </span><span class="no">&quot;theme&quot;: &quot;Theme 2&quot;,</span>
+<span class="w">          </span><span class="no">&quot;viewpoints&quot;: &quot;Candidate A&#39;s viewpoint... Candidate B&#39;s viewpoint...&quot;</span>
+<span class="w">        </span><span class="no">},</span>
+<span class="w">        </span><span class="no">...</span>
+<span class="w">      </span><span class="no">]</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest_themes</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest</span>
+<span class="w">    </span><span class="nt">unnest_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">themes</span>
+<span class="w">    </span><span class="nt">recursive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">summarize_theme_evolution</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reduce</span>
+<span class="w">    </span><span class="nt">reduce_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">theme</span>
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">str</span>
+<span class="w">        </span><span class="nt">report</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">str</span>
+<span class="w">    </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Analyze the following viewpoints on the theme &quot;{{ inputs[0].theme }}&quot; from various debates over the years:</span>
+
+<span class="w">      </span><span class="no">{% for item in inputs %}</span>
+<span class="w">      </span><span class="no">Year: {{ item.year }}</span>
+<span class="w">      </span><span class="no">Date: {{ item.date }}</span>
+<span class="w">      </span><span class="no">Title: {{ item.title }}</span>
+<span class="w">      </span><span class="no">Viewpoints: {{ item.viewpoints }}</span>
+
+<span class="w">      </span><span class="no">{% endfor %}</span>
+
+<span class="w">      </span><span class="no">Generate a comprehensive summary of how Democratic and Republican viewpoints on this theme have evolved through the years. Include supporting quotes from the debates to illustrate key points or shifts in perspective.</span>
+
+<span class="w">      </span><span class="no">Your summary should:</span>
+<span class="w">      </span><span class="no">1. Identify *all* major trends or shifts in each party&#39;s stance over time</span>
+<span class="w">      </span><span class="no">2. Highlight any significant agreements or disagreements between the parties</span>
+<span class="w">      </span><span class="no">3. Note any external events or factors that may have influenced changes in viewpoints</span>
+<span class="w">      </span><span class="no">4. Use specific quotes to support your analysis</span>
+<span class="w">      </span><span class="no">5. The title should contain the start and end years of the analysis</span>
+
+<span class="w">      </span><span class="no">Format your response as a well-structured report.</span>
+
+<span class="nt">pipeline</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">debate_analysis</span>
+<span class="w">      </span><span class="nt">input</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">debates</span>
+<span class="w">      </span><span class="nt">operations</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extract_themes_and_viewpoints</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest_themes</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">summarize_theme_evolution</span>
+
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;theme_evolution_analysis.json&quot;</span>
+<span class="w">    </span><span class="nt">intermediate_dir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;checkpoints&quot;</span>
+</code></pre></div>
+</details>
+<h2 id="pipeline-operations">Pipeline Operations</h2>
+<h3 id="1-extract-themes-and-viewpoints">1. Extract Themes and Viewpoints</h3>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extract_themes_and_viewpoints</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">map</span>
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">themes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;list[{theme:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">viewpoints:</span><span class="nv"> </span><span class="s">str}]&quot;</span>
+<span class="w">  </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">Analyze the following debate transcript for {{ input.title }} on {{ input.date }}:</span>
+
+<span class="w">    </span><span class="no">{{ input.content }}</span>
+
+<span class="w">    </span><span class="no">Extract the main themes discussed in this debate and the viewpoints of the candidates on these themes.</span>
+<span class="w">    </span><span class="no">Return a list of themes and corresponding viewpoints in the following format:</span>
+<span class="w">    </span><span class="no">[</span>
+<span class="w">      </span><span class="no">{</span>
+<span class="w">        </span><span class="no">&quot;theme&quot;: &quot;Theme 1&quot;,</span>
+<span class="w">        </span><span class="no">&quot;viewpoints&quot;: &quot;Candidate A&#39;s viewpoint... Candidate B&#39;s viewpoint...&quot;</span>
+<span class="w">      </span><span class="no">},</span>
+<span class="w">      </span><span class="no">{</span>
+<span class="w">        </span><span class="no">&quot;theme&quot;: &quot;Theme 2&quot;,</span>
+<span class="w">        </span><span class="no">&quot;viewpoints&quot;: &quot;Candidate A&#39;s viewpoint... Candidate B&#39;s viewpoint...&quot;</span>
+<span class="w">      </span><span class="no">},</span>
+<span class="w">      </span><span class="no">...</span>
+<span class="w">    </span><span class="no">]</span>
+</code></pre></div>
+<p>This operation processes each debate transcript to identify main themes and candidates' viewpoints. It uses AI to analyze the content and structure the output in a consistent format.</p>
+<h3 id="2-unnest-themes">2. Unnest Themes</h3>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest_themes</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest</span>
+<span class="w">  </span><span class="nt">unnest_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">themes</span>
+<span class="w">  </span><span class="nt">recursive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<p>The unnest operation flattens the list of themes extracted from each debate. This step prepares the data for further analysis by creating individual entries for each theme.</p>
+<h3 id="3-summarize-theme-evolution">3. Summarize Theme Evolution</h3>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">summarize_theme_evolution</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reduce</span>
+<span class="w">  </span><span class="nt">reduce_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">theme</span>
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">str</span>
+<span class="w">      </span><span class="nt">report</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">str</span>
+<span class="w">  </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">Analyze the following viewpoints on the theme &quot;{{ inputs[0].theme }}&quot; from various debates over the years:</span>
+
+<span class="w">    </span><span class="no">{% for item in inputs %}</span>
+<span class="w">    </span><span class="no">Year: {{ item.year }}</span>
+<span class="w">    </span><span class="no">Date: {{ item.date }}</span>
+<span class="w">    </span><span class="no">Title: {{ item.title }}</span>
+<span class="w">    </span><span class="no">Viewpoints: {{ item.viewpoints }}</span>
+
+<span class="w">    </span><span class="no">{% endfor %}</span>
+
+<span class="w">    </span><span class="no">Generate a comprehensive summary of how Democratic and Republican viewpoints on this theme have evolved through the years. Include supporting quotes from the debates to illustrate key points or shifts in perspective.</span>
+
+<span class="w">    </span><span class="no">Your summary should:</span>
+<span class="w">    </span><span class="no">1. Identify all major trends or shifts in each party&#39;s stance over time</span>
+<span class="w">    </span><span class="no">2. Highlight any significant agreements or disagreements between the parties</span>
+<span class="w">    </span><span class="no">3. Note any external events or factors that may have influenced changes in viewpoints</span>
+<span class="w">    </span><span class="no">4. Use specific quotes to support your analysis</span>
+<span class="w">    </span><span class="no">5. The title should contain the start and end years of the analysis</span>
+
+<span class="w">    </span><span class="no">Format your response as a well-structured report.</span>
+</code></pre></div>
+<p>This operation analyzes how each theme has evolved over time. It considers viewpoints from multiple debates, identifies trends, and generates a comprehensive summary of the theme's evolution.</p>
+<h2 id="the-need-for-theme-resolution">The Need for Theme Resolution</h2>
+<p>An important consideration in this pipeline is the potential for similar themes to be generated with slightly different wording (e.g., "Climate Change Policy" vs. "Environmental Regulations"). To address this, we need to add a resolve operation before the summarization step.</p>
+<p>To synthesize a resolve operation, we can use the <code>docetl build</code> command:</p>
+<div class="highlight"><pre><span></span><code>docetl<span class="w"> </span>build<span class="w"> </span>pipeline.yaml
+</code></pre></div>
+<p>This command adds a resolve operation to our pipeline, resulting in an optimized version:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">operations</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">- name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">synthesized_resolve_0</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resolve</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">blocking_keys</span><span class="p p-Indicator">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">theme</span>
+<span class="w">    </span><span class="w w-Error">  </span><span class="nt">blocking_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.6465</span>
+<span class="w">      </span><span class="nt">comparison_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o-mini</span>
+<span class="w">      </span><span class="nt">comparison_prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">Compare the following two debate themes:</span>
+
+<span class="w">        </span><span class="no">[Entity 1]:</span>
+<span class="w">        </span><span class="no">{{ input1.theme }}</span>
+
+<span class="w">        </span><span class="no">[Entity 2]:</span>
+<span class="w">        </span><span class="no">{{ input2.theme }}</span>
+
+<span class="w">        </span><span class="no">Are these themes likely referring to the same concept? Consider the following attributes:</span>
+<span class="w">        </span><span class="no">- The core subject matter being discussed</span>
+<span class="w">        </span><span class="no">- The context in which the theme is presented</span>
+<span class="w">        </span><span class="no">- The viewpoints of the candidates associated with each theme</span>
+
+<span class="w">        </span><span class="no">Respond with &quot;True&quot; if they are likely the same theme, or &quot;False&quot; if they are likely different themes.</span>
+<span class="w">      </span><span class="nt">embedding_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text-embedding-3-small</span>
+<span class="w">      </span><span class="nt">compare_batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">      </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">      </span><span class="nt">resolution_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o-mini</span>
+<span class="w">      </span><span class="nt">resolution_prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">Analyze the following duplicate themes:</span>
+
+<span class="w">        </span><span class="no">{% for key in inputs %}</span>
+<span class="w">        </span><span class="no">Entry {{ loop.index }}:</span>
+<span class="w">        </span><span class="no">{{ key.theme }}</span>
+
+<span class="w">        </span><span class="no">{% endfor %}</span>
+
+<span class="w">        </span><span class="no">Create a single, consolidated key that combines the information from all duplicate entries. When merging, follow these guidelines:</span>
+<span class="w">        </span><span class="no">1. Prioritize the most comprehensive and detailed viewpoint available among the duplicates. If multiple entries discuss the same theme with varying details, select the entry that includes the most information.</span>
+<span class="w">        </span><span class="no">2. Ensure clarity and coherence in the merged key; if key terms or phrases are duplicated, synthesize them into a single statement or a cohesive description that accurately represents the theme.</span>
+
+<span class="w">        </span><span class="no">Ensure that the merged key conforms to the following schema:</span>
+<span class="w">        </span><span class="no">{</span>
+<span class="w">          </span><span class="no">&quot;theme&quot;: &quot;string&quot;</span>
+<span class="w">        </span><span class="no">}</span>
+
+<span class="w">        </span><span class="no">Return the consolidated key as a single JSON object.</span>
+
+
+<span class="nt">pipeline</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">debate_analysis</span>
+<span class="w">      </span><span class="nt">input</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">debates</span>
+<span class="w">      </span><span class="nt">operations</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extract_themes_and_viewpoints</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest_themes</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">synthesized_resolve_0</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">summarize_theme_evolution</span>
+</code></pre></div>
+<p>The new <code>synthesized_resolve_0</code> operation groups similar themes together, ensuring a more accurate and comprehensive analysis of each theme's evolution.</p>
+<h2 id="running-the-optimized-pipeline">Running the Optimized Pipeline</h2>
+<p>With the resolve operation in place, we can now run our optimized pipeline:</p>
+<div class="highlight"><pre><span></span><code>docetl<span class="w"> </span>run<span class="w"> </span>pipeline_opt.yaml
+</code></pre></div>
+<p>This command processes the debate transcripts, extracts themes, resolves similar themes, and generates summaries of theme evolution over time. The results will be saved in <code>theme_evolution_analysis.json</code>, providing insights into the changing landscape of topics discussed in presidential debates. Since we've also set an <code>intermediate_dir</code> in our pipeline configuration, intermediate results will be saved in the <code>intermediate_dir</code> directory.</p>
+<p>Here's the output from running our optimized pipeline:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>docetl<span class="w"> </span>run<span class="w"> </span>pipeline_opt.yaml
+<span class="o">[</span><span class="m">09</span>:28:17<span class="o">]</span><span class="w"> </span>Performing<span class="w"> </span>syntax<span class="w"> </span>check<span class="w"> </span>on<span class="w"> </span>all<span class="w"> </span>operations...
+<span class="w">           </span>Syntax<span class="w"> </span>check<span class="w"> </span>passed<span class="w"> </span><span class="k">for</span><span class="w"> </span>all<span class="w"> </span>operations.
+<span class="w">           </span>Running<span class="w"> </span>Operation:
+<span class="w">             </span>Type:<span class="w"> </span>map
+<span class="w">             </span>Name:<span class="w"> </span>extract_themes_and_viewpoints
+⠧<span class="w"> </span>Running<span class="w"> </span>step<span class="w"> </span>debate_analysis...
+<span class="o">[</span><span class="m">09</span>:28:36<span class="o">]</span><span class="w"> </span>Intermediate<span class="w"> </span>saved<span class="w"> </span><span class="k">for</span><span class="w"> </span>operation<span class="w"> </span><span class="s1">&#39;extract_themes_and_viewpoints&#39;</span>
+<span class="w">           </span>Running<span class="w"> </span>Operation:
+<span class="w">             </span>Type:<span class="w"> </span>unnest
+<span class="w">             </span>Name:<span class="w"> </span>unnest_themes
+<span class="w">           </span>Intermediate<span class="w"> </span>saved<span class="w"> </span><span class="k">for</span><span class="w"> </span>operation<span class="w"> </span><span class="s1">&#39;unnest_themes&#39;</span>
+<span class="w">           </span>Running<span class="w"> </span>Operation:
+<span class="w">             </span>Type:<span class="w"> </span>resolve
+<span class="w">             </span>Name:<span class="w"> </span>synthesized_resolve_0
+<span class="o">[</span><span class="m">09</span>:28:38<span class="o">]</span><span class="w"> </span>Comparisons<span class="w"> </span>saved<span class="w"> </span>by<span class="w"> </span>blocking:<span class="w"> </span><span class="m">56002</span><span class="w"> </span><span class="o">(</span><span class="m">97</span>.75%<span class="o">)</span>
+⠋<span class="w"> </span>Running<span class="w"> </span>step<span class="w"> </span>debate_analysis...
+<span class="o">[</span><span class="m">09</span>:29:02<span class="o">]</span><span class="w"> </span>Number<span class="w"> </span>of<span class="w"> </span>keys<span class="w"> </span>before<span class="w"> </span>resolution:<span class="w"> </span><span class="m">339</span>
+<span class="w">           </span>Number<span class="w"> </span>of<span class="w"> </span>distinct<span class="w"> </span>keys<span class="w"> </span>after<span class="w"> </span>resolution:<span class="w"> </span><span class="m">152</span>
+⠋<span class="w"> </span>Running<span class="w"> </span>step<span class="w"> </span>debate_analysis...
+<span class="o">[</span><span class="m">09</span>:29:04<span class="o">]</span><span class="w"> </span>Self-join<span class="w"> </span>selectivity:<span class="w"> </span><span class="m">0</span>.0390
+<span class="w">           </span>Intermediate<span class="w"> </span>saved<span class="w"> </span><span class="k">for</span><span class="w"> </span>operation<span class="w"> </span><span class="s1">&#39;synthesized_resolve_0&#39;</span>
+<span class="w">           </span>Running<span class="w"> </span>Operation:
+<span class="w">             </span>Type:<span class="w"> </span>reduce
+<span class="w">             </span>Name:<span class="w"> </span>summarize_theme_evolution
+⠼<span class="w"> </span>Running<span class="w"> </span>step<span class="w"> </span>debate_analysis...
+<span class="o">[</span><span class="m">09</span>:29:54<span class="o">]</span><span class="w"> </span>Intermediate<span class="w"> </span>saved<span class="w"> </span><span class="k">for</span><span class="w"> </span>operation<span class="w"> </span><span class="s1">&#39;summarize_theme_evolution&#39;</span>
+<span class="w">           </span>Flushing<span class="w"> </span>cache<span class="w"> </span>to<span class="w"> </span>disk...
+<span class="w">           </span>Cache<span class="w"> </span>flushed<span class="w"> </span>to<span class="w"> </span>disk.
+<span class="w">  </span>Step<span class="w"> </span>debate_analysis<span class="w"> </span>completed.<span class="w"> </span>Cost:<span class="w"> </span><span class="nv">$0</span>.29
+<span class="w">  </span>Operation<span class="w"> </span>extract_themes_and_viewpoints<span class="w"> </span>completed.<span class="w"> </span>Cost:<span class="w"> </span><span class="nv">$0</span>.16
+<span class="w">  </span>Operation<span class="w"> </span>unnest_themes<span class="w"> </span>completed.<span class="w"> </span>Cost:<span class="w"> </span><span class="nv">$0</span>.00
+<span class="w">  </span>Operation<span class="w"> </span>synthesized_resolve_0<span class="w"> </span>completed.<span class="w"> </span>Cost:<span class="w"> </span><span class="nv">$0</span>.04
+<span class="w">  </span>Operation<span class="w"> </span>summarize_theme_evolution<span class="w"> </span>completed.<span class="w"> </span>Cost:<span class="w"> </span><span class="nv">$0</span>.09
+<span class="w">           </span>💾<span class="w"> </span>Output<span class="w"> </span>saved<span class="w"> </span>to<span class="w"> </span>theme_evolution_analysis_baseline.json
+<span class="w">           </span>Total<span class="w"> </span>cost:<span class="w"> </span><span class="nv">$0</span>.29
+<span class="w">           </span>Total<span class="w"> </span>time:<span class="w"> </span><span class="m">97</span>.25<span class="w"> </span>seconds
+</code></pre></div>
+<p>This output shows the progress of our pipeline execution, including the different operations performed, intermediate saves, and the final results. Note the total cost was only $0.29!</p>
+<h2 id="initial-results">Initial Results</h2>
+<p>Our pipeline generated reports on various themes discussed in the presidential debates. We've put the results up <a href="https://github.com/ucbepic/docetl/tree/main/example_data/debates/theme_evolution_analysis_baseline.json">here</a>. However, upon inspection, we found that these reports were lacking in depth and recency. Let's look at a few examples:</p>
+<div class="admonition example">
+<p class="admonition-title">Example Reports Lacking in Recent Quotes</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Infrastructure Development</label><label for="__tabbed_1_2">Crime and Gun Control</label><label for="__tabbed_1_3">Drug Policy</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="gh"># Infrastructure Development: A Comparative Analysis of Democratic and Republican Viewpoints from 1992 to 2023</span>
+
+<span class="gu">## Introduction</span>
+Infrastructure development has long been a pivotal theme in American political discourse, with varying perspectives presented by major party candidates. This report analyzes shifts and trends in Democratic and Republican viewpoints from 1992, during the second presidential debate between George Bush, Bill Clinton, and Ross Perot, to 2023.
+
+<span class="gu">## Republican Viewpoints</span>
+<span class="gu">### Early 1990s</span>
+In 1992, President George Bush emphasized a forward-looking approach to infrastructure, stating, &quot;We passed this year the most furthest looking transportation bill in the history of this country...$150 billion for improving the infrastructure.&quot; This statement indicated a commitment to substantial federal investment in infrastructure aimed at enhancing transportation networks.
+
+<span class="gu">### 2000s</span>
+Moving into the early 2000s, the Republican party maintained a focus on infrastructure but began to frame it within the context of economic growth and public-private partnerships. However, after the 2008 financial crisis, there was a noticeable shift. The party emphasized tax cuts and reducing regulation over large public investments in infrastructure.
+
+<span class="gu">### Recent Years</span>
+By 2020 and 2021, under the Trump administration, the emphasis returned to infrastructure. However, the tone shifted towards emphasizing private sector involvement and deregulation rather than large public spending. The Republican approach became more fragmented, with some factions calling for aggressive infrastructure investment, while others remained cautious about expenditures.
+
+<span class="gu">## Democratic Viewpoints</span>
+<span class="gu">### Early 1990s</span>
+In contrast, Governor Bill Clinton in 1992 proposed a more systematic investment strategy, noting, &quot;My plan would dedicate $20 billion a year in each of the next 4 years for investments in new transportation.&quot; This highlighted a stronger emphasis on direct federal involvement in infrastructure as a means of fostering economic opportunity and job creation.
+
+<span class="gu">### 2000s</span>
+Through the late 1990s and early 2000s, the Democratic party continued to push for comprehensive federal infrastructure plans, often attached to broader economic initiatives aimed at reducing inequality and spurring job growth. The party emphasized sustainable infrastructure and investments that address climate change.
+
+<span class="gu">### Recent Years</span>
+By 2020, under the Biden administration, the Democrat viewpoint strongly advocated for significant infrastructure investments, combining traditional infrastructure with climate resilience. The American Jobs Plan symbolized this shift, proposing vast funds for transit systems, renewable energy projects, and rural broadband internet. The framing increasingly included social equity as a core component of infrastructure, influenced by movements advocating for racial and economic justice.
+
+<span class="gu">## Agreements and Disagreements</span>
+<span class="gu">### Agreements</span>
+Despite inherent differences, both parties have historically acknowledged the necessity of infrastructure investments for economic growth. Both Bush and Clinton in 1992 recognized infrastructure as vital for job creation, but diverged on the scope and funding mechanisms.
+
+<span class="gu">### Disagreements</span>
+Over the years, major disagreements have surfaced, particularly in funding approaches. The Republican party has increasingly favored private sector involvement and tax incentives, while Democrats have consistently pushed for robust federal spending and the incorporation of progressive values into infrastructure projects.
+
+<span class="gu">## Influencing Factors</span>
+The evolution of viewpoints has often mirrored external events such as economic recessions, technological advancement, and social movements. The post-9/11 era and the 2008 financial crisis notably shifted priorities, with bipartisan discussions centered around recovery through infrastructure spending. Additionally, increasing awareness of climate change and social justice has over the years significantly influenced Democratic priorities, leading to a more inclusive and sustainable approach to infrastructure development.
+
+<span class="gu">## Conclusion</span>
+The comparative analysis of Democratic and Republican viewpoints on infrastructure development from 1992 to 2023 reveals significant shifts in priorities and strategies. While both parties agree on the need for infrastructure improvements, their approaches and underlying philosophies continue to diverge, influenced by economic, social, and environmental factors.
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="gu">## The Evolution of Democratic and Republican Viewpoints on Crime and Gun Control: 1992-2023</span>
+
+<span class="gu">### Introduction</span>
+This report analyzes the shifting perspectives of the Democratic and Republican parties on the theme of &quot;Crime and Gun Control&quot; from 1992 to 2023. The exploration encompasses key debates, significant shifts in stance, party alignments, and influences from external events that shaped these viewpoints.
+
+<span class="gu">### Democratic Party Viewpoints</span>
+<span class="k">1.</span> <span class="gs">**Initial Stance (1992)**</span>: In the early 1990s, the Democratic viewpoint, as exemplified by Governor Bill Clinton during the Second Presidential Debate in 1992, supported individual gun ownership but emphasized the necessity of regulation: &quot;I support the right to keep and bear arms...but I believe we have to have some way of checking handguns before they&#39;re sold.&quot;
+<span class="k">-</span><span class="w"> </span><span class="gs">**Trend**</span>: This reflects a moderate position seeking to balance gun rights with public safety—a common theme in Democratic rhetoric during this era that resonated with many constituents.
+
+<span class="k">2.</span> <span class="gs">**Shift Towards Stricter Gun Control (Late 1990s - 2000s)**</span>: Following events such as the Columbine High School shooting in 1999, the Democratic Party increasingly advocated for more stringent gun control measures. The passing of the Brady Bill and the Assault Weapons Ban in 1994 marked a peak in regulatory measures supported by Democrats, emphasizing public safety over gun ownership rights.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Quote Impact**</span>: During this time, Democratic leaders often highlighted the need for legislative action to combat rising gun violence.
+
+<span class="k">3.</span> <span class="gs">**Response to Mass Shootings (2010s)**</span>: The tragic events of the Sandy Hook Elementary School shooting in 2012 ignited a renewed push for gun control from leading Democrats, including then-President Barack Obama. His call for &quot;common-sense gun laws&quot; marked a decisive moment in Democrat advocacy, focusing on background checks and bans on assault weapons.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Quote**</span>: Obama stated, &quot;We can&#39;t tolerate this anymore. These tragedies must end. And to end them, we must change.&quot;
+
+<span class="k">4.</span> <span class="gs">**Current Stance (2020s)**</span>: The Democratic viewpoint has continued to become increasingly aligned with comprehensive gun control measures, including calls for universal background checks and red flag laws. In the wake of ongoing gun violence, this approach highlights a commitment to addressing systemic issues related to crime and public safety.
+
+<span class="gu">### Republican Party Viewpoints</span>
+<span class="k">1.</span> <span class="gs">**Consistent Support for Gun Rights (1992)**</span>: In the same 1992 debate, President George Bush emphasized the rights of gun owners, stating, &quot;I&#39;m a sportsman and I don&#39;t think you ought to eliminate all kinds of weapons.&quot; This illustrates a steadfast commitment to Second Amendment rights that has characterized Republican positions over the years.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Trend**</span>: The Republican Party has traditionally promoted a pro-gun agenda, often resisting calls for stricter regulations or bans.
+
+<span class="k">2.</span> <span class="gs">**Response to Gun Control Advocacy (2000s)**</span>: As Democrats pushed for stricter gun laws, Republicans increasingly framed these measures as infringements on individual rights. The response to high-profile shootings tended to focus on mental health and crime prevention rather than gun regulation.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Disagreement**</span>: Republicans consistently argued against the effectiveness of gun control, indicating belief in personal responsibility and the right to self-defense.
+
+<span class="k">3.</span> <span class="gs">**Shift to Increased Resistance (2010s)**</span>: In the wake of prominent mass shootings, the Republican party maintained its focus on supporting gun rights, opposing federal gun control initiatives. Notable figures, such as former NRA spokesperson Dana Loesch, articulated this resistance by stating, &quot;We are not going to let tragedies be used to violate our rights.&quot;
+<span class="k">-</span><span class="w"> </span><span class="gs">**Impact of External Events**</span>: The rise of organizations like the NRA and increased gun ownership among constituents have fortified this pro-gun stance.
+
+<span class="k">4.</span> <span class="gs">**Contemporary Stance (2020s)**</span>: Currently, the Republican viewpoint remains largely unchanged with an emphasis on individual rights to bear arms and skepticism regarding the effectiveness of gun control laws. Recent discussions around gun violence often focus on addressing crime through law enforcement and community safety programs instead of legislative gun restrictions.
+
+<span class="gu">### Key Agreements and Disagreements</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Common Ground**</span>: Both parties, at different times, have recognized the necessity for addressing gun-related violence but diverge on methods—Democrats typically advocate for regulations while Republicans focus on rights preservation.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Disagreements**</span>: A significant divide exists on whether stricter gun laws equate to reduced crime rates, with Republicans consistently refuting this correlation, arguing instead that law-abiding citizens need access to firearms for self-defense.
+
+<span class="gu">### Conclusion</span>
+The evolution of viewpoints on crime and gun control from 1992 to 2023 highlights a pronounced divergence between the Democratic and Republican parties. While Democrats have increasingly pursued stricter regulatory measures focused on public safety, Republicans have maintained a consistent advocacy for gun rights, underscoring a broader ideological conflict over individual freedoms and collective responsibility for public safety. The trajectories of both parties reflect their core values and responses to notable events impacting society.
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="gu">## Evolution of Drug Policy Viewpoints: 1996 to 2023</span>
+
+<span class="gu">### Summary of Democratic and Republican Perspectives on Drug Policy</span>
+Over the years, drug policy has been a contentious issue in American politics, reflecting profound changes within both the Democratic and Republican parties. This report examines how views have evolved, highlighting significant trends, areas of agreement and disagreement, and influential external factors utilizing debates as primary reference points.
+
+<span class="gu">### Democratic Party Trends:</span>
+<span class="k">1.</span> <span class="gs">**Increased Emphasis on Comprehensive Approaches**</span>:
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>In the 1996 Clinton-Dole debate, President Bill Clinton stated, &quot;We have dramatically increased control and enforcement at the border.&quot; This reflects a focus on enforcement as part of drug policy. However, Clinton&#39;s later years signaled a shift towards recognizing the need for treatment and prevention.
+
+<span class="k">2.</span> <span class="gs">**Emergence of Harm Reduction and Decriminalization**</span>:
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Moving into the 2000s and beyond, Democrats began to embrace harm reduction strategies. For instance, during the 2020 Democratic primary debates, candidates such as Bernie Sanders and Elizabeth Warren emphasized decriminalization and treatment over incarceration, signifying a notable shift from punitive measures.
+
+<span class="k">3.</span> <span class="gs">**Growing Advocacy for Social Justice**</span>:
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Recent years have seen an alignment with social justice movements, arguing that drug policy disproportionately affects marginalized communities. Kamala Harris in 2020 stated, &quot;We need to truly decriminalize marijuana and address the impact of the War on Drugs on communities of color.&quot;
+
+<span class="gu">### Republican Party Trends:</span>
+<span class="k">1.</span> <span class="gs">**Strong Focus on Law and Order**</span>:
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>During the 1996 debate, Senator Bob Dole reflected a traditional Republican stance, highlighting concerns over drugs without markedly addressing the social implications. &quot;The President doesn&#39;t want to politicize drugs, but it&#39;s already politicized Medicare...&quot; displays a defensive posture toward the political ramifications of drug issues.
+
+<span class="k">2.</span> <span class="gs">**Shift Towards Treatment and Prevention**</span>:
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>By the mid-2010s, there was a growing recognition of the opioid crisis, leading to a bipartisan approach promoting treatment. For example, former President Donald Trump, in addressing the opioid epidemic, stated, &quot;We have to take care of our people. We can&#39;t just lock them up.&quot;
+
+<span class="k">3.</span> <span class="gs">**Conflict Between Hardline Stance and Pragmatism**</span>:
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Despite some shifts, many Republicans still emphasize law enforcement solutions. This tension was evident in the polarizing responses to marijuana legalization across states, with figures like former Attorney General Jeff Sessions taking a hardline stance against marijuana legalization, contrasting with more progressive approaches adopted by some Republican governors.
+
+<span class="gu">### Areas of Agreement:</span>
+<span class="k">1.</span> <span class="gs">**Opioid Crisis**</span>:
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Both parties acknowledged the severity of the opioid epidemic, leading to legislation aimed at addressing addiction and treatment, indicating a rare consensus on the need for health-focused solutions.
+
+<span class="gu">### Areas of Disagreement:</span>
+<span class="k">1.</span> <span class="gs">**Approach to Drug Policy**</span>:
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>The Democratic party&#39;s shift towards decriminalization and harm reduction contrasts sharply with segments of the Republican party that still advocate for strict enforcement and criminalization of certain drugs.
+
+<span class="gu">### Influential External Events and Factors:</span>
+<span class="k">1.</span> <span class="gs">**The Opioid Crisis**</span>:
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>The rise of the opioid epidemic has forced both parties to reevaluate their positions on drug policy, pushing them towards more compassionate approaches focusing on addiction treatment.
+
+<span class="k">2.</span> <span class="gs">**Social Justice Movements**</span>:
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>The Black Lives Matter movement and other social justice efforts have altered the discourse surrounding drug policies, with increased focus on the need to rectify injustices in enforcement practices, particularly among minorities.
+
+<span class="gu">### Conclusion:</span>
+Through the years, drug policy viewpoints within the Democratic and Republican parties have experienced significant evolution, characterized by complex layers of agreement and disagreement. As social dynamics shift, both parties continue to grapple with finding a balanced approach towards a more effective drug policy that prioritizes health and social justice.
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>Upon inspecting the intermediates, it appears that the map operation is doing a good job at extracting relevant information. The issue seems to lie in the reduce operation, which is ignoring some of the analysis.</p>
+<p>It's possible that trying to summarize all the insights across all debates for a topic in a single LLM call is too ambitious. To address this, we can set <code>optimize: true</code> for the reduce operation.</p>
+<p>Let's update our <code>summarize_theme_evolution</code> operation in the pipeline:</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">summarize_theme_evolution</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reduce</span>
+<span class="w">  </span><span class="nt">reduce_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">theme</span>
+<span class="w">  </span><span class="nt">optimize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">str</span>
+<span class="w">      </span><span class="nt">report</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">str</span>
+<span class="w">  </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">[... existing prompt ...]</span>
+</code></pre></div>
+<p>Rerunning the build command <code>docetl build pipeline.yaml</code> will synthesize the optimized reduce operation (make sure <code>pipeline.yaml</code> is the pipeline you want to optimize).</p>
+<h2 id="running-the-pipeline-with-optimized-reduce">Running the Pipeline (with Optimized Reduce)</h2>
+<p>In our optimized pipeline, we see that DocETL added a <code>gleaning</code> configuration to the reduce operation:</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">summarize_theme_evolution</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reduce</span>
+<span class="w">  </span><span class="nt">reduce_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">theme</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">  </span><span class="nt">gleaning</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">num_rounds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">validation_prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">1. Does the output adequately summarize the evolution of viewpoints on the theme based on the</span>
+<span class="w">        </span><span class="no">provided debate texts? Are all critical shifts and trends mentioned?</span>
+<span class="w">        </span><span class="no">2. Are there any crucial quotes or data points missing from the output that</span>
+<span class="w">        </span><span class="no">were present in the debate transcripts that could reinforce the analysis?</span>
+<span class="w">        </span><span class="no">3. Is the output well-structured and easy to follow, following any</span>
+<span class="w">        </span><span class="no">formatting guidelines specified in the prompt, such as using headings for</span>
+<span class="w">        </span><span class="no">sections or maintaining a coherent narrative flow?</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Note that you should always feel free to edit the <code>validation_prompt</code> to better suit your specific needs! The optimizer uses LLMs to write all prompts, but you have the best context on your task and what you're looking for in the output, so you should adjust anything accordingly.</p>
+</div>
+<p>And when running the pipeline, we can observe the impact of this optimization; for example, one of the outputs gets amended to include more recent quotes:</p>
+<div class="highlight"><pre><span></span><code>Validator<span class="w"> </span>improvements<span class="w"> </span><span class="o">(</span>gleaning<span class="w"> </span>round<span class="w"> </span><span class="m">1</span><span class="o">)</span>:
+<span class="m">1</span>.<span class="w"> </span>**Coverage<span class="w"> </span>of<span class="w"> </span>Critical<span class="w"> </span>Shifts<span class="w"> </span>and<span class="w"> </span>Trends**:<span class="w"> </span>While<span class="w"> </span>the<span class="w"> </span>output<span class="w"> </span>captures<span class="w"> </span>several<span class="w"> </span>significant<span class="w"> </span>trends<span class="w"> </span>and<span class="w"> </span>shifts<span class="w"> </span><span class="k">in</span><span class="w"> </span>Democratic<span class="w"> </span>and<span class="w"> </span>Republican<span class="w"> </span>viewpoints,<span class="w"> </span>it<span class="w"> </span>could<span class="w"> </span>benefit<span class="w"> </span>from<span class="w"> </span>a<span class="w"> </span>more<span class="w"> </span>thorough<span class="w"> </span>overview,<span class="w"> </span>especially<span class="w"> </span>about<span class="w"> </span>the<span class="w"> </span>changing<span class="w"> </span>perceptions<span class="w"> </span>and<span class="w"> </span>proposals<span class="w"> </span>related<span class="w"> </span>to<span class="w"> </span>economic<span class="w"> </span>downturns<span class="w"> </span>and<span class="w"> </span>recoveries<span class="w"> </span>across<span class="w"> </span>the<span class="w"> </span>decades.<span class="w"> </span>For<span class="w"> </span>instance,<span class="w"> </span>it<span class="w"> </span>could<span class="w"> </span>include<span class="w"> </span>how<span class="w"> </span>the<span class="w"> </span>response<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span><span class="m">2008</span><span class="w"> </span>financial<span class="w"> </span>crisis<span class="w"> </span>tied<span class="w"> </span>back<span class="w"> </span>to<span class="w"> </span>historical<span class="w"> </span>precedents,<span class="w"> </span>linking<span class="w"> </span>back<span class="w"> </span>to<span class="w"> </span>earlier<span class="w"> </span>debates<span class="w"> </span>about<span class="w"> </span>the<span class="w"> </span>importance<span class="w"> </span>of<span class="w"> </span><span class="nb">jobs</span><span class="w"> </span>and<span class="w"> </span>middle-class<span class="w"> </span>stability<span class="w"> </span><span class="o">(</span>like<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span><span class="m">1976</span><span class="w"> </span>or<span class="w"> </span><span class="m">1992</span><span class="w"> </span>debates<span class="o">)</span>.
+
+<span class="m">2</span>.<span class="w"> </span>**Missing<span class="w"> </span>Quotes<span class="w"> </span>and<span class="w"> </span>Data<span class="w"> </span>Points**:<span class="w"> </span>The<span class="w"> </span>response<span class="w"> </span>could<span class="w"> </span>further<span class="w"> </span>bolster<span class="w"> </span>the<span class="w"> </span>analysis<span class="w"> </span>by<span class="w"> </span>incorporating<span class="w"> </span>additional<span class="w"> </span>quotes<span class="w"> </span>that<span class="w"> </span>illustrate<span class="w"> </span>the<span class="w"> </span>evolving<span class="w"> </span>narrative,<span class="w"> </span>particularly<span class="w"> </span>surrounding<span class="w"> </span>tax<span class="w"> </span>fairness<span class="w"> </span>and<span class="w"> </span>job<span class="w"> </span>creation.<span class="w"> </span>For<span class="w"> </span>example,<span class="w"> </span>quotes<span class="w"> </span>like<span class="w"> </span>George<span class="w"> </span>Bush<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1984</span><span class="w"> </span>calling<span class="w"> </span>out<span class="w"> </span><span class="s2">&quot;working man&quot;</span><span class="w"> </span>perspectives<span class="w"> </span>against<span class="w"> </span>seemingly<span class="w"> </span>progressive<span class="w"> </span>taxation<span class="w"> </span>could<span class="w"> </span>enhance<span class="w"> </span>the<span class="w"> </span>depth.<span class="w"> </span>Additionally,<span class="w"> </span>quotes<span class="w"> </span>from<span class="w"> </span>debates<span class="w"> </span>emphasizing<span class="w"> </span>the<span class="w"> </span>impact<span class="w"> </span>of<span class="w"> </span>tax<span class="w"> </span>cuts<span class="w"> </span>on<span class="w"> </span>economic<span class="w"> </span>recovery<span class="w"> </span>and<span class="w"> </span>job<span class="w"> </span>growth—such<span class="w"> </span>as<span class="w"> </span>Obama<span class="s1">&#39;s focus on the automotive industry&#39;</span>s<span class="w"> </span>recovery<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">2012</span><span class="w"> </span>or<span class="w"> </span>McCain<span class="s1">&#39;s &#39;</span>putting<span class="w"> </span>homeowners<span class="w"> </span>first<span class="s1">&#39;—could provide essential context to the arguments for both parties.</span>
+
+<span class="s1">3. **Structure and Flow**: Overall, the output is fairly well-structured and maintains a logical flow, using headings appropriately to signal key sections. However, it may benefit from clearer subsections under each party&#39;</span>s<span class="w"> </span>overview<span class="w"> </span>to<span class="w"> </span>delineate<span class="w"> </span>specific<span class="w"> </span>key<span class="w"> </span>points,<span class="w"> </span>such<span class="w"> </span>as<span class="w"> </span><span class="s1">&#39;Tax Policy&#39;</span>,<span class="w"> </span><span class="s1">&#39;Job Creation&#39;</span>,<span class="w"> </span>and<span class="w"> </span><span class="s1">&#39;Response to Economic Crises&#39;</span>.<span class="w"> </span>This<span class="w"> </span>would<span class="w"> </span>enhance<span class="w"> </span>readability<span class="w"> </span>and<span class="w"> </span>assist<span class="w"> </span>the<span class="w"> </span>reader<span class="w"> </span><span class="k">in</span><span class="w"> </span>navigating<span class="w"> </span>the<span class="w"> </span>shifts<span class="w"> </span><span class="k">in</span><span class="w"> </span>viewpoints.<span class="w"> </span>For<span class="w"> </span>example,<span class="w"> </span>adding<span class="w"> </span>bullet<span class="w"> </span>points<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>vivid<span class="w"> </span>transitions<span class="w"> </span>between<span class="w"> </span>historical<span class="w"> </span>periods<span class="w"> </span>could<span class="w"> </span>clarify<span class="w"> </span>the<span class="w"> </span>evolution<span class="w"> </span>timeline.<span class="w"> </span>Moreover,<span class="w"> </span>resolving<span class="w"> </span>any<span class="w"> </span>redundancy<span class="w"> </span><span class="o">(</span>such<span class="w"> </span>as<span class="w"> </span>multiple<span class="w"> </span>mentions<span class="w"> </span>of<span class="w"> </span>similar<span class="w"> </span>themes<span class="w"> </span>across<span class="w"> </span>years<span class="o">)</span><span class="w"> </span>would<span class="w"> </span>streamline<span class="w"> </span>the<span class="w"> </span>narrative.
+</code></pre></div>
+<p>Check out the new output <a href="https://github.com/ucbepic/docetl/tree/main/example_data/debates/theme_evolution_analysis_reduce_gleaning.json">here</a> to see the improvements made by the optimized pipeline! Of course, we can probably optimize the initial map operation too, do prompt engineering, and more to further enhance the pipeline.</p>
+<div class="admonition note">
+<p class="admonition-title">Interactive Pipeline Creation</p>
+<p>We're currently building interfaces to interactively create and iterate on these pipelines after seeing outputs. This will allow for more intuitive pipeline development and refinement based on real-time results. If you're interested in this feature or would like to provide input, please reach out to us! Your feedback can help shape the future of DocETL's user experience.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../python-api/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Python API">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Python API
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../mining-product-reviews/" class="md-footer__link md-footer__link--next" aria-label="Next: Mining Product Reviews for Polarizing Features">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Mining Product Reviews for Polarizing Features
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.follow", "navigation.footer", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

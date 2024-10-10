@@ -1,0 +1,2986 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docetl.com/examples/custom-parsing/">
+      
+      
+        <link rel="prev" href="../split-gather/">
+      
+      
+        <link rel="next" href="../rate-limiting/">
+      
+      
+      <link rel="icon" href="../../assets/docetl-favicon-color.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Datasets With Custom Parsing - docetl docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CSource+Code+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pointing-to-external-data-and-custom-parsing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="docetl docs" class="md-header__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 80v48c0 17.7 14.3 32 32 32h64V80c0-26.5-21.5-48-48-48S0 53.5 0 80m112-48c10 13.4 16 30 16 48v304c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96zm352 448c61.9 0 112-50.1 112-112 0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7v5.3c0 53-43 96-96 96h272"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            docetl docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Datasets With Custom Parsing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../presidential-debate-themes/" class="md-tabs__link">
+          
+  
+    
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api-reference/docetl/" class="md-tabs__link">
+          
+  
+    
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../community/" class="md-tabs__link">
+          
+  
+    
+  
+  Community
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="docetl docs" class="md-nav__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 80v48c0 17.7 14.3 32 32 32h64V80c0-26.5-21.5-48-48-48S0 53.5 0 80m112-48c10 13.4 16 30 16 48v304c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96zm352 448c61.9 0 112-50.1 112-112 0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7v5.3c0 53-43 96-96 96h272"/></svg>
+
+    </a>
+    docetl docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../.." class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Examples
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presidential-debate-themes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reporting on Themes from Presidential Debates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mining-product-reviews/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mining Product Reviews for Polarizing Features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ollama/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Medical Document Classification with Ollama
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../split-gather/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Split and Gather for Legal Document Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Datasets With Custom Parsing
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Datasets With Custom Parsing
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dataset-json-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataset JSON Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-parsing-in-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Parsing in Action
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom Parsing in Action">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pipeline-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Pipeline Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-data-gets-parsed-and-formatted" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Data Gets Parsed and Formatted
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How Data Gets Parsed and Formatted">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#excel-files-using-top_products_report" class="md-nav__link">
+    <span class="md-ellipsis">
+      Excel Files (using top_products_report)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pdf-files-using-paddleocr_pdf_to_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      PDF Files (using paddleocr_pdf_to_string)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-parsing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Parsing Tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docetl.parsing_tools.xlsx_to_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      xlsx_to_string
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docetl.parsing_tools.txt_to_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      txt_to_string
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docetl.parsing_tools.docx_to_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      docx_to_string
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docetl.parsing_tools.whisper_speech_to_text" class="md-nav__link">
+    <span class="md-ellipsis">
+      whisper_speech_to_text
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docetl.parsing_tools.pptx_to_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      pptx_to_string
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docetl.parsing_tools.azure_di_read" class="md-nav__link">
+    <span class="md-ellipsis">
+      azure_di_read
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docetl.parsing_tools.paddleocr_pdf_to_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      paddleocr_pdf_to_string
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="paddleocr_pdf_to_string">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-function-arguments-with-parsing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Function Arguments with Parsing Tools
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing-built-in-parsing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contributing Built-in Parsing Tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-custom-parsing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Custom Parsing Tools
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rate-limiting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adding Rate Limiting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../api-reference/docetl/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    API Reference
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../community/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Community
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dataset-json-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataset JSON Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-parsing-in-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Parsing in Action
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom Parsing in Action">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pipeline-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Pipeline Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-data-gets-parsed-and-formatted" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Data Gets Parsed and Formatted
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How Data Gets Parsed and Formatted">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#excel-files-using-top_products_report" class="md-nav__link">
+    <span class="md-ellipsis">
+      Excel Files (using top_products_report)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pdf-files-using-paddleocr_pdf_to_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      PDF Files (using paddleocr_pdf_to_string)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-parsing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Parsing Tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docetl.parsing_tools.xlsx_to_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      xlsx_to_string
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docetl.parsing_tools.txt_to_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      txt_to_string
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docetl.parsing_tools.docx_to_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      docx_to_string
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docetl.parsing_tools.whisper_speech_to_text" class="md-nav__link">
+    <span class="md-ellipsis">
+      whisper_speech_to_text
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docetl.parsing_tools.pptx_to_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      pptx_to_string
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docetl.parsing_tools.azure_di_read" class="md-nav__link">
+    <span class="md-ellipsis">
+      azure_di_read
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docetl.parsing_tools.paddleocr_pdf_to_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      paddleocr_pdf_to_string
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="paddleocr_pdf_to_string">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-function-arguments-with-parsing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Function Arguments with Parsing Tools
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing-built-in-parsing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contributing Built-in Parsing Tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-custom-parsing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Custom Parsing Tools
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="pointing-to-external-data-and-custom-parsing">Pointing to External Data and Custom Parsing</h1>
+<p>In DocETL, you have full control over your dataset JSONs. These JSONs typically contain objects with key-value pairs, where you can reference external files that you want to process in your pipeline. This referencing mechanism, which we call "pointing", allows DocETL to locate and process external files that require special handling before they can be used in your main pipeline.</p>
+<div class="admonition info">
+<p class="admonition-title">Why Use Custom Parsing?</p>
+<p>Consider these scenarios where custom parsing of referenced files is beneficial:</p>
+<ul>
+<li>Your dataset JSON references Excel spreadsheets containing sales data.</li>
+<li>You have entries pointing to scanned receipts in PDF format that need OCR processing.</li>
+<li>You want to extract text from Word documents or PowerPoint presentations by referencing their file locations.</li>
+</ul>
+<p>In these cases, custom parsing enables you to transform your raw external data into a format that DocETL can process effectively within your pipeline. The pointing mechanism allows DocETL to locate these external files and apply custom parsing seamlessly. <em>(Pointing in DocETL refers to the practice of including references or paths to external files within your dataset JSON. Instead of embedding the entire content of these files, you simply "point" to their locations, allowing DocETL to access and process them as needed during the pipeline execution.)</em></p>
+</div>
+<h2 id="dataset-json-example">Dataset JSON Example</h2>
+<p>Let's look at a typical dataset JSON file that you might create:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;excel_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sales_data/january_sales.xlsx&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;excel_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sales_data/february_sales.xlsx&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>In this example, you've specified paths to Excel files. DocETL will use these paths to locate and process the external files. However, without custom parsing, DocETL wouldn't know how to handle the contents of these files. This is where parsing tools come in handy.</p>
+<h2 id="custom-parsing-in-action">Custom Parsing in Action</h2>
+<h4 id="1-configuration">1. Configuration</h4>
+<p>To use custom parsing, you need to define parsing tools in your DocETL configuration file. Here's an example:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">parsing_tools</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">top_products_report</span>
+<span class="w">    </span><span class="nt">function_code</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">def top_products_report(document: Dict) -&gt; List[Dict]:</span>
+<span class="w">          </span><span class="no">import pandas as pd</span>
+
+<span class="w">          </span><span class="no"># Read the Excel file</span>
+<span class="w">          </span><span class="no">filename = document[&quot;excel_path&quot;]</span>
+<span class="w">          </span><span class="no">df = pd.read_excel(filename)</span>
+
+<span class="w">          </span><span class="no"># Calculate total sales</span>
+<span class="w">          </span><span class="no">total_sales = df[&#39;Sales&#39;].sum()</span>
+
+<span class="w">          </span><span class="no"># Find top 500 products by sales</span>
+<span class="w">          </span><span class="no">top_products = df.groupby(&#39;Product&#39;)[&#39;Sales&#39;].sum().nlargest(500)</span>
+
+<span class="w">          </span><span class="no"># Calculate month-over-month growth</span>
+<span class="w">          </span><span class="no">df[&#39;Date&#39;] = pd.to_datetime(df[&#39;Date&#39;])</span>
+<span class="w">          </span><span class="no">monthly_sales = df.groupby(df[&#39;Date&#39;].dt.to_period(&#39;M&#39;))[&#39;Sales&#39;].sum()</span>
+<span class="w">          </span><span class="no">mom_growth = monthly_sales.pct_change().fillna(0)</span>
+
+<span class="w">          </span><span class="no"># Prepare the analysis report</span>
+<span class="w">          </span><span class="no">report = [</span>
+<span class="w">              </span><span class="no">f&quot;Total Sales: ${total_sales:,.2f}&quot;,</span>
+<span class="w">              </span><span class="no">&quot;\nTop 500 Products by Sales:&quot;,</span>
+<span class="w">              </span><span class="no">top_products.to_string(),</span>
+<span class="w">              </span><span class="no">&quot;\nMonth-over-Month Growth:&quot;,</span>
+<span class="w">              </span><span class="no">mom_growth.to_string()</span>
+<span class="w">          </span><span class="no">]</span>
+
+<span class="w">          </span><span class="no"># Return a list of dicts representing the output</span>
+<span class="w">          </span><span class="no"># The input document will be merged into each output doc,</span>
+<span class="w">          </span><span class="no"># so we can access all original fields from the input doc.</span>
+<span class="w">          </span><span class="no">return [{&quot;sales_analysis&quot;: &quot;\n&quot;.join(report)}]</span>
+
+<span class="nt">datasets</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">sales_reports</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sales_data/sales_paths.json&quot;</span>
+<span class="w">    </span><span class="nt">parsing</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">function</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">top_products_report</span>
+
+<span class="w">  </span><span class="nt">receipts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;receipts/receipt_paths.json&quot;</span>
+<span class="w">    </span><span class="nt">parsing</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">input_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pdf_path</span>
+<span class="w">        </span><span class="nt">function</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paddleocr_pdf_to_string</span>
+<span class="w">        </span><span class="nt">output_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">receipt_text</span>
+<span class="w">        </span><span class="nt">ocr_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">lang</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;en&quot;</span>
+</code></pre></div>
+<p>In this configuration:</p>
+<ul>
+<li>We define a custom <code>top_products_report</code> function for Excel files.</li>
+<li>We use the built-in <code>paddleocr_pdf_to_string</code> parser for PDF files.</li>
+<li>We apply these parsing tools to the external files referenced in the respective datasets.</li>
+</ul>
+<h4 id="2-pipeline-integration">2. Pipeline Integration</h4>
+<p>Once you've defined your parsing tools and datasets, you can use the processed data in your pipeline:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">pipeline</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">process_sales</span>
+<span class="w">      </span><span class="nt">input</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sales_reports</span>
+<span class="w">      </span><span class="nt">operations</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">summarize_sales</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">process_receipts</span>
+<span class="w">      </span><span class="nt">input</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">receipts</span>
+<span class="w">      </span><span class="nt">operations</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extract_receipt_info</span>
+</code></pre></div>
+<p>This pipeline will use the parsed data from both Excel files and PDFs for further processing.</p>
+<h3 id="how-data-gets-parsed-and-formatted">How Data Gets Parsed and Formatted</h3>
+<p>When you run your DocETL pipeline, the parsing tools you've specified in your configuration file are applied to the external files referenced in your dataset JSONs. Here's what happens:</p>
+<ol>
+<li>DocETL reads your dataset JSON file.</li>
+<li>For each entry in the dataset, it looks at the parsing configuration you've specified.</li>
+<li>It applies the appropriate parsing function to the file path provided in the dataset JSON.</li>
+<li>The parsing function processes the file and returns the data in a format DocETL can work with (typically a list of strings).</li>
+</ol>
+<p>Let's look at how this works for our earlier examples:</p>
+<h4 id="excel-files-using-top_products_report">Excel Files (using top_products_report)</h4>
+<p>For an Excel file like "sales_data/january_sales.xlsx":</p>
+<ul>
+<li>The top_products_report function reads the Excel file.</li>
+<li>It processes the sales data and generates a report of top-selling products.</li>
+<li>The output might look like this:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>Top Products Report - January 2023
+
+<span class="k">1.</span> Widget A - 1500 units sold
+<span class="k">2.</span> Gadget B - 1200 units sold
+<span class="k">3.</span> Gizmo C - 950 units sold
+<span class="k">4.</span> Doohickey D - 800 units sold
+<span class="k">5.</span> Thingamajig E - 650 units sold
+   ...
+
+Total Revenue: $245,000
+Best Selling Category: Electronics
+</code></pre></div>
+<h4 id="pdf-files-using-paddleocr_pdf_to_string">PDF Files (using paddleocr_pdf_to_string)</h4>
+<p>For a PDF file like "receipts/receipt001.pdf":</p>
+<ul>
+<li>The paddleocr_pdf_to_string function reads the PDF file.</li>
+<li>It uses PaddleOCR to perform optical character recognition on each page.</li>
+<li>The function combines the extracted text from all pages into a single string.
+  The output might look like this:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>RECEIPT
+Store: Example Store
+Date: 2023-05-15
+Items:
+
+<span class="k">1.</span> Product A - $10.99
+<span class="k">2.</span> Product B - $15.50
+<span class="k">3.</span> Product C - $7.25
+<span class="k">4.</span> Product D - $22.00
+   Subtotal: $55.74
+   Tax (8%): $4.46
+   Total: $60.20
+
+Payment Method: Credit Card
+Card Number: \***\* \*\*** \*\*\*\* 1234
+
+Thank you for your purchase!
+</code></pre></div>
+<p>This parsed and formatted data is then passed to the respective operations in your pipeline for further processing.</p>
+<h3 id="running-the-pipeline">Running the Pipeline</h3>
+<p>Once you've set up your pipeline configuration file with the appropriate parsing tools and dataset definitions, you can run your DocETL pipeline. Here's how:</p>
+<ol>
+<li>Ensure you have DocETL installed in your environment.</li>
+<li>Open a terminal or command prompt.</li>
+<li>Navigate to the directory containing your pipeline configuration file.</li>
+<li>Run the following command:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>docetl<span class="w"> </span>run<span class="w"> </span>pipeline.yaml
+</code></pre></div>
+<p>Replace <code>pipeline.yaml</code> with the name of your pipeline file if it's different.</p>
+<p>When you run this command:</p>
+<ol>
+<li>DocETL reads your pipeline file.</li>
+<li>It processes each dataset using the specified parsing tools.</li>
+<li>The pipeline steps are executed in the order you defined.</li>
+<li>Any operations you've specified (like <code>summarize_sales</code> or <code>extract_receipt_info</code>) are applied to the parsed data.</li>
+<li>The results are saved according to your output configuration.</li>
+</ol>
+<h2 id="built-in-parsing-tools">Built-in Parsing Tools</h2>
+<p>DocETL provides several built-in parsing tools to handle common file formats and data processing tasks. These tools can be used directly in your configuration by specifying their names in the <code>function</code> field of your parsing tools configuration. Here's an overview of the available built-in parsing tools:</p>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="docetl.parsing_tools.xlsx_to_string"></a>
+    <div class="doc doc-contents first">
+
+        <p>Convert an Excel file to a string representation or a list of string representations.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>filename</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the xlsx file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>orientation</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Either "row" or "col" for cell arrangement.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;col&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>col_order</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of column names to specify the order.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>doc_per_sheet</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, return a list of strings, one per sheet.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List[str]: String representation(s) of the Excel file content.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>docetl/parsing_tools.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@with_input_output_key</span>
+<span class="k">def</span> <span class="nf">xlsx_to_string</span><span class="p">(</span>
+    <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">orientation</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;col&quot;</span><span class="p">,</span>
+    <span class="n">col_order</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">doc_per_sheet</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert an Excel file to a string representation or a list of string representations.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filename (str): Path to the xlsx file.</span>
+<span class="sd">        orientation (str): Either &quot;row&quot; or &quot;col&quot; for cell arrangement.</span>
+<span class="sd">        col_order (Optional[List[str]]): List of column names to specify the order.</span>
+<span class="sd">        doc_per_sheet (bool): If True, return a list of strings, one per sheet.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[str]: String representation(s) of the Excel file content.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">openpyxl</span>
+
+    <span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">process_sheet</span><span class="p">(</span><span class="n">sheet</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">col_order</span><span class="p">:</span>
+            <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">col_order</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">iter_cols</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">max_column</span><span class="p">)</span>
+            <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="n">cell</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">sheet</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">orientation</span> <span class="o">==</span> <span class="s2">&quot;col&quot;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">col_idx</span><span class="p">,</span> <span class="n">header</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">headers</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">column</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">col_idx</span><span class="p">)</span><span class="o">.</span><span class="n">column_letter</span>
+                <span class="n">column_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">cell</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">sheet</span><span class="p">[</span><span class="n">column</span><span class="p">][</span><span class="mi">1</span><span class="p">:]]</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">header</span><span class="si">}</span><span class="s2">: &quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">column_values</span><span class="p">)))</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># Empty line between columns</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># row</span>
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">iter_rows</span><span class="p">(</span><span class="n">min_row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">values_only</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+                <span class="n">row_dict</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="n">header</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">header</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">headers</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span> <span class="k">if</span> <span class="n">header</span>
+                <span class="p">}</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="s2">&quot; | &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                        <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">header</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">header</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">row_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">doc_per_sheet</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">process_sheet</span><span class="p">(</span><span class="n">sheet</span><span class="p">)</span> <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="n">wb</span><span class="o">.</span><span class="n">worksheets</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">process_sheet</span><span class="p">(</span><span class="n">wb</span><span class="o">.</span><span class="n">active</span><span class="p">)]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><p>options:
+    show_root_heading: true
+    heading_level: 3</p>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="docetl.parsing_tools.txt_to_string"></a>
+    <div class="doc doc-contents first">
+
+        <p>Read the content of a text file and return it as a list of strings (only one element).</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>filename</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the txt or md file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List[str]: Content of the file as a list of strings.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>docetl/parsing_tools.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@with_input_output_key</span>
+<span class="k">def</span> <span class="nf">txt_to_string</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read the content of a text file and return it as a list of strings (only one element).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filename (str): Path to the txt or md file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[str]: Content of the file as a list of strings.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><p>options:
+    show_root_heading: true
+    heading_level: 3</p>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="docetl.parsing_tools.docx_to_string"></a>
+    <div class="doc doc-contents first">
+
+        <p>Extract text from a Word document.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>filename</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the docx file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List[str]: Extracted text from the document.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>docetl/parsing_tools.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@with_input_output_key</span>
+<span class="k">def</span> <span class="nf">docx_to_string</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract text from a Word document.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filename (str): Path to the docx file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[str]: Extracted text from the document.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">docx</span> <span class="kn">import</span> <span class="n">Document</span>
+
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">paragraph</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">paragraph</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">])]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><p>options:
+    show_root_heading: true
+    heading_level: 3</p>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="docetl.parsing_tools.whisper_speech_to_text"></a>
+    <div class="doc doc-contents first">
+
+        <p>Transcribe speech from an audio file to text using Whisper model via litellm.
+If the file is larger than 25 MB, it's split into 10-minute chunks with 30-second overlap.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>filename</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the mp3 or mp4 file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List[str]: Transcribed text.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>docetl/parsing_tools.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@with_input_output_key</span>
+<span class="k">def</span> <span class="nf">whisper_speech_to_text</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Transcribe speech from an audio file to text using Whisper model via litellm.</span>
+<span class="sd">    If the file is larger than 25 MB, it&#39;s split into 10-minute chunks with 30-second overlap.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filename (str): Path to the mp3 or mp4 file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[str]: Transcribed text.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">from</span> <span class="nn">litellm</span> <span class="kn">import</span> <span class="n">transcription</span>
+
+    <span class="n">file_size</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">file_size</span> <span class="o">&gt;</span> <span class="mi">25</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">:</span>  <span class="c1"># 25 MB in bytes</span>
+        <span class="kn">from</span> <span class="nn">pydub</span> <span class="kn">import</span> <span class="n">AudioSegment</span>
+
+        <span class="n">audio</span> <span class="o">=</span> <span class="n">AudioSegment</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">chunk_length</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">1000</span>  <span class="c1"># 10 minutes in milliseconds</span>
+        <span class="n">overlap</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">1000</span>  <span class="c1"># 30 seconds in milliseconds</span>
+
+        <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">audio</span><span class="p">),</span> <span class="n">chunk_length</span> <span class="o">-</span> <span class="n">overlap</span><span class="p">):</span>
+            <span class="n">chunk</span> <span class="o">=</span> <span class="n">audio</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">chunk_length</span><span class="p">]</span>
+            <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+
+        <span class="n">transcriptions</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chunks</span><span class="p">):</span>
+            <span class="n">buffer</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
+            <span class="n">buffer</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;temp_chunk_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">chunk</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;mp3&quot;</span><span class="p">)</span>
+            <span class="n">buffer</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Reset buffer position to the beginning</span>
+
+            <span class="n">response</span> <span class="o">=</span> <span class="n">transcription</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;whisper-1&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">buffer</span><span class="p">)</span>
+            <span class="n">transcriptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">transcriptions</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">audio_file</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">transcription</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;whisper-1&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">audio_file</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><p>options:
+    show_root_heading: true
+    heading_level: 3</p>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="docetl.parsing_tools.pptx_to_string"></a>
+    <div class="doc doc-contents first">
+
+        <p>Extract text from a PowerPoint presentation.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>filename</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the pptx file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>doc_per_slide</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, return each slide as a separate
+document. If False, return the entire presentation as one document.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List[str]: Extracted text from the presentation. If doc_per_slide
+is True, each string in the list represents a single slide.
+Otherwise, the list contains a single string with all slides'
+content.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>docetl/parsing_tools.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@with_input_output_key</span>
+<span class="k">def</span> <span class="nf">pptx_to_string</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">doc_per_slide</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract text from a PowerPoint presentation.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filename (str): Path to the pptx file.</span>
+<span class="sd">        doc_per_slide (bool): If True, return each slide as a separate</span>
+<span class="sd">            document. If False, return the entire presentation as one document.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[str]: Extracted text from the presentation. If doc_per_slide</span>
+<span class="sd">            is True, each string in the list represents a single slide.</span>
+<span class="sd">            Otherwise, the list contains a single string with all slides&#39;</span>
+<span class="sd">            content.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">pptx</span> <span class="kn">import</span> <span class="n">Presentation</span>
+
+    <span class="n">prs</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">slide</span> <span class="ow">in</span> <span class="n">prs</span><span class="o">.</span><span class="n">slides</span><span class="p">:</span>
+        <span class="n">slide_content</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">slide</span><span class="o">.</span><span class="n">shapes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">):</span>
+                <span class="n">slide_content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">shape</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">doc_per_slide</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">slide_content</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">slide_content</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">doc_per_slide</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><p>options:
+    show_root_heading: true
+    heading_level: 3</p>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="docetl.parsing_tools.azure_di_read"></a>
+    <div class="doc doc-contents first">
+
+        <blockquote>
+<p>Note to developers: We used <a href="https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/how-to-guides/use-sdk-rest-api?view=doc-intel-4.0.0&amp;tabs=windows&amp;pivots=programming-language-python">this documentation</a> as a reference.</p>
+</blockquote>
+<p>This function uses Azure Document Intelligence to extract text from documents.
+To use this function, you need to set up an Azure Document Intelligence resource:</p>
+<ol>
+<li><a href="https://azure.microsoft.com/">Create an Azure account</a> if you don't have one</li>
+<li>Set up a Document Intelligence resource in the <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer">Azure portal</a></li>
+<li>Once created, find the resource's endpoint and key in the Azure portal</li>
+<li>Set these as environment variables:</li>
+<li>DOCUMENTINTELLIGENCE_API_KEY: Your Azure Document Intelligence API key</li>
+<li>DOCUMENTINTELLIGENCE_ENDPOINT: Your Azure Document Intelligence endpoint URL</li>
+</ol>
+<p>The function will use these credentials to authenticate with the Azure service.
+If the environment variables are not set, the function will raise a ValueError.</p>
+<p>The Azure Document Intelligence client is then initialized with these credentials.
+It sends the document (either as a file or URL) to Azure for analysis.
+The service processes the document and returns structured information about its content.</p>
+<p>This function then extracts the text content from the returned data,
+applying any specified formatting options (like including line numbers or font styles).
+The extracted text is returned as a list of strings, with each string
+representing either a page (if doc_per_page is True) or the entire document.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>filename</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the file to be analyzed or URL of the document if use_url is True.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>use_url</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, treat filename as a URL. Defaults to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>include_line_numbers</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, include line numbers in the output. Defaults to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>include_handwritten</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, include handwritten text in the output. Defaults to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>include_font_styles</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, include font style information in the output. Defaults to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>include_selection_marks</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, include selection marks in the output. Defaults to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>doc_per_page</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, return each page as a separate document. Defaults to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List[str]: Extracted text from the document. If doc_per_page is True, each string in the list represents
+       a single page. Otherwise, the list contains a single string with all pages' content.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If DOCUMENTINTELLIGENCE_API_KEY or DOCUMENTINTELLIGENCE_ENDPOINT environment variables are not set.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>docetl/parsing_tools.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@with_input_output_key</span>
+<span class="k">def</span> <span class="nf">azure_di_read</span><span class="p">(</span>
+    <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">use_url</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">include_line_numbers</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">include_handwritten</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">include_font_styles</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">include_selection_marks</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">doc_per_page</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &gt; Note to developers: We used [this documentation](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/how-to-guides/use-sdk-rest-api?view=doc-intel-4.0.0&amp;tabs=windows&amp;pivots=programming-language-python) as a reference.</span>
+
+<span class="sd">    This function uses Azure Document Intelligence to extract text from documents.</span>
+<span class="sd">    To use this function, you need to set up an Azure Document Intelligence resource:</span>
+
+<span class="sd">    1. [Create an Azure account](https://azure.microsoft.com/) if you don&#39;t have one</span>
+<span class="sd">    2. Set up a Document Intelligence resource in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer)</span>
+<span class="sd">    3. Once created, find the resource&#39;s endpoint and key in the Azure portal</span>
+<span class="sd">    4. Set these as environment variables:</span>
+<span class="sd">       - DOCUMENTINTELLIGENCE_API_KEY: Your Azure Document Intelligence API key</span>
+<span class="sd">       - DOCUMENTINTELLIGENCE_ENDPOINT: Your Azure Document Intelligence endpoint URL</span>
+
+<span class="sd">    The function will use these credentials to authenticate with the Azure service.</span>
+<span class="sd">    If the environment variables are not set, the function will raise a ValueError.</span>
+
+<span class="sd">    The Azure Document Intelligence client is then initialized with these credentials.</span>
+<span class="sd">    It sends the document (either as a file or URL) to Azure for analysis.</span>
+<span class="sd">    The service processes the document and returns structured information about its content.</span>
+
+<span class="sd">    This function then extracts the text content from the returned data,</span>
+<span class="sd">    applying any specified formatting options (like including line numbers or font styles).</span>
+<span class="sd">    The extracted text is returned as a list of strings, with each string</span>
+<span class="sd">    representing either a page (if doc_per_page is True) or the entire document.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filename (str): Path to the file to be analyzed or URL of the document if use_url is True.</span>
+<span class="sd">        use_url (bool, optional): If True, treat filename as a URL. Defaults to False.</span>
+<span class="sd">        include_line_numbers (bool, optional): If True, include line numbers in the output. Defaults to False.</span>
+<span class="sd">        include_handwritten (bool, optional): If True, include handwritten text in the output. Defaults to False.</span>
+<span class="sd">        include_font_styles (bool, optional): If True, include font style information in the output. Defaults to False.</span>
+<span class="sd">        include_selection_marks (bool, optional): If True, include selection marks in the output. Defaults to False.</span>
+<span class="sd">        doc_per_page (bool, optional): If True, return each page as a separate document. Defaults to False.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[str]: Extracted text from the document. If doc_per_page is True, each string in the list represents</span>
+<span class="sd">                   a single page. Otherwise, the list contains a single string with all pages&#39; content.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If DOCUMENTINTELLIGENCE_API_KEY or DOCUMENTINTELLIGENCE_ENDPOINT environment variables are not set.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+
+    <span class="kn">from</span> <span class="nn">azure.ai.documentintelligence</span> <span class="kn">import</span> <span class="n">DocumentIntelligenceClient</span>
+    <span class="kn">from</span> <span class="nn">azure.ai.documentintelligence.models</span> <span class="kn">import</span> <span class="n">AnalyzeDocumentRequest</span>
+    <span class="kn">from</span> <span class="nn">azure.core.credentials</span> <span class="kn">import</span> <span class="n">AzureKeyCredential</span>
+
+    <span class="n">key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;DOCUMENTINTELLIGENCE_API_KEY&quot;</span><span class="p">)</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;DOCUMENTINTELLIGENCE_ENDPOINT&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;DOCUMENTINTELLIGENCE_API_KEY environment variable is not set&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">endpoint</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;DOCUMENTINTELLIGENCE_ENDPOINT environment variable is not set&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">document_analysis_client</span> <span class="o">=</span> <span class="n">DocumentIntelligenceClient</span><span class="p">(</span>
+        <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">credential</span><span class="o">=</span><span class="n">AzureKeyCredential</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">use_url</span><span class="p">:</span>
+        <span class="n">poller</span> <span class="o">=</span> <span class="n">document_analysis_client</span><span class="o">.</span><span class="n">begin_analyze_document</span><span class="p">(</span>
+            <span class="s2">&quot;prebuilt-read&quot;</span><span class="p">,</span> <span class="n">AnalyzeDocumentRequest</span><span class="p">(</span><span class="n">url_source</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">poller</span> <span class="o">=</span> <span class="n">document_analysis_client</span><span class="o">.</span><span class="n">begin_analyze_document</span><span class="p">(</span><span class="s2">&quot;prebuilt-read&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">poller</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+    <span class="n">style_content</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">styles</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">style</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">styles</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">style</span><span class="o">.</span><span class="n">is_handwritten</span> <span class="ow">and</span> <span class="n">include_handwritten</span><span class="p">:</span>
+                <span class="n">handwritten_text</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">result</span><span class="o">.</span><span class="n">content</span><span class="p">[</span><span class="n">span</span><span class="o">.</span><span class="n">offset</span> <span class="p">:</span> <span class="n">span</span><span class="o">.</span><span class="n">offset</span> <span class="o">+</span> <span class="n">span</span><span class="o">.</span><span class="n">length</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">span</span> <span class="ow">in</span> <span class="n">style</span><span class="o">.</span><span class="n">spans</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+                <span class="n">style_content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Handwritten content: </span><span class="si">{</span><span class="n">handwritten_text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">style</span><span class="o">.</span><span class="n">font_style</span> <span class="ow">and</span> <span class="n">include_font_styles</span><span class="p">:</span>
+                <span class="n">styled_text</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">result</span><span class="o">.</span><span class="n">content</span><span class="p">[</span><span class="n">span</span><span class="o">.</span><span class="n">offset</span> <span class="p">:</span> <span class="n">span</span><span class="o">.</span><span class="n">offset</span> <span class="o">+</span> <span class="n">span</span><span class="o">.</span><span class="n">length</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">span</span> <span class="ow">in</span> <span class="n">style</span><span class="o">.</span><span class="n">spans</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+                <span class="n">style_content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">style</span><span class="o">.</span><span class="n">font_style</span><span class="si">}</span><span class="s2">&#39; font style: </span><span class="si">{</span><span class="n">styled_text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">pages</span><span class="p">:</span>
+        <span class="n">page_content</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="n">page</span><span class="o">.</span><span class="n">lines</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">line_idx</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">lines</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">include_line_numbers</span><span class="p">:</span>
+                    <span class="n">page_content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Line #</span><span class="si">{</span><span class="n">line_idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">page_content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">page</span><span class="o">.</span><span class="n">selection_marks</span> <span class="ow">and</span> <span class="n">include_selection_marks</span><span class="p">:</span>
+            <span class="c1"># TODO: figure this out</span>
+            <span class="k">for</span> <span class="n">selection_mark_idx</span><span class="p">,</span> <span class="n">selection_mark</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">selection_marks</span><span class="p">):</span>
+                <span class="n">page_content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Selection mark #</span><span class="si">{</span><span class="n">selection_mark_idx</span><span class="si">}</span><span class="s2">: State is &#39;</span><span class="si">{</span><span class="n">selection_mark</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">&#39; within bounding polygon &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">selection_mark</span><span class="o">.</span><span class="n">polygon</span><span class="si">}</span><span class="s2">&#39; and has a confidence of </span><span class="si">{</span><span class="n">selection_mark</span><span class="o">.</span><span class="n">confidence</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+
+        <span class="n">content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">page_content</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">doc_per_page</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">style_content</span> <span class="o">+</span> <span class="n">content</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">style_content</span><span class="p">),</span>
+                    <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Page </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="si">{</span><span class="n">page_content</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">page_content</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+                    <span class="p">),</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><p>options:
+    heading_level: 3
+    show_root_heading: true</p>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="docetl.parsing_tools.paddleocr_pdf_to_string"></a>
+    <div class="doc doc-contents first">
+
+        <p>Extract text and image information from a PDF file using PaddleOCR for image-based PDFs.</p>
+<p><strong>Note: this is very slow!!</strong></p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>input_path</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the input PDF file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>doc_per_page</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, return a list of strings, one per page.
+If False, return a single string.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>ocr_enabled</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to enable OCR for image-based PDFs.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>lang</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Language of the PDF file.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;en&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List[str]: Extracted content as a list of formatted strings.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>docetl/parsing_tools.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span>
+<span class="normal">405</span>
+<span class="normal">406</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span>
+<span class="normal">420</span>
+<span class="normal">421</span>
+<span class="normal">422</span>
+<span class="normal">423</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@with_input_output_key</span>
+<span class="k">def</span> <span class="nf">paddleocr_pdf_to_string</span><span class="p">(</span>
+    <span class="n">input_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">doc_per_page</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">ocr_enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">lang</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;en&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract text and image information from a PDF file using PaddleOCR for image-based PDFs.</span>
+
+<span class="sd">    **Note: this is very slow!!**</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        input_path (str): Path to the input PDF file.</span>
+<span class="sd">        doc_per_page (bool): If True, return a list of strings, one per page.</span>
+<span class="sd">            If False, return a single string.</span>
+<span class="sd">        ocr_enabled (bool): Whether to enable OCR for image-based PDFs.</span>
+<span class="sd">        lang (str): Language of the PDF file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[str]: Extracted content as a list of formatted strings.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">paddleocr</span> <span class="kn">import</span> <span class="n">PaddleOCR</span>
+    <span class="kn">import</span> <span class="nn">fitz</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+    <span class="n">ocr</span> <span class="o">=</span> <span class="n">PaddleOCR</span><span class="p">(</span><span class="n">use_angle_cls</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="n">lang</span><span class="p">)</span>
+
+    <span class="n">pdf_content</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">with</span> <span class="n">fitz</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">input_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">pdf</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">page_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pdf</span><span class="p">)):</span>
+            <span class="n">page</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">[</span><span class="n">page_num</span><span class="p">]</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+            <span class="n">images</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="c1"># Extract image information</span>
+            <span class="k">for</span> <span class="n">img_index</span><span class="p">,</span> <span class="n">img</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">get_images</span><span class="p">(</span><span class="n">full</span><span class="o">=</span><span class="kc">True</span><span class="p">)):</span>
+                <span class="n">rect</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_image_bbox</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+                <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Image </span><span class="si">{</span><span class="n">img_index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: bbox </span><span class="si">{</span><span class="n">rect</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">page_content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Page </span><span class="si">{</span><span class="n">page_num</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">page_content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Text:</span><span class="se">\n</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">page_content</span> <span class="o">+=</span> <span class="s2">&quot;Images:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">images</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">text</span> <span class="ow">and</span> <span class="n">ocr_enabled</span><span class="p">:</span>
+                <span class="n">mat</span> <span class="o">=</span> <span class="n">fitz</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">pix</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">(</span><span class="n">matrix</span><span class="o">=</span><span class="n">mat</span><span class="p">)</span>
+                <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">pix</span><span class="o">.</span><span class="n">samples</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+                    <span class="n">pix</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">pix</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="mi">3</span>
+                <span class="p">)</span>
+
+                <span class="n">ocr_result</span> <span class="o">=</span> <span class="n">ocr</span><span class="o">.</span><span class="n">ocr</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">page_content</span> <span class="o">+=</span> <span class="s2">&quot;OCR Results:</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">ocr_result</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                    <span class="n">bbox</span><span class="p">,</span> <span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">line</span>
+                    <span class="n">page_content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bbox</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+            <span class="n">pdf_content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">page_content</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">doc_per_page</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pdf_content</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="n">pdf_content</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><p>options:
+    heading_level: 3
+    show_root_heading: true</p>
+<h3 id="using-function-arguments-with-parsing-tools">Using Function Arguments with Parsing Tools</h3>
+<p>When using parsing tools in your DocETL configuration, you can pass additional arguments to the parsing functions.</p>
+<p>For example, when using the xlsx_to_string parsing tool, you can specify options like the orientation of the data, the order of columns, or whether to process each sheet separately. Here's an example of how to use such kwargs in your configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">datasets</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">my_sales</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sales_data/sales_paths.json&quot;</span>
+<span class="w">    </span><span class="nt">parsing_tools</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">excel_parser</span>
+<span class="w">        </span><span class="nt">function</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xlsx_to_string</span>
+<span class="w">        </span><span class="nt">orientation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">row</span>
+<span class="w">        </span><span class="nt">col_order</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;Date&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;Product&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;Quantity&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;Price&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">doc_per_sheet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<h2 id="contributing-built-in-parsing-tools">Contributing Built-in Parsing Tools</h2>
+<p>While DocETL provides several built-in parsing tools, the community can always benefit from additional utilities. If you've developed a parsing tool that you think could be useful for others, consider contributing it to the DocETL repository. Here's how you can add new built-in parsing utilities:</p>
+<ol>
+<li>Fork the DocETL repository on GitHub.</li>
+<li>Clone your forked repository to your local machine.</li>
+<li>Navigate to the <code>docetl/parsing_tools.py</code> file.</li>
+<li>Add your new parsing function to this file. The function should also be added to the <code>PARSING_TOOLS</code> dictionary.</li>
+<li>Update the documentation in the function's docstring.</li>
+<li>Create a pull request to merge your changes into the main DocETL repository.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Guidelines for Contributing Parsing Tools</p>
+<p>When contributing a new parsing tool, make sure it follows these guidelines:</p>
+<ul>
+<li>The function should have a clear, descriptive name.</li>
+<li>Include comprehensive docstrings explaining the function's purpose, parameters, and return value. The return value should be a list of strings.</li>
+<li>Handle potential errors gracefully and provide informative error messages.</li>
+<li>If your parser requires additional dependencies, make sure to mention them in the pull request.</li>
+</ul>
+</div>
+<h2 id="creating-custom-parsing-tools">Creating Custom Parsing Tools</h2>
+<p>If the built-in tools don't meet your needs, you can create your own custom parsing tools. Here's how:</p>
+<ol>
+<li>Define your parsing function in the <code>parsing_tools</code> section of your configuration.</li>
+<li>Ensure your function takes a document (dict) as input and returns a list of documents (dicts).</li>
+<li>Use your custom parser in the <code>parsing</code> section of your dataset configuration.</li>
+</ol>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">parsing_tools</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_custom_parser</span>
+<span class="w">    </span><span class="nt">function_code</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">def my_custom_parser(document: Dict) -&gt; List[Dict]:</span>
+<span class="w">          </span><span class="no"># Your custom parsing logic here</span>
+<span class="w">          </span><span class="no">return [processed_data]</span>
+
+<span class="nt">datasets</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">my_dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;data/paths.json&quot;</span>
+<span class="w">    </span><span class="nt">parsing</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">function</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_custom_parser</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../split-gather/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Split and Gather for Legal Document Analysis">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Split and Gather for Legal Document Analysis
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../rate-limiting/" class="md-footer__link md-footer__link--next" aria-label="Next: Adding Rate Limiting">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Adding Rate Limiting
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.follow", "navigation.footer", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

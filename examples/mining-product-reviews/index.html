@@ -1,0 +1,1572 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docetl.com/examples/mining-product-reviews/">
+      
+      
+        <link rel="prev" href="../presidential-debate-themes/">
+      
+      
+        <link rel="next" href="../ollama/">
+      
+      
+      <link rel="icon" href="../../assets/docetl-favicon-color.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Mining Product Reviews for Polarizing Features - docetl docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CSource+Code+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mining-product-reviews-identifying-polarizing-themes-in-video-games" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="docetl docs" class="md-header__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 80v48c0 17.7 14.3 32 32 32h64V80c0-26.5-21.5-48-48-48S0 53.5 0 80m112-48c10 13.4 16 30 16 48v304c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96zm352 448c61.9 0 112-50.1 112-112 0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7v5.3c0 53-43 96-96 96h272"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            docetl docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mining Product Reviews for Polarizing Features
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../presidential-debate-themes/" class="md-tabs__link">
+          
+  
+    
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api-reference/docetl/" class="md-tabs__link">
+          
+  
+    
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../community/" class="md-tabs__link">
+          
+  
+    
+  
+  Community
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="docetl docs" class="md-nav__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 80v48c0 17.7 14.3 32 32 32h64V80c0-26.5-21.5-48-48-48S0 53.5 0 80m112-48c10 13.4 16 30 16 48v304c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96zm352 448c61.9 0 112-50.1 112-112 0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7v5.3c0 53-43 96-96 96h272"/></svg>
+
+    </a>
+    docetl docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../.." class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Examples
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presidential-debate-themes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reporting on Themes from Presidential Debates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Mining Product Reviews for Polarizing Features
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Mining Product Reviews for Polarizing Features
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#task-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-identify-polarizing-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Identify Polarizing Themes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-unnest-polarizing-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Unnest Polarizing Themes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-resolve-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Resolve Themes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-aggregate-common-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Aggregate Common Themes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimizing-the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimizing the Pipeline
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Pipeline
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ollama/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Medical Document Classification with Ollama
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../split-gather/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Split and Gather for Legal Document Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-parsing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Datasets With Custom Parsing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rate-limiting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adding Rate Limiting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../api-reference/docetl/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    API Reference
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../community/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Community
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#task-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-identify-polarizing-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Identify Polarizing Themes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-unnest-polarizing-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Unnest Polarizing Themes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-resolve-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Resolve Themes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-aggregate-common-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Aggregate Common Themes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimizing-the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimizing the Pipeline
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Pipeline
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="mining-product-reviews-identifying-polarizing-themes-in-video-games">Mining Product Reviews: Identifying Polarizing Themes in Video Games</h1>
+<p>This tutorial demonstrates how to use DocETL to analyze product reviews, specifically focusing on identifying polarizing themes across multiple video games. We'll walk through the process of building a pipeline that extracts insights from Steam game reviews, resolves common themes, and generates comprehensive reports.</p>
+<div class="admonition warning">
+<p class="admonition-title">Optimization Cost</p>
+<p>Optimizing this pipeline can be computationally expensive and time-consuming, especially for large datasets. The process involves running multiple LLM calls and comparisons between different plans, which can result in significant resource usage and potential costs.</p>
+<p>For reference, optimizing a pipeline of this complexity could cost up to $70 in OpenAI credits, depending on the size of your dataset and the specific models used. Always monitor your usage and set appropriate limits to avoid unexpected charges.</p>
+</div>
+<h2 id="task-overview">Task Overview</h2>
+<p>Our goal is to create a pipeline that will:</p>
+<ol>
+<li>Identify polarizing themes within individual game reviews</li>
+<li>Resolve similar themes across different games</li>
+<li>Generate reports of polarizing themes common across games, supported by quotes from different game reviews</li>
+</ol>
+<p>We'll be using a subset of the <a href="https://www.kaggle.com/datasets/andrewmvd/steam-reviews">STEAM review dataset</a>. We've created a subset that contains reviews for 500 of the most popular games, with approximately 400 reviews per game, balanced between positive and negative ratings. For each game, we concatenate all reviews into a single text for analysis---so we'll have 500 input documents, each representing a game. You can get the dataset sample <a href="https://drive.google.com/file/d/1hroljsvn8m23iVsNpET8Ma7sfb1OUu_u/view?usp=drive_link">here</a>.</p>
+<h2 id="pipeline-structure">Pipeline Structure</h2>
+<p>Let's examine the pipeline structure and its operations:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">pipeline</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">game_analysis</span>
+<span class="w">      </span><span class="nt">input</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">steam_reviews</span>
+<span class="w">      </span><span class="nt">operations</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identify_polarizing_themes</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest_polarizing_themes</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resolve_themes</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aggregate_common_themes</span>
+
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;output_polarizing_themes.json&quot;</span>
+<span class="w">    </span><span class="nt">intermediate_dir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;intermediates&quot;</span>
+</code></pre></div>
+<details class="example">
+<summary>Full Pipeline Configuration</summary>
+<div class="highlight"><pre><span></span><code><span class="nt">default_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o-mini</span>
+
+<span class="nt">datasets</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">steam_reviews</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;path/to/top_apps_steam_sample.json&quot;</span>
+
+<span class="nt">operations</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identify_polarizing_themes</span>
+<span class="w">    </span><span class="nt">optimize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">map</span>
+<span class="w">    </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Analyze the following concatenated reviews for a video game and identify polarizing themes that divide player opinions. A polarizing theme is one that some players love while others strongly dislike.</span>
+
+<span class="w">      </span><span class="no">Game: {{ input.app_name }}</span>
+<span class="w">      </span><span class="no">Reviews: {{ input.concatenated_reviews }}</span>
+
+<span class="w">      </span><span class="no">For each polarizing theme you identify:</span>
+<span class="w">      </span><span class="no">1. Provide a summary of the theme</span>
+<span class="w">      </span><span class="no">2. Explain why it&#39;s polarizing</span>
+<span class="w">      </span><span class="no">3. Include supporting quotes from both positive and negative perspectives</span>
+
+<span class="w">      </span><span class="no">Aim to identify ~10 polarizing themes, if present.</span>
+
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">polarizing_themes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;list[{theme:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">summary:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">polarization_reason:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">positive_quotes:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">negative_quotes:</span><span class="nv"> </span><span class="s">str}]&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest_polarizing_themes</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest</span>
+<span class="w">    </span><span class="nt">unnest_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">polarizing_themes</span>
+<span class="w">    </span><span class="nt">recursive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resolve_themes</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resolve</span>
+<span class="w">    </span><span class="nt">optimize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">comparison_prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Are the themes &quot;{{ input1.theme }}&quot; and &quot;{{ input2.theme }}&quot; the same? Here is some context to help you decide:</span>
+
+<span class="w">      </span><span class="no">Theme 1: {{ input1.theme }}</span>
+<span class="w">      </span><span class="no">Summary 1: {{ input1.summary }}</span>
+
+<span class="w">      </span><span class="no">Theme 2: {{ input2.theme }}</span>
+<span class="w">      </span><span class="no">Summary 2: {{ input2.summary }}</span>
+<span class="w">    </span><span class="nt">resolution_prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Given the following themes, please come up with a theme that best captures the essence of all the themes:</span>
+
+<span class="w">      </span><span class="no">{% for input in inputs %}</span>
+<span class="w">      </span><span class="no">Theme {{ loop.index }}: {{ input.theme }}</span>
+<span class="w">      </span><span class="no">{% if not loop.last %}</span>
+<span class="w">      </span><span class="no">---</span>
+<span class="w">      </span><span class="no">{% endif %}</span>
+<span class="w">      </span><span class="no">{% endfor %}</span>
+
+<span class="w">      </span><span class="no">Based on these themes, provide a consolidated theme that captures the essence of all the above themes. Ensure that the consolidated theme is concise yet comprehensive.</span>
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">str</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aggregate_common_themes</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reduce</span>
+<span class="w">    </span><span class="nt">optimize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">reduce_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">theme</span>
+<span class="w">    </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">You are given a theme and summary that appears across multiple video games, along with various apps and review quotes related to this theme. Your task is to consolidate this information into a comprehensive report.</span>
+
+<span class="w">      </span><span class="no">For each input, you will receive:</span>
+<span class="w">      </span><span class="no">- theme: A specific polarizing theme</span>
+<span class="w">      </span><span class="no">- summary: A brief summary of the theme</span>
+<span class="w">      </span><span class="no">- app_name: The name of the game</span>
+<span class="w">      </span><span class="no">- positive_quotes: List of supporting quotes from positive perspectives</span>
+<span class="w">      </span><span class="no">- negative_quotes: List of supporting quotes from negative perspectives</span>
+
+<span class="w">      </span><span class="no">Create a report that includes:</span>
+<span class="w">      </span><span class="no">1. The name of the common theme</span>
+<span class="w">      </span><span class="no">2. A summary of the theme and why it&#39;s common across games</span>
+<span class="w">      </span><span class="no">3. Representative quotes from different games, both positive and negative</span>
+
+<span class="w">      </span><span class="no">Here&#39;s the information for the theme:</span>
+<span class="w">      </span><span class="no">Theme: {{ inputs[0].theme }}</span>
+<span class="w">      </span><span class="no">Summary: {{ inputs[0].summary }}</span>
+
+<span class="w">      </span><span class="no">{% for app in inputs %}</span>
+<span class="w">      </span><span class="no">Game: {{ app.app_name }}</span>
+<span class="w">      </span><span class="no">Positive Quotes: {{ app.positive_quotes }}</span>
+<span class="w">      </span><span class="no">Negative Quotes: {{ app.negative_quotes }}</span>
+<span class="w">      </span><span class="no">{% if not loop.last %}</span>
+<span class="w">      </span><span class="no">----------------------------------------</span>
+<span class="w">      </span><span class="no">{% endif %}</span>
+<span class="w">      </span><span class="no">{% endfor %}</span>
+
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">theme_summary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">str</span>
+<span class="w">        </span><span class="nt">representative_quotes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;list[{game:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">quote:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">sentiment:</span><span class="nv"> </span><span class="s">str}]&quot;</span>
+
+<span class="nt">pipeline</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">game_analysis</span>
+<span class="w">      </span><span class="nt">input</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">steam_reviews</span>
+<span class="w">      </span><span class="nt">operations</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identify_polarizing_themes</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest_polarizing_themes</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resolve_themes</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aggregate_common_themes</span>
+
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;path/to/output_polarizing_themes.json&quot;</span>
+<span class="w">    </span><span class="nt">intermediate_dir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;path/to/intermediates&quot;</span>
+</code></pre></div>
+</details>
+<h2 id="pipeline-operations">Pipeline Operations</h2>
+<h3 id="1-identify-polarizing-themes">1. Identify Polarizing Themes</h3>
+<p>This map operation processes each game's reviews to identify polarizing themes:</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identify_polarizing_themes</span>
+<span class="w">  </span><span class="nt">optimize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">map</span>
+<span class="w">  </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">Analyze the following concatenated reviews for a video game and identify polarizing themes that divide player opinions. A polarizing theme is one that some players love while others strongly dislike.</span>
+
+<span class="w">    </span><span class="no">Game: {{ input.app_name }}</span>
+<span class="w">    </span><span class="no">Reviews: {{ input.concatenated_reviews }}</span>
+
+<span class="w">    </span><span class="no">For each polarizing theme you identify:</span>
+<span class="w">    </span><span class="no">1. Provide a summary of the theme</span>
+<span class="w">    </span><span class="no">2. Explain why it&#39;s polarizing</span>
+<span class="w">    </span><span class="no">3. Include supporting quotes from both positive and negative perspectives</span>
+
+<span class="w">    </span><span class="no">Aim to identify ~10 polarizing themes, if present.</span>
+
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">polarizing_themes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;list[{theme:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">summary:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">polarization_reason:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">positive_quotes:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">negative_quotes:</span><span class="nv"> </span><span class="s">str}]&quot;</span>
+</code></pre></div>
+<h3 id="2-unnest-polarizing-themes">2. Unnest Polarizing Themes</h3>
+<p>This operation flattens the list of themes extracted from each game:</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest_polarizing_themes</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest</span>
+<span class="w">  </span><span class="nt">unnest_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">polarizing_themes</span>
+<span class="w">  </span><span class="nt">recursive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</code></pre></div>
+<h3 id="3-resolve-themes">3. Resolve Themes</h3>
+<p>This operation identifies and consolidates similar themes across different games:</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resolve_themes</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resolve</span>
+<span class="w">  </span><span class="nt">optimize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">comparison_prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">Are the themes &quot;{{ input1.theme }}&quot; and &quot;{{ input2.theme }}&quot; the same? Here is some context to help you decide:</span>
+
+<span class="w">    </span><span class="no">Theme 1: {{ input1.theme }}</span>
+<span class="w">    </span><span class="no">Summary 1: {{ input1.summary }}</span>
+
+<span class="w">    </span><span class="no">Theme 2: {{ input2.theme }}</span>
+<span class="w">    </span><span class="no">Summary 2: {{ input2.summary }}</span>
+<span class="w">  </span><span class="nt">resolution_prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">Given the following themes, please come up with a theme that best captures the essence of all the themes:</span>
+
+<span class="w">    </span><span class="no">{% for input in inputs %}</span>
+<span class="w">    </span><span class="no">Theme {{ loop.index }}: {{ input.theme }}</span>
+<span class="w">    </span><span class="no">{% if not loop.last %}</span>
+<span class="w">    </span><span class="no">---</span>
+<span class="w">    </span><span class="no">{% endif %}</span>
+<span class="w">    </span><span class="no">{% endfor %}</span>
+
+<span class="w">    </span><span class="no">Based on these themes, provide a consolidated theme that captures the essence of all the above themes. Ensure that the consolidated theme is concise yet comprehensive.</span>
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">str</span>
+</code></pre></div>
+<h3 id="4-aggregate-common-themes">4. Aggregate Common Themes</h3>
+<p>This reduce operation generates a comprehensive report for each common theme:</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aggregate_common_themes</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reduce</span>
+<span class="w">  </span><span class="nt">optimize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">reduce_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">theme</span>
+<span class="w">  </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">You are given a theme and summary that appears across multiple video games, along with various apps and review quotes related to this theme. Your task is to consolidate this information into a comprehensive report.</span>
+
+<span class="w">    </span><span class="no">For each input, you will receive:</span>
+<span class="w">    </span><span class="no">- theme: A specific polarizing theme</span>
+<span class="w">    </span><span class="no">- summary: A brief summary of the theme</span>
+<span class="w">    </span><span class="no">- app_name: The name of the game</span>
+<span class="w">    </span><span class="no">- positive_quotes: List of supporting quotes from positive perspectives</span>
+<span class="w">    </span><span class="no">- negative_quotes: List of supporting quotes from negative perspectives</span>
+
+<span class="w">    </span><span class="no">Create a report that includes:</span>
+<span class="w">    </span><span class="no">1. The name of the common theme</span>
+<span class="w">    </span><span class="no">2. A summary of the theme and why it&#39;s common across games</span>
+<span class="w">    </span><span class="no">3. Representative quotes from different games, both positive and negative</span>
+
+<span class="w">    </span><span class="no">Here&#39;s the information for the theme:</span>
+<span class="w">    </span><span class="no">Theme: {{ inputs[0].theme }}</span>
+<span class="w">    </span><span class="no">Summary: {{ inputs[0].summary }}</span>
+
+<span class="w">    </span><span class="no">{% for app in inputs %}</span>
+<span class="w">    </span><span class="no">Game: {{ app.app_name }}</span>
+<span class="w">    </span><span class="no">Positive Quotes: {{ app.positive_quotes }}</span>
+<span class="w">    </span><span class="no">Negative Quotes: {{ app.negative_quotes }}</span>
+<span class="w">    </span><span class="no">{% if not loop.last %}</span>
+<span class="w">    </span><span class="no">----------------------------------------</span>
+<span class="w">    </span><span class="no">{% endif %}</span>
+<span class="w">    </span><span class="no">{% endfor %}</span>
+
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">theme_summary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">str</span>
+<span class="w">      </span><span class="nt">representative_quotes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;list[{game:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">quote:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">sentiment:</span><span class="nv"> </span><span class="s">str}]&quot;</span>
+</code></pre></div>
+<h2 id="optimizing-the-pipeline">Optimizing the Pipeline</h2>
+<p>After writing the pipeline, we can use the DocETL <code>build</code> command to optimize it:</p>
+<div class="highlight"><pre><span></span><code>docetl<span class="w"> </span>build<span class="w"> </span>pipeline.yaml
+</code></pre></div>
+<p>This command, with <code>optimize: true</code> set for the map and resolve operations, provides us with:</p>
+<ol>
+<li>
+<p>A chunking-based plan for the map operation: This helps handle the large input sizes (up to 380,000 tokens) by breaking them into manageable chunks. The optimizer gives us a chunking plan of 87,776 tokens per chunk, with 10% of the previous chunk as peripheral context.</p>
+</li>
+<li>
+<p>Blocking statements and thresholds for the resolve operation: This optimizes the theme resolution process, making it more efficient when dealing with a large number of themes across multiple games. The optimizer provided us with blocking keys of <code>summary</code> and <code>theme</code>, and a threshold of 0.596 for similarity (to get 95% recall of duplicates).</p>
+</li>
+</ol>
+<p>These optimizations are crucial for handling the scale of our dataset, which includes 500 games with an <em>average</em> of 66,000 tokens per game, and 12% of the documents exceeding the context length limits of the OpenAI LLMs (128k tokens).</p>
+<details class="info">
+<summary>Optimized Pipeline</summary>
+<div class="highlight"><pre><span></span><code><span class="nt">default_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o-mini</span>
+
+<span class="nt">datasets</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">steam_reviews</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/path/to/steam_reviews_dataset.json&quot;</span>
+
+<span class="nt">operations</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">split_identify_polarizing_themes</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">split</span>
+<span class="w">    </span><span class="nt">split_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">concatenated_reviews</span>
+<span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">token_count</span>
+<span class="w">    </span><span class="nt">method_kwargs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">token_count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">87776</span>
+<span class="w">    </span><span class="nt">optimize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gather_concatenated_reviews_identify_polarizing_themes</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gather</span>
+<span class="w">    </span><span class="nt">content_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">concatenated_reviews_chunk</span>
+<span class="w">    </span><span class="nt">doc_id_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">split_identify_polarizing_themes_id</span>
+<span class="w">    </span><span class="nt">order_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">split_identify_polarizing_themes_chunk_num</span>
+<span class="w">    </span><span class="nt">peripheral_chunks</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">previous</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tail</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="w">    </span><span class="nt">optimize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">submap_identify_polarizing_themes</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">map</span>
+<span class="w">    </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Analyze the following review snippet from a video game {{ input.app_name }} and identify any polarizing themes within it. A polarizing theme is one that diverges opinions among players, where some express strong approval while others express strong disapproval.</span>
+
+<span class="w">      </span><span class="no">Review Snippet: {{ input.concatenated_reviews_chunk_rendered }}</span>
+
+<span class="w">      </span><span class="no">For each polarizing theme you identify:</span>
+<span class="w">      </span><span class="no">1. Provide a brief summary of the theme</span>
+<span class="w">      </span><span class="no">2. Explain why it&#39;s polarizing</span>
+<span class="w">      </span><span class="no">3. Include supporting quotes from both positive and negative perspectives.</span>
+
+<span class="w">      </span><span class="no">Aim to identify and analyze 3-5 polarizing themes within this snippet. Only process the main chunk.</span>
+<span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o-mini</span>
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">polarizing_themes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;list[{theme:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">summary:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">polarization_reason:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">positive_quotes:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">negative_quotes:</span><span class="nv"> </span><span class="s">str}]&quot;</span>
+<span class="w">    </span><span class="nt">optimize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subreduce_identify_polarizing_themes</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reduce</span>
+<span class="w">    </span><span class="nt">reduce_key</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;split_identify_polarizing_themes_id&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Combine the following results and create a cohesive summary of ~10 polarizing themes for the video game {{ inputs[0].app_name }}:</span>
+
+<span class="w">      </span><span class="no">{% for chunk in inputs %}</span>
+<span class="w">          </span><span class="no">{% for theme in chunk.polarizing_themes %}</span>
+<span class="w">              </span><span class="no">{{ theme }}</span>
+<span class="w">              </span><span class="no">----------------------------------------</span>
+<span class="w">          </span><span class="no">{% endfor %}</span>
+<span class="w">      </span><span class="no">{% endfor %}</span>
+
+<span class="w">      </span><span class="no">Make sure each theme is unique and not a duplicate of another theme. You should include summaries and supporting quotes (both positive and negative) for each theme.</span>
+<span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o-mini</span>
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">polarizing_themes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;list[{theme:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">summary:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">polarization_reason:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">positive_quotes:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">negative_quotes:</span><span class="nv"> </span><span class="s">str}]&quot;</span>
+<span class="w">    </span><span class="nt">pass_through</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">associative</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">optimize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">synthesize_resolve</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest_polarizing_themes</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest</span>
+<span class="w">    </span><span class="nt">unnest_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">polarizing_themes</span>
+<span class="w">    </span><span class="nt">recursive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resolve_themes</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resolve</span>
+<span class="w">    </span><span class="nt">blocking_keys</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">summary</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">theme</span>
+<span class="w">    </span><span class="nt">blocking_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.596</span>
+<span class="w">    </span><span class="nt">optimize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">comparison_prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Are the themes &quot;{{ input1.theme }}&quot; and &quot;{{ input2.theme }}&quot; the same? Here is some context to help you decide:</span>
+
+<span class="w">      </span><span class="no">Theme 1: {{ input1.theme }}</span>
+<span class="w">      </span><span class="no">Summary 1: {{ input1.summary }}</span>
+
+<span class="w">      </span><span class="no">Theme 2: {{ input2.theme }}</span>
+<span class="w">      </span><span class="no">Summary 2: {{ input2.summary }}</span>
+<span class="w">    </span><span class="nt">resolution_prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Given the following themes, please come up with a theme that best captures the essence of all the themes:</span>
+
+<span class="w">      </span><span class="no">{% for input in inputs %}</span>
+<span class="w">      </span><span class="no">Theme {{ loop.index }}: {{ input.theme }}</span>
+<span class="w">      </span><span class="no">{% if not loop.last %}</span>
+<span class="w">      </span><span class="no">---</span>
+<span class="w">      </span><span class="no">{% endif %}</span>
+<span class="w">      </span><span class="no">{% endfor %}</span>
+
+<span class="w">      </span><span class="no">Based on these themes, provide a consolidated theme that captures the essence of all the above themes. Ensure that the consolidated theme is concise yet comprehensive.</span>
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">str</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aggregate_common_themes</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reduce</span>
+<span class="w">    </span><span class="nt">reduce_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">theme</span>
+<span class="w">    </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">You are given a theme and summary that appears across multiple video games, along with various apps and review quotes related to this theme. Your task is to consolidate this information into a comprehensive report.</span>
+
+<span class="w">      </span><span class="no">For each input, you will receive:</span>
+<span class="w">      </span><span class="no">- theme: A specific polarizing theme</span>
+<span class="w">      </span><span class="no">- summary: A brief summary of the theme</span>
+<span class="w">      </span><span class="no">- app_name: The name of the game</span>
+<span class="w">      </span><span class="no">- positive_quotes: List of supporting quotes from positive perspectives</span>
+<span class="w">      </span><span class="no">- negative_quotes: List of supporting quotes from negative perspectives</span>
+
+<span class="w">      </span><span class="no">Create a report that includes:</span>
+<span class="w">      </span><span class="no">1. The name of the common theme</span>
+<span class="w">      </span><span class="no">2. A summary of the theme and why it&#39;s common across games</span>
+<span class="w">      </span><span class="no">3. Representative quotes from different games, both positive and negative</span>
+
+<span class="w">      </span><span class="no">Here&#39;s the information for the theme:</span>
+<span class="w">      </span><span class="no">Theme: {{ inputs[0].theme }}</span>
+<span class="w">      </span><span class="no">Summary: {{ inputs[0].summary }}</span>
+
+<span class="w">      </span><span class="no">{% for app in inputs %}</span>
+<span class="w">      </span><span class="no">Game: {{ app.app_name }}</span>
+<span class="w">      </span><span class="no">Positive Quotes: {{ app.positive_quotes }}</span>
+<span class="w">      </span><span class="no">Negative Quotes: {{ app.negative_quotes }}</span>
+<span class="w">      </span><span class="no">{% if not loop.last %}</span>
+<span class="w">      </span><span class="no">----------------------------------------</span>
+<span class="w">      </span><span class="no">{% endif %}</span>
+<span class="w">      </span><span class="no">{% endfor %}</span>
+
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">theme_summary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">str</span>
+<span class="w">        </span><span class="nt">representative_quotes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;list[{game:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">quote:</span><span class="nv"> </span><span class="s">str,</span><span class="nv"> </span><span class="s">sentiment:</span><span class="nv"> </span><span class="s">str}]&quot;</span>
+
+<span class="nt">pipeline</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">game_analysis</span>
+<span class="w">      </span><span class="nt">input</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">steam_reviews</span>
+<span class="w">      </span><span class="nt">operations</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">split_identify_polarizing_themes</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gather_concatenated_reviews_identify_polarizing_themes</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">submap_identify_polarizing_themes</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subreduce_identify_polarizing_themes</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unnest_polarizing_themes</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resolve_themes</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aggregate_common_themes</span>
+
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/path/to/output/output_polarizing_themes.json&quot;</span>
+<span class="w">    </span><span class="nt">intermediate_dir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/path/to/intermediates&quot;</span>
+</code></pre></div>
+</details>
+<h2 id="running-the-pipeline">Running the Pipeline</h2>
+<p>With our optimized pipeline in place, we can now run it:</p>
+<div class="highlight"><pre><span></span><code>docetl<span class="w"> </span>run<span class="w"> </span>pipeline.yaml
+</code></pre></div>
+<p>This command will process the game reviews, extract polarizing themes, resolve similar themes across games, and generate comprehensive reports for each common theme. The results will be saved in output_polarizing_themes.json, providing insights into the polarizing aspects of various video games based on user reviews.</p>
+<p>The output costs for running this pipeline will depend on the size of the dataset and the specific models used. We used gpt-4o-mini and had ~200,000 reviews we were aggregating. Here's the logs from my terminal:</p>
+<div class="highlight"><pre><span></span><code>docetl<span class="w"> </span>run<span class="w"> </span>workloads/steamgames/pipeline_opt.yaml
+<span class="o">[</span><span class="m">11</span>:05:46<span class="o">]</span><span class="w"> </span>Performing<span class="w"> </span>syntax<span class="w"> </span>check<span class="w"> </span>on<span class="w"> </span>all<span class="w"> </span>operations...
+<span class="w">           </span>Syntax<span class="w"> </span>check<span class="w"> </span>passed<span class="w"> </span><span class="k">for</span><span class="w"> </span>all<span class="w"> </span>operations.
+<span class="w">           </span>Running<span class="w"> </span>Operation:
+<span class="w">             </span>Type:<span class="w"> </span>split
+<span class="w">             </span>Name:<span class="w"> </span>split_identify_polarizing_themes
+<span class="o">[</span><span class="m">11</span>:06:08<span class="o">]</span><span class="w"> </span>Intermediate<span class="w"> </span>saved<span class="w"> </span><span class="k">for</span><span class="w"> </span>operation<span class="w"> </span><span class="s1">&#39;split_identify_polarizing_themes&#39;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>step<span class="w"> </span><span class="s1">&#39;game_analysis&#39;</span>
+<span class="w">           </span>Running<span class="w"> </span>Operation:
+<span class="w">             </span>Type:<span class="w"> </span>gather
+<span class="w">             </span>Name:<span class="w"> </span>gather_concatenated_reviews_identify_polarizing_themes
+<span class="o">[</span><span class="m">11</span>:06:10<span class="o">]</span><span class="w"> </span>Intermediate<span class="w"> </span>saved<span class="w"> </span><span class="k">for</span><span class="w"> </span>operation<span class="w"> </span><span class="s1">&#39;gather_concatenated_reviews_identify_polarizing_themes&#39;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>step<span class="w"> </span><span class="s1">&#39;game_analysis&#39;</span>
+<span class="w">           </span>Running<span class="w"> </span>Operation:
+<span class="w">             </span>Type:<span class="w"> </span>map
+<span class="w">             </span>Name:<span class="w"> </span>submap_identify_polarizing_themes
+⠹<span class="w"> </span>Running<span class="w"> </span>step<span class="w"> </span>game_analysis...
+<span class="o">[</span><span class="m">11</span>:06:14<span class="o">]</span><span class="w"> </span>Intermediate<span class="w"> </span>saved<span class="w"> </span><span class="k">for</span><span class="w"> </span>operation<span class="w"> </span><span class="s1">&#39;submap_identify_polarizing_themes&#39;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>step<span class="w"> </span><span class="s1">&#39;game_analysis&#39;</span>
+<span class="w">           </span>Running<span class="w"> </span>Operation:
+<span class="w">             </span>Type:<span class="w"> </span>reduce
+<span class="w">             </span>Name:<span class="w"> </span>subreduce_identify_polarizing_themes
+⠴<span class="w"> </span>Running<span class="w"> </span>step<span class="w"> </span>game_analysis...
+<span class="o">[</span><span class="m">11</span>:06:16<span class="o">]</span><span class="w"> </span>Intermediate<span class="w"> </span>saved<span class="w"> </span><span class="k">for</span><span class="w"> </span>operation<span class="w"> </span><span class="s1">&#39;subreduce_identify_polarizing_themes&#39;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>step<span class="w"> </span><span class="s1">&#39;game_analysis&#39;</span>
+<span class="w">           </span>Running<span class="w"> </span>Operation:
+<span class="w">             </span>Type:<span class="w"> </span>unnest
+<span class="w">             </span>Name:<span class="w"> </span>unnest_polarizing_themes
+<span class="o">[</span><span class="m">11</span>:06:25<span class="o">]</span><span class="w"> </span>Intermediate<span class="w"> </span>saved<span class="w"> </span><span class="k">for</span><span class="w"> </span>operation<span class="w"> </span><span class="s1">&#39;unnest_polarizing_themes&#39;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>step<span class="w"> </span><span class="s1">&#39;game_analysis&#39;</span>
+<span class="w">           </span>Running<span class="w"> </span>Operation:
+<span class="w">             </span>Type:<span class="w"> </span>resolve
+<span class="w">             </span>Name:<span class="w"> </span>resolve_themes
+<span class="o">[</span><span class="m">11</span>:06:37<span class="o">]</span><span class="w"> </span>Comparisons<span class="w"> </span>saved<span class="w"> </span>by<span class="w"> </span>blocking:<span class="w"> </span><span class="m">6802895</span><span class="w"> </span><span class="o">(</span><span class="m">97</span>.50%<span class="o">)</span>
+⠦<span class="w"> </span>Running<span class="w"> </span>step<span class="w"> </span>game_analysis...
+<span class="o">[</span><span class="m">13</span>:05:58<span class="o">]</span><span class="w"> </span>Number<span class="w"> </span>of<span class="w"> </span>keys<span class="w"> </span>before<span class="w"> </span>resolution:<span class="w"> </span><span class="m">3736</span>
+<span class="w">           </span>Number<span class="w"> </span>of<span class="w"> </span>distinct<span class="w"> </span>keys<span class="w"> </span>after<span class="w"> </span>resolution:<span class="w"> </span><span class="m">1421</span>
+⠹<span class="w"> </span>Running<span class="w"> </span>step<span class="w"> </span>game_analysis...
+<span class="o">[</span><span class="m">13</span>:06:23<span class="o">]</span><span class="w"> </span>Self-join<span class="w"> </span>selectivity:<span class="w"> </span><span class="m">0</span>.1222
+<span class="o">[</span><span class="m">13</span>:06:36<span class="o">]</span><span class="w"> </span>Intermediate<span class="w"> </span>saved<span class="w"> </span><span class="k">for</span><span class="w"> </span>operation<span class="w"> </span><span class="s1">&#39;resolve_themes&#39;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>step<span class="w"> </span><span class="s1">&#39;game_analysis&#39;</span>
+<span class="w">           </span>Running<span class="w"> </span>Operation:
+<span class="w">             </span>Type:<span class="w"> </span>reduce
+<span class="w">             </span>Name:<span class="w"> </span>aggregate_common_themes
+⠴<span class="w"> </span>Running<span class="w"> </span>step<span class="w"> </span>game_analysis...
+<span class="o">[</span><span class="m">13</span>:08:05<span class="o">]</span><span class="w"> </span>Intermediate<span class="w"> </span>saved<span class="w"> </span><span class="k">for</span><span class="w"> </span>operation<span class="w"> </span><span class="s1">&#39;aggregate_common_themes&#39;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>step<span class="w"> </span><span class="s1">&#39;game_analysis&#39;</span>
+<span class="w">           </span>Flushing<span class="w"> </span>cache<span class="w"> </span>to<span class="w"> </span>disk...
+<span class="w">           </span>Cache<span class="w"> </span>flushed<span class="w"> </span>to<span class="w"> </span>disk.
+<span class="w">  </span>Step<span class="w"> </span>game_analysis<span class="w"> </span>completed.<span class="w"> </span>Cost:<span class="w"> </span><span class="nv">$13</span>.21
+<span class="w">  </span>Operation<span class="w"> </span>split_identify_polarizing_themes<span class="w"> </span>completed.<span class="w"> </span>Cost:<span class="w"> </span><span class="nv">$0</span>.00
+<span class="w">  </span>Operation<span class="w"> </span>gather_concatenated_reviews_identify_polarizing_themes<span class="w"> </span>completed.<span class="w"> </span>Cost:<span class="w"> </span><span class="nv">$0</span>.00
+<span class="w">  </span>Operation<span class="w"> </span>submap_identify_polarizing_themes<span class="w"> </span>completed.<span class="w"> </span>Cost:<span class="w"> </span><span class="nv">$5</span>.02
+<span class="w">  </span>Operation<span class="w"> </span>subreduce_identify_polarizing_themes<span class="w"> </span>completed.<span class="w"> </span>Cost:<span class="w"> </span><span class="nv">$0</span>.38
+<span class="w">  </span>Operation<span class="w"> </span>unnest_polarizing_themes<span class="w"> </span>completed.<span class="w"> </span>Cost:<span class="w"> </span><span class="nv">$0</span>.00
+<span class="w">  </span>Operation<span class="w"> </span>resolve_themes<span class="w"> </span>completed.<span class="w"> </span>Cost:<span class="w"> </span><span class="nv">$7</span>.56
+<span class="w">  </span>Operation<span class="w"> </span>aggregate_common_themes<span class="w"> </span>completed.<span class="w"> </span>Cost:<span class="w"> </span><span class="nv">$0</span>.26
+<span class="w">           </span>💾<span class="w"> </span>Output<span class="w"> </span>saved<span class="w"> </span>to<span class="w"> </span>output_polarizing_themes.json
+<span class="w">           </span>Total<span class="w"> </span>cost:<span class="w"> </span><span class="nv">$13</span>.21
+<span class="w">           </span>Total<span class="w"> </span>time:<span class="w"> </span><span class="m">7339</span>.11<span class="w"> </span>seconds
+</code></pre></div>
+<p>Upon further analysis, 1421 themes is still a lot! I realized that my resolve operation was not exactly what I wanted---it did not merge together themes that I believed were similar, since the comparison prompt only asked if theme X or Y were the same. I should have given context in the comparison prompt, such as "Could one of these themes be a subset of the other?" This underscores the iterative nature of pipeline development and the importance of refining prompts to achieve the desired results; we don't really know what the desired results are until we see the output.</p>
+<p>Something else we could have done is included a list of themes we care about in the original map operation, e.g., graphics. Since our map prompt was very open-ended, the LLM could have generated themes that we didn't care about, leading to a large number of themes in the output.</p>
+<p>Anyways, we've filtered the 1421 reports down to 65 themes/reports that contain quotes from 3 or more different games. You can check out the output <a href="https://github.com/ucbepic/docetl/blob/main/example_data/steamgames/frequent_polarizing_themes.json">here</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../presidential-debate-themes/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Reporting on Themes from Presidential Debates">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Reporting on Themes from Presidential Debates
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../ollama/" class="md-footer__link md-footer__link--next" aria-label="Next: Medical Document Classification with Ollama">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Medical Document Classification with Ollama
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.follow", "navigation.footer", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

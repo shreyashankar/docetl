@@ -1,0 +1,96 @@
+/* Base Layer */
+:root {
+  --md-primary-fg-color: hsl(211, 100%, 50%);
+  --md-primary-fg-color--light: hsl(211, 100%, 70%);
+  --md-primary-fg-color--dark: hsl(211, 100%, 30%);
+  --background: hsl(211, 100%, 95%);
+  --foreground: hsl(211, 5%, 0%);
+  --card: hsl(211, 50%, 90%);
+  --card-foreground: hsl(211, 5%, 10%);
+  --popover: hsl(211, 100%, 95%);
+  --popover-foreground: hsl(211, 100%, 0%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(211, 30%, 70%);
+  --secondary-foreground: hsl(0, 0%, 0%);
+  --muted: hsl(173, 30%, 85%);
+  --muted-foreground: hsl(211, 5%, 35%);
+  --accent: hsl(173, 30%, 80%);
+  --accent-foreground: hsl(211, 5%, 10%);
+  --destructive: hsl(0, 100%, 30%);
+  --destructive-foreground: hsl(211, 5%, 90%);
+  --border: hsl(211, 30%, 50%);
+  --input: hsl(211, 30%, 18%);
+  --ring: var(--md-primary-fg-color);
+  --radius: 0.5rem;
+
+  /* Custom chart colors */
+  --chart-1: hsl(12, 76%, 61%);
+  --chart-2: hsl(173, 58%, 39%);
+  --chart-3: hsl(197, 37%, 24%);
+  --chart-4: hsl(43, 74%, 66%);
+  --chart-5: hsl(27, 87%, 67%);
+}
+
+/* Dark mode */
+.dark {
+  --md-primary-fg-color: hsl(211, 100%, 50%);
+  --md-primary-fg-color--light: hsl(211, 100%, 70%);
+  --md-primary-fg-color--dark: hsl(211, 100%, 30%);
+  --background: hsl(211, 50%, 5%);
+  --foreground: hsl(211, 5%, 90%);
+  --card: hsl(211, 50%, 0%);
+  --card-foreground: hsl(211, 5%, 90%);
+  --popover: hsl(211, 50%, 5%);
+  --popover-foreground: hsl(211, 5%, 90%);
+  /* --primary: var(--md-primary-fg-color--dark); */
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(211, 30%, 10%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(173, 30%, 15%);
+  --muted-foreground: hsl(211, 5%, 60%);
+  --accent: hsl(173, 30%, 15%);
+  --accent-foreground: hsl(211, 5%, 90%);
+  --destructive: hsl(0, 100%, 30%);
+  --destructive-foreground: hsl(211, 5%, 90%);
+  --border: hsl(211, 30%, 18%);
+  --input: hsl(211, 30%, 18%);
+  --ring: var(--md-primary-fg-color--dark);
+  --radius: 0.5rem;
+
+  /* Custom chart colors for dark mode */
+  --chart-1: hsl(220, 70%, 50%);
+  --chart-2: hsl(160, 60%, 45%);
+  --chart-3: hsl(30, 80%, 55%);
+  --chart-4: hsl(280, 65%, 60%);
+  --chart-5: hsl(340, 75%, 55%);
+}
+
+/* Header styling */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary);
+}
+
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: var(--primary);
+}
+
+/* Link styling */
+a {
+  color: var(--primary);
+}
+
+.dark a {
+  color: var(--primary);
+}
+
+/* Card styling */
+.card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border-radius: var(--radius);
+}
+
+.dark .card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+}
