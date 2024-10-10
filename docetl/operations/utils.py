@@ -414,7 +414,7 @@ class APIWrapper(object):
 
     # TODO: optimize this
     @freezeargs
-    def cached_call_llm(
+    def _cached_call_llm(
         self,
         cache_key: str,
         model: str,
@@ -427,7 +427,7 @@ class APIWrapper(object):
         """
         Cached version of the call_llm function.
 
-        This function serves as a cached wrapper around call_llm_with_cache. It uses
+        This function serves as a cached wrapper around _call_llm_with_cache. It uses
         the @freezeargs decorator to ensure immutable arguments and @functools.lru_cache
         for caching results.
 
@@ -440,12 +440,12 @@ class APIWrapper(object):
             tools (Optional[str]): The tools to pass to the LLM.
             scratchpad (Optional[str]): The scratchpad to use for the operation.
         Returns:
-            str: The result from call_llm_with_cache.
+            str: The result from _call_llm_with_cache.
         """
         with cache as c:
             result = c.get(cache_key)
             if result is None:
-                result = self.call_llm_with_cache(
+                result = self._call_llm_with_cache(
                     model, op_type, messages, output_schema, tools, scratchpad
                 )
                 # Only set the cache if the result tool calls or output is not empty
@@ -554,7 +554,7 @@ class APIWrapper(object):
         rate_limited_attempt = 0
         while attempt <= max_retries:
             try:
-                return timeout(timeout_seconds)(self.cached_call_llm)(
+                return timeout(timeout_seconds)(self._cached_call_llm)(
                     key,
                     model,
                     op_type,
@@ -583,7 +583,7 @@ class APIWrapper(object):
                     return {}
                 attempt += 1
 
-    def call_llm_with_cache(
+    def _call_llm_with_cache(
         self,
         model: str,
         op_type: str,
@@ -892,7 +892,7 @@ Remember: The scratchpad should contain information necessary for processing fut
         This function extracts the tool calls from the LLM response and returns the arguments
         """
         try:
-            return self.parse_llm_response_helper(response, schema, tools)
+            return self._parse_llm_response_helper(response, schema, tools)
         except InvalidOutputError as e:
             if manually_fix_errors:
                 rprint(
@@ -909,7 +909,7 @@ Remember: The scratchpad should contain information necessary for processing fut
             else:
                 raise e
 
-    def parse_llm_response_helper(
+    def _parse_llm_response_helper(
         self,
         response: Any,
         schema: Dict[str, Any] = {},
