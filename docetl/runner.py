@@ -94,8 +94,8 @@ def save_output(data: list[dict], path: str, console) -> None:
     if os.path.dirname(path):
         os.makedirs(os.path.dirname(path), exist_ok=True)
     if path.lower().endswith(".json"):
-        with open(path, "w") as file:
-            json.dump(data, file, indent=2)
+        with open(path, "w", encoding="utf-8") as file:
+            json.dump(data, file, indent=2, ensure_ascii=False)
     elif path.lower().endswith(".parquet"):
         import pandas as pd
 
@@ -106,7 +106,7 @@ def save_output(data: list[dict], path: str, console) -> None:
         fieldnames: dict[str, None] = {}  # union of row keys, in first-seen order
         for row in data:
             fieldnames.update(dict.fromkeys(row))
-        with open(path, "w", newline="") as file:
+        with open(path, "w", encoding="utf-8", newline="") as file:
             writer = csv.DictWriter(file, fieldnames=list(fieldnames))
             writer.writeheader()
             writer.writerows({k: row.get(k) for k in fieldnames} for row in data)

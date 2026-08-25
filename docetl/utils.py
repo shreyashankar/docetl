@@ -327,7 +327,7 @@ def completion_cost(response: ModelResponse) -> float:
 
 def load_config(config_path: str) -> dict[str, Any]:
     try:
-        with open(config_path, "r") as config_file:
+        with open(config_path, "r", encoding="utf-8-sig") as config_file:
             config: dict[str, Any] = yaml.safe_load(config_file)
         return config
     except FileNotFoundError:

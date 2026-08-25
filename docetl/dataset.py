@@ -313,7 +313,7 @@ class DataLoader:
         if ext == ".json":
             import json
 
-            with open(self.path_or_data, "r") as f:
+            with open(self.path_or_data, "r", encoding="utf-8-sig") as f:
                 data = json.load(f)
             if limit is not None:
                 data = data[:limit]
@@ -321,7 +321,7 @@ class DataLoader:
             import csv
             import itertools
 
-            with open(self.path_or_data, "r") as f:
+            with open(self.path_or_data, "r", encoding="utf-8-sig", newline="") as f:
                 reader = csv.DictReader(f)
                 data = list(
                     itertools.islice(reader, limit) if limit is not None else reader
@@ -394,7 +394,7 @@ class DataLoader:
         elif ext == ".csv":
             import csv
 
-            with open(self.path_or_data, "r") as f:
+            with open(self.path_or_data, "r", encoding="utf-8-sig", newline="") as f:
                 return sum(1 for _ in csv.DictReader(f))
 
         return len(self.load())
