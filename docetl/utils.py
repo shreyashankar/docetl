@@ -441,7 +441,7 @@ def smart_sample(
 
 
 def extract_output_from_json(yaml_file_path, json_output_path=None):
-    with open(yaml_file_path, "r") as f:
+    with open(yaml_file_path, "r", encoding="utf-8-sig") as f:
         config = yaml.safe_load(f)
 
     if json_output_path is None:
@@ -449,7 +449,7 @@ def extract_output_from_json(yaml_file_path, json_output_path=None):
         if json_output_path is None:
             raise ValueError("No output path found in YAML file")
 
-    with open(json_output_path, "r") as f:
+    with open(json_output_path, "r", encoding="utf-8-sig") as f:
         output_data = json.load(f)
 
     pipeline = config.get("pipeline", {})

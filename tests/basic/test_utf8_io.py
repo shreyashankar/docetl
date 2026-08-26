@@ -5,7 +5,7 @@ from rich.console import Console
 
 from docetl.dataset import DataLoader
 from docetl.runner import save_output
-from docetl.utils import load_config
+from docetl.utils import extract_output_from_json, load_config
 
 
 UNICODE_TEXT = "你好 € café"
@@ -41,6 +41,30 @@ def test_load_config_reads_utf8_bom(tmp_path):
     )
 
     assert load_config(str(path))["note"] == UNICODE_TEXT
+
+
+def test_extract_output_reads_utf8_bom(tmp_path):
+    config_path = tmp_path / "pipeline.yaml"
+    output_path = tmp_path / "output.json"
+    records = [{"text": UNICODE_TEXT}]
+    config_path.write_text(
+        f'note: "{UNICODE_TEXT}"\n'
+        "pipeline:\n"
+        "  steps:\n"
+        "    - operations: [final]\n"
+        "operations:\n"
+        "  - name: final\n"
+        "    output:\n"
+        "      schema:\n"
+        "        text: string\n",
+        encoding="utf-8-sig",
+    )
+    output_path.write_text(
+        json.dumps(records, ensure_ascii=False),
+        encoding="utf-8-sig",
+    )
+
+    assert extract_output_from_json(str(config_path), str(output_path)) == records
 
 
 def test_save_output_writes_unicode_as_utf8(tmp_path):
