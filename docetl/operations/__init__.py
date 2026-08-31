@@ -20,6 +20,7 @@ from docetl.operations.unnest import UnnestOperation
 from docetl.operations.unnest_columns import UnnestColumnsOperation
 from docetl.operations.scan import ScanOperation
 from docetl.operations.add_uuid import AddUuidOperation
+from docetl.operations.stipple_verify import StippleVerifyOperation
 from docetl.operations.extract import ExtractOperation
 from docetl.operations.web_fetch import WebFetchOperation
 from docetl.operations.web_search import WebSearchOperation
@@ -45,6 +46,7 @@ mapping = {
     "unnest_columns": UnnestColumnsOperation,
     "scan": ScanOperation,
     "add_uuid": AddUuidOperation,
+    "stipple_verify": StippleVerifyOperation,
     "extract": ExtractOperation,
     "web_fetch": WebFetchOperation,
     "web_search": WebSearchOperation,
