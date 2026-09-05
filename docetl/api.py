@@ -2,7 +2,7 @@
 
 import inspect
 import os
-from typing import TYPE_CHECKING, Any, Callable
+from typing import TYPE_CHECKING, Any, Callable, Type
 
 import yaml
 from rich import print
@@ -34,6 +34,8 @@ from docetl.schemas import (
     SplitOp,
     UnnestOp,
 )
+
+from pydantic import BaseModel
 
 
 class Pipeline:
@@ -96,6 +98,8 @@ class Pipeline:
         self.optimizer_config = optimizer_config
 
         self.other_config = kwargs
+
+        self._output_schema: Type[BaseModel] | None = None
 
         self._load_env()
 
@@ -185,6 +189,34 @@ class Pipeline:
         env_file = os.path.join(os.getcwd(), ".env")
         if os.path.exists(env_file):
             load_dotenv(env_file)
+
+    def set_output_schema(self, model: Type[BaseModel]) -> "Pipeline":
+        """Set pydantic output schema for validation.
+
+        Args:
+            model: A pydantic BaseModel subclass. The LLM output will be validated
+                   and transformed using this model after pipeline execution.
+
+        Returns:
+            self, for chaining
+
+        Raises:
+            ValueError: If model is not a pydantic BaseModel subclass.
+        """
+        if not (isinstance(model, type) and issubclass(model, BaseModel)):
+            raise ValueError(
+                "_output_schema must be a pydantic BaseModel subclass"
+            )
+        self._output_schema = model
+        return self
+
+    def get_output_schema(self) -> Type[BaseModel] | None:
+        """Get the pydantic output schema, if set.
+
+        Returns:
+            The BaseModel subclass, or None if not set.
+        """
+        return getattr(self, "_output_schema", None)
 
     def optimize(
         self,

@@ -610,13 +610,32 @@ class DSLRunner:
         self.console.log()
 
     def save(self, data: list[dict]) -> None:
-        self.get_output_path(require=True)
+        """Save pipeline output with optional Pydantic output schema validation.
 
+        If a Pydantic output schema was set via ``Pipeline.set_output_schema()``,
+        each record in *data* is validated and transformed using that model before
+        writing.  The model is kept runtime-only and is not serialized into the
+        pipeline configuration.
+
+        Args:
+            data: List of output dictionaries (raw LLM output).
+        """
+        self.get_output_path(require=True)
         out = self.pipeline.output
         if out.type != "file":
             raise ValueError(
                 f"Unsupported output type: {out.type}. Supported types: file"
             )
+
+        # #367: Pydantic output schema validation (runtime-only)
+        output_schema = self.pipeline.get_output_schema()
+        if output_schema is not None:
+            validated: list[dict] = []
+            for item in data:
+                instance = output_schema.model_validate(item)
+                validated.append(instance.model_dump())
+            data = validated
+
         save_output(data, out.path, self.console)
 
     def clear_intermediate(self) -> None:
