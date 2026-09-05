@@ -91,3 +91,4 @@ tests/tui_demo/*_output.json
 cascade-report.html
 .docetl_server_port
 .docetl_feedback.log
+.docetl/

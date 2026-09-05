@@ -6,6 +6,7 @@ import math
 import os
 import re
 import time
+from dataclasses import replace
 from enum import Enum
 from typing import Any
 
@@ -16,6 +17,7 @@ from litellm import (
     ServiceUnavailableError,
     completion,
     embedding,
+    get_llm_provider,
 )
 from litellm.types.utils import ChatCompletionMessageToolCall, Function
 from rich import print as rprint
@@ -23,6 +25,14 @@ from rich.console import Console, Group
 from rich.panel import Panel
 from rich.text import Text
 
+from docetl.execution import (
+    SUPPORTED_LITELLM_BATCH_PROVIDERS,
+    ExecutionPolicy,
+    ExecutionTarget,
+    LogicalLLMRequest,
+    compile_execution_plan,
+    execute_plan,
+)
 from docetl.utils import completion_cost
 
 from .cache import cache, cache_key, freezeargs
@@ -268,6 +278,271 @@ class APIWrapper(object):
             litellm_completion_kwargs=litellm_completion_kwargs,
             op_config=op_config,
         )
+
+    def _build_completion_request(
+        self,
+        model: str,
+        op_type: str,
+        messages: list[dict[str, Any]],
+        output_schema: dict[str, str],
+        litellm_completion_kwargs: dict[str, Any],
+        op_config: dict[str, Any],
+        execution_config: dict[str, Any],
+    ) -> dict[str, Any]:
+        """Build one OpenAI-compatible request body without executing it.
+
+        Batch backends deliberately support the non-agentic, row-local call
+        shape first. Validation, gleaning, and agent loops need more than one
+        dependent round and are rejected by ``MapOperation`` before this point.
+        """
+        props = {key: convert_val(value) for key, value in output_schema.items()}
+        output_mode = op_config.get("output", {}).get("mode", OutputMode.TOOLS.value)
+        use_structured_output = output_mode == OutputMode.STRUCTURED_OUTPUT.value
+        use_tools = not (
+            len(props) == 1
+            and next(iter(props.values())).get("type") == "string"
+            and ("sagemaker" in model or is_deepseek_r1(model))
+        )
+
+        persona = self.runner.config.get("system_prompt", {}).get(
+            "persona", "a helpful assistant"
+        )
+        dataset_description = self.runner.config.get("system_prompt", {}).get(
+            "dataset_description", "a collection of unstructured documents"
+        )
+        operation_shape = (
+            "many inputs:one output" if op_type == "reduce" else "one input:one output"
+        )
+        base_prompt = (
+            f"You are a {persona}, helping the user make sense of their data. "
+            f"The dataset description is: {dataset_description}. You will be "
+            f"performing a {op_type} operation ({operation_shape}). You will "
+            "perform the specified task on the provided data, as precisely and "
+            "exhaustively (i.e., high recall) as possible."
+        )
+
+        body: dict[str, Any] = dict(litellm_completion_kwargs)
+        # These configure a LiteLLM client, not an endpoint request body.
+        for client_key in (
+            "api_base",
+            "base_url",
+            "api_key",
+            "custom_llm_provider",
+            "allowed_openai_params",
+        ):
+            body.pop(client_key, None)
+        if "n" in op_config.get("output", {}):
+            body["n"] = op_config["output"]["n"]
+        if "gpt-5" in model:
+            body.pop("temperature", None)
+
+        if execution_config.get("mode", "batch") == "direct":
+            body["model"] = model
+        elif execution_config.get("backend", "litellm") == "litellm":
+            normalized_model, provider, _, _ = get_llm_provider(model)
+            configured_provider = execution_config.get("provider", "openai")
+            if provider != configured_provider:
+                raise ValueError(
+                    f"Batch backend provider {configured_provider!r} cannot execute "
+                    f"model {model!r} (LiteLLM provider {provider!r})"
+                )
+            body["model"] = normalized_model
+        else:
+            body["model"] = execution_config.get("model", model)
+
+        system_prompt = base_prompt
+        if use_structured_output:
+            system_prompt += (
+                " Respond with a JSON object that follows the required schema."
+            )
+            body["response_format"] = {
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "structured_output",
+                    "schema": {
+                        "type": "object",
+                        "properties": props,
+                        "required": list(props),
+                        "additionalProperties": False,
+                    },
+                    "strict": True,
+                },
+            }
+        elif use_tools:
+            system_prompt += (
+                " The result should be a structured output that you will send "
+                "back to the user, with the `send_output` function. Do not "
+                "influence your answers too much based on the `send_output` "
+                "function parameter names; just use them to send the result "
+                "back to the user."
+            )
+            parameters: dict[str, Any] = {
+                "type": "object",
+                "properties": props,
+                "required": list(props),
+            }
+            if "gemini" not in model and "claude" not in model:
+                parameters["additionalProperties"] = False
+            tool: dict[str, Any] = {
+                "type": "function",
+                "function": {
+                    "name": "send_output",
+                    "description": "Send output back to the user",
+                    "parameters": parameters,
+                },
+            }
+            if "claude" not in model:
+                tool["additionalProperties"] = False
+                tool["strict"] = True
+            body["tools"] = [tool]
+            body["tool_choice"] = {
+                "type": "function",
+                "function": {"name": "send_output"},
+            }
+        else:
+            system_prompt = base_prompt
+
+        body["messages"] = truncate_messages(
+            [{"role": "system", "content": system_prompt}] + messages,
+            model,
+        )
+        return body
+
+    def call_llm_compiled(
+        self,
+        calls: list[dict[str, Any]],
+        execution_config: dict[str, Any],
+    ) -> list[LLMResult]:
+        """Compile a list of independent LLM calls and execute them as one plan."""
+        execution_config = dict(execution_config)
+        policy = ExecutionPolicy.from_config(execution_config)
+        if policy.target is ExecutionTarget.PROVIDER_BATCH:
+            if "provider" not in execution_config and calls:
+                providers = {get_llm_provider(call["model"])[1] for call in calls}
+                if len(providers) != 1:
+                    raise ValueError(
+                        "A provider batch requires models from exactly one "
+                        "LiteLLM provider"
+                    )
+                execution_config["provider"] = providers.pop()
+                policy = replace(policy, config=execution_config)
+            if (
+                execution_config.get("provider", "openai")
+                not in SUPPORTED_LITELLM_BATCH_PROVIDERS
+            ):
+                raise ValueError(
+                    "LiteLLM batch execution currently supports provider values "
+                    + ", ".join(sorted(SUPPORTED_LITELLM_BATCH_PROVIDERS))
+                )
+        results: list[LLMResult | None] = [None] * len(calls)
+        logical_requests: list[LogicalLLMRequest] = []
+        pending: list[tuple[int, str, str]] = []
+
+        with cache as c:
+            for index, call in enumerate(calls):
+                # Execution policy changes where and when an identical logical
+                # call runs; it must not create a second semantic cache entry.
+                cache_op_config = {
+                    key: value
+                    for key, value in call["op_config"].items()
+                    if key != "execution"
+                }
+                key = cache_key(
+                    call["model"],
+                    call["op_type"],
+                    call["messages"],
+                    call["output_schema"],
+                    None,
+                    self.runner.config.get("system_prompt", {}),
+                    cache_op_config,
+                )
+                cached = c.get(key)
+                if cached is not None and not call.get("bypass_cache", False):
+                    results[index] = LLMResult(
+                        response=cached, total_cost=0.0, validated=True
+                    )
+                    continue
+                custom_id = f"request-{index}"
+                logical_requests.append(
+                    LogicalLLMRequest(
+                        request_id=custom_id,
+                        operation_name=call["op_config"].get("name", call["op_type"]),
+                        model=call["model"],
+                        messages=call["messages"],
+                        output_schema=call["output_schema"],
+                        inference_parameters=call.get("litellm_completion_kwargs", {}),
+                        metadata={
+                            "op_type": call["op_type"],
+                            "op_config": call["op_config"],
+                        },
+                    )
+                )
+                pending.append((index, key, call["model"]))
+
+        if logical_requests:
+            plan = compile_execution_plan(
+                logical_requests,
+                policy,
+                lambda request, selected_policy: self._build_completion_request(
+                    request.model,
+                    request.metadata["op_type"],
+                    request.messages,
+                    request.output_schema,
+                    request.inference_parameters,
+                    request.metadata["op_config"],
+                    selected_policy.config,
+                ),
+            )
+            effective_target, physical_results = execute_plan(plan)
+            # completion_cost prices synchronous calls. Apply the batch discount
+            # only where it is published and uniform (OpenAI's 50%); self-hosted
+            # vLLM has no per-token price at all.
+            if "cost_multiplier" in execution_config:
+                multiplier = float(execution_config["cost_multiplier"])
+            elif effective_target is ExecutionTarget.VLLM_BATCH:
+                multiplier = 0.0
+            elif (
+                effective_target is ExecutionTarget.PROVIDER_BATCH
+                and execution_config.get("provider", "openai") == "openai"
+            ):
+                multiplier = 0.5
+            else:
+                multiplier = 1.0
+            with cache as c:
+                for (index, key, model), physical_result in zip(
+                    pending, physical_results
+                ):
+                    if (
+                        physical_result.error is not None
+                        or physical_result.response is None
+                        or (
+                            physical_result.status_code is not None
+                            and not 200 <= physical_result.status_code < 300
+                        )
+                    ):
+                        results[index] = LLMResult(
+                            response=None, total_cost=0.0, validated=False
+                        )
+                        continue
+                    response = ModelResponse(**physical_result.response)
+                    estimated_cost = completion_cost(response) * multiplier
+                    setattr(response, "_completion_cost", estimated_cost)
+                    self._track_token_usage(model, response)
+                    c.set(key, response)
+                    results[index] = LLMResult(
+                        response=response,
+                        total_cost=estimated_cost,
+                        validated=True,
+                    )
+
+        return [
+            (
+                result
+                if result is not None
+                else LLMResult(response=None, total_cost=0.0, validated=False)
+            )
+            for result in results
+        ]
 
     def _cached_call_llm(
         self,

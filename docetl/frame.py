@@ -360,6 +360,7 @@ class Frame:
         calibrate: bool | None = None,
         num_calibration_docs: int | None = None,
         retriever: Retriever | str | None = None,
+        execution: dict[str, Any] | None = None,
         **kwargs: Any,
     ) -> Frame:
         return self._append_op(
@@ -388,6 +389,7 @@ class Frame:
                 "calibrate": calibrate,
                 "num_calibration_docs": num_calibration_docs,
                 "retriever": retriever,
+                "execution": execution,
                 **kwargs,
             },
         )
@@ -481,6 +483,7 @@ class Frame:
         enable_observability: bool | None = None,
         limit: int | None = None,
         retriever: Retriever | str | None = None,
+        execution: dict[str, Any] | None = None,
         **kwargs: Any,
     ) -> Frame:
         return self._append_op(
@@ -508,6 +511,7 @@ class Frame:
                 "enable_observability": enable_observability,
                 "limit": limit,
                 "retriever": retriever,
+                "execution": execution,
                 **kwargs,
             },
         )

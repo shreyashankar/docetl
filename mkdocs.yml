@@ -58,6 +58,7 @@ nav:
           - TopK: operators/topk.md
           - Code: operators/code.md
       - Retrievers: retrievers.md
+      - Deferred Batch Execution: execution/batch.md
       - Interactive Progress View: execution/interactive-progress.md
       - Python API Reference: api-reference/python.md
       - Pandas Accessor: pandas/index.md

@@ -91,6 +91,7 @@ flowchart LR
 | `bypass_cache` | If true, bypass the cache for this operation. | False                          |
 | `retriever` | Name of a retriever to use for RAG. See [Retrievers](../retrievers.md). | None                          |
 | `save_retriever_output` | If true, saves the retrieved context to `_<operation_name>_retrieved_context` in the output. | False                          |
+| `execution` | Send this operation's LLM calls through a provider Batch API or an offline vLLM job. See [Deferred Batch Execution](../execution/batch.md). | None                          |
 
 ### Limiting group processing
 

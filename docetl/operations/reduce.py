@@ -20,6 +20,12 @@ from jinja2 import Template
 from litellm.utils import ModelResponse
 from pydantic import Field, field_validator, model_validator
 
+from docetl.execution import (
+    SUPPORTED_LITELLM_BATCH_PROVIDERS,
+    ExecutionError,
+    ExecutionPolicy,
+    ExecutionTarget,
+)
 from docetl.operations.base import BaseOperation, Cardinality
 from docetl.operations.clustering_utils import (
     cluster_documents,
@@ -71,6 +77,7 @@ class ReduceOperation(BaseOperation):
         agent: Any | None = None
         enable_observability: bool = False
         limit: int | None = Field(None, gt=0)
+        execution: dict[str, Any] | None = None
 
         @field_validator("prompt")
         def validate_prompt(cls, v):
@@ -180,6 +187,41 @@ class ReduceOperation(BaseOperation):
                     "'merge_batch_size' is required when 'merge_prompt' is specified"
                 )
 
+            return self
+
+        @model_validator(mode="after")
+        def validate_execution(self):
+            if self.execution is None:
+                return self
+            policy = ExecutionPolicy.from_config(self.execution)
+            if (
+                policy.target is ExecutionTarget.PROVIDER_BATCH
+                and self.execution.get("provider", "openai")
+                not in SUPPORTED_LITELLM_BATCH_PROVIDERS
+            ):
+                raise ValueError(
+                    "LiteLLM batch execution currently supports provider values "
+                    + ", ".join(sorted(SUPPORTED_LITELLM_BATCH_PROVIDERS))
+                )
+            incompatible = [
+                name
+                for name, value in (
+                    ("agent", self.agent),
+                    ("gleaning", self.gleaning),
+                    (
+                        "validate",
+                        self.model_extra.get("validate") if self.model_extra else None,
+                    ),
+                    ("fold_prompt", self.fold_prompt),
+                    ("merge_prompt", self.merge_prompt),
+                )
+                if value
+            ]
+            if incompatible:
+                raise ValueError(
+                    "compiled reduce execution issues one request per group "
+                    "and cannot be combined with " + ", ".join(incompatible)
+                )
             return self
 
     # ── plan traits ────────────────────────────────────────────────
@@ -295,54 +337,19 @@ class ReduceOperation(BaseOperation):
             grouped_data = sorted(grouped_data, key=lambda x: len(x[1]))
             grouped_data = grouped_data[:limit_value]
 
+        if self.config.get("execution") is not None:
+            try:
+                return self._execute_compiled_reduce(grouped_data, input_schema)
+            finally:
+                if self.status:
+                    self.status.start()
+
         def process_group(
             key: tuple, group_elems: list[dict]
         ) -> tuple[dict | None, float]:
-            if input_schema:
-                group_list = [
-                    {k: item[k] for k in input_schema.keys() if k in item}
-                    for item in group_elems
-                ]
-            else:
-                group_list = group_elems
-
-            total_cost = 0.0
-            # Build retrieval context once per group
-            try:
-                retrieval_context = self._maybe_build_retrieval_context(
-                    {
-                        "reduce_key": dict(zip(self.config["reduce_key"], key)),
-                        "inputs": group_list,
-                    }
-                )
-            except Exception:
-                retrieval_context = "No extra context available."
-
-            # Apply value sampling if enabled
-            value_sampling = self.config.get("value_sampling", {})
-            if value_sampling.get("enabled", False):
-                sample_size = min(value_sampling["sample_size"], len(group_list))
-                method = value_sampling["method"]
-
-                if method == "random":
-                    group_sample = random.sample(group_list, sample_size)
-                    group_sample.sort(key=lambda x: group_list.index(x))
-                elif method == "first_n":
-                    group_sample = group_list[:sample_size]
-                elif method == "cluster":
-                    group_sample, embedding_cost = self._cluster_based_sampling(
-                        group_list, value_sampling, sample_size
-                    )
-                    group_sample.sort(key=lambda x: group_list.index(x))
-                    total_cost += embedding_cost
-                elif method == "sem_sim":
-                    group_sample, embedding_cost = self._semantic_similarity_sampling(
-                        key, group_list, value_sampling, sample_size
-                    )
-                    group_sample.sort(key=lambda x: group_list.index(x))
-                    total_cost += embedding_cost
-
-                group_list = group_sample
+            group_list, retrieval_context, total_cost = self._prepare_reduce_group(
+                key, group_elems, input_schema
+            )
 
             # Only execute merge-based plans if associative = True
             if "merge_prompt" in self.config and self.config.get("associative", True):
@@ -369,46 +376,14 @@ class ReduceOperation(BaseOperation):
                 prompts = [prompt]
 
             total_cost += cost
-
-            # Add the counts of items in the group to the result
-            result[f"_counts_prereduce_{self.config['name']}"] = len(group_elems)
-
-            if self.config.get("enable_observability", False):
-                # Add the _observability_{self.config['name']} key to the result
-                result[f"_observability_{self.config['name']}"] = {"prompts": prompts}
-
-            # Add retrieved context if save_retriever_output is enabled
-            if self.config.get("save_retriever_output", False):
-                ctx = (
-                    retrieval_context
-                    if retrieval_context
-                    and retrieval_context != "No extra context available."
-                    else ""
-                )
-                result[f"_{self.config['name']}_retrieved_context"] = ctx
-
-            # Apply pass-through at the group level
-            if (
-                result is not None
-                and self.config.get("pass_through", False)
-                and group_elems
-            ):
-                for k, v in group_elems[0].items():
-                    if k not in self.config["output"]["schema"] and k not in result:
-                        result[k] = v
-
-            # Add lineage information
-            if result is not None and self.lineage_keys:
-                lineage = []
-                for item in group_elems:
-                    lineage_item = {
-                        k: item.get(k) for k in self.lineage_keys if k in item
-                    }
-                    if lineage_item:
-                        lineage.append(lineage_item)
-                result[f"{self.config['name']}_lineage"] = lineage
-
-            return result, total_cost
+            if result is None:
+                return None, total_cost
+            return (
+                self._decorate_reduce_result(
+                    result, group_elems, retrieval_context, prompts
+                ),
+                total_cost,
+            )
 
         with ThreadPoolExecutor(max_workers=self.max_threads) as executor:
             futures = [
@@ -442,6 +417,179 @@ class ReduceOperation(BaseOperation):
 
         if self.status:
             self.status.start()
+
+        return results, total_cost
+
+    def _prepare_reduce_group(
+        self,
+        key: tuple,
+        group_elems: list[dict],
+        input_schema: dict[str, Any],
+    ) -> tuple[list[dict], str, float]:
+        """Apply input projection, retrieval, and value sampling for one group."""
+        if input_schema:
+            group_list = [
+                {k: item[k] for k in input_schema.keys() if k in item}
+                for item in group_elems
+            ]
+        else:
+            group_list = group_elems
+
+        total_cost = 0.0
+        # Build retrieval context once per group
+        try:
+            retrieval_context = self._maybe_build_retrieval_context(
+                {
+                    "reduce_key": dict(zip(self.config["reduce_key"], key)),
+                    "inputs": group_list,
+                }
+            )
+        except Exception:
+            retrieval_context = "No extra context available."
+
+        # Apply value sampling if enabled
+        value_sampling = self.config.get("value_sampling", {})
+        if value_sampling.get("enabled", False):
+            sample_size = min(value_sampling["sample_size"], len(group_list))
+            method = value_sampling["method"]
+
+            if method == "random":
+                group_sample = random.sample(group_list, sample_size)
+                group_sample.sort(key=lambda x: group_list.index(x))
+            elif method == "first_n":
+                group_sample = group_list[:sample_size]
+            elif method == "cluster":
+                group_sample, embedding_cost = self._cluster_based_sampling(
+                    group_list, value_sampling, sample_size
+                )
+                group_sample.sort(key=lambda x: group_list.index(x))
+                total_cost += embedding_cost
+            elif method == "sem_sim":
+                group_sample, embedding_cost = self._semantic_similarity_sampling(
+                    key, group_list, value_sampling, sample_size
+                )
+                group_sample.sort(key=lambda x: group_list.index(x))
+                total_cost += embedding_cost
+
+            group_list = group_sample
+        return group_list, retrieval_context, total_cost
+
+    def _decorate_reduce_result(
+        self,
+        result: dict,
+        group_elems: list[dict],
+        retrieval_context: str,
+        prompts: list[str],
+    ) -> dict:
+        """Attach metadata shared by direct and compiled reduce execution."""
+        # Add the counts of items in the group to the result
+        result[f"_counts_prereduce_{self.config['name']}"] = len(group_elems)
+
+        if self.config.get("enable_observability", False):
+            # Add the _observability_{self.config['name']} key to the result
+            result[f"_observability_{self.config['name']}"] = {"prompts": prompts}
+
+        # Add retrieved context if save_retriever_output is enabled
+        if self.config.get("save_retriever_output", False):
+            ctx = (
+                retrieval_context
+                if retrieval_context
+                and retrieval_context != "No extra context available."
+                else ""
+            )
+            result[f"_{self.config['name']}_retrieved_context"] = ctx
+
+        # Apply pass-through at the group level
+        if self.config.get("pass_through", False) and group_elems:
+            for k, v in group_elems[0].items():
+                if k not in self.config["output"]["schema"] and k not in result:
+                    result[k] = v
+
+        # Add lineage information
+        if self.lineage_keys:
+            lineage = []
+            for item in group_elems:
+                lineage_item = {k: item.get(k) for k in self.lineage_keys if k in item}
+                if lineage_item:
+                    lineage.append(lineage_item)
+            result[f"{self.config['name']}_lineage"] = lineage
+
+        return result
+
+    def _execute_compiled_reduce(
+        self,
+        grouped_data: list[tuple[Any, list[dict]]],
+        input_schema: dict[str, Any],
+    ) -> tuple[list[dict], float]:
+        """Compile one request per reduce group and execute them as one plan."""
+        prepared: list[tuple[Any, list[dict], str, str, float]] = []
+        calls: list[dict[str, Any]] = []
+        model = self.config.get("model", self.default_model)
+
+        for key, group_elems in grouped_data:
+            group_list, retrieval_context, local_cost = self._prepare_reduce_group(
+                key, group_elems, input_schema
+            )
+
+            prompt = strict_render(
+                self.config["prompt"],
+                {
+                    "reduce_key": dict(zip(self.config["reduce_key"], key)),
+                    "inputs": group_list,
+                    "retrieval_context": retrieval_context or "",
+                },
+            )
+            if retrieval_context and "retrieval_context" not in self.config["prompt"]:
+                prompt = f"Here is some extra context:\n{retrieval_context}\n\n{prompt}"
+            prepared.append((key, group_elems, retrieval_context, prompt, local_cost))
+            calls.append(
+                {
+                    "model": model,
+                    "op_type": "reduce",
+                    "messages": [{"role": "user", "content": prompt}],
+                    "output_schema": self.config["output"]["schema"],
+                    "bypass_cache": self.config.get("bypass_cache", self.bypass_cache),
+                    "litellm_completion_kwargs": self.config.get(
+                        "litellm_completion_kwargs", {}
+                    ),
+                    "op_config": self.config,
+                }
+            )
+
+        llm_results = self.runner.api.call_llm_compiled(calls, self.config["execution"])
+        structured_mode = (
+            self.config.get("output", {}).get("mode")
+            == OutputMode.STRUCTURED_OUTPUT.value
+        )
+        results: list[dict] = []
+        total_cost = sum(item[-1] for item in prepared)
+        for prepared_group, llm_result in zip(prepared, llm_results):
+            key, group_elems, retrieval_context, prompt, _ = prepared_group
+            total_cost += llm_result.total_cost
+            if not llm_result.validated or llm_result.response is None:
+                if self.config.get("skip_on_error", False):
+                    continue
+                raise ExecutionError(
+                    f"Compiled request failed in reduce operation "
+                    f"{self.config['name']!r} for key {key!r}"
+                )
+            parsed_outputs = self.runner.api.parse_llm_response(
+                llm_result.response,
+                schema=self.config["output"]["schema"],
+                manually_fix_errors=self.manually_fix_errors,
+                use_structured_output=structured_mode,
+            )
+            if len(parsed_outputs) != 1:
+                raise ExecutionError(
+                    "A compiled reduce request must produce exactly one output"
+                )
+            result = parsed_outputs[0]
+            result.update(dict(zip(self.config["reduce_key"], key)))
+            results.append(
+                self._decorate_reduce_result(
+                    result, group_elems, retrieval_context, [prompt]
+                )
+            )
 
         return results, total_cost
 

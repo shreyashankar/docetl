@@ -105,6 +105,7 @@ frame.map(
 | `timeout` | `int` | `None` | Timeout per LLM call (seconds) |
 | `max_batch_size` | `int` | `None` | Batch size for batch processing |
 | `batch_prompt` | `str` | `None` | Jinja2 template for batch mode |
+| `execution` | `dict` | `None` | Deferred provider or vLLM batch execution. See [Deferred Batch Execution](../execution/batch.md). |
 | `retriever` | `Retriever` | `None` | Retriever for context augmentation |
 | `optimize` | `bool` | `None` | Mark for optimization |
 | `limit` | `int` | `None` | Max documents to process |

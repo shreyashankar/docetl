@@ -194,6 +194,7 @@ flowchart LR
 | `num_calibration_docs` | Number of documents to use sample and generate outputs for, for calibration. | 10                          |
 | `retriever` | Name of a retriever to use for RAG. See [Retrievers](../retrievers.md). | None                          |
 | `save_retriever_output` | If true, saves the retrieved context to `_<operation_name>_retrieved_context` in the output. | False                          |
+| `execution` | Send this operation's LLM calls through a provider Batch API or an offline vLLM job. See [Deferred Batch Execution](../execution/batch.md). | None                          |
 
 Note: If `drop_keys` is specified, `prompt` and `output` become optional parameters.
 
@@ -207,6 +208,13 @@ Set `limit` when you only need the first _N_ map results or want to cap LLM spen
     For more details on validation techniques and implementation, see [operators](../concepts/operators.md#validation).
 
 ### Batch Processing
+
+!!! note "Prompt Batching vs. Execution Batching"
+
+    This section describes `batch_prompt`, which combines several rows into
+    one prompt. To keep one request per row and submit those requests through
+    a provider Batch API or `vllm run-batch` instead, see
+    [Deferred Batch Execution](../execution/batch.md).
 
 The `batch_prompt` parameter processes multiple documents in a single prompt. This reduces LLM call counts for simple tasks and short documents, but larger batch sizes (even > 5) can lead to more incorrect results.
 
