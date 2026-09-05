@@ -1,0 +1,2215 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../filter/">
+      
+      
+        <link rel="next" href="../rank/">
+      
+      
+      <link rel="icon" href="../../assets/docetl-favicon-color.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Equijoin - docetl docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CSource+Code+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#equijoin-operation-experimental" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="docetl docs" class="md-header__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M0 112c0-41.5 31.6-75.6 72-79.6V32h280c53 0 96 43 96 96v176H272c-39.8 0-72 32.2-72 72v60c0 24.3-19.7 44-44 44s-44-19.7-44-44V208H48c-26.5 0-48-21.5-48-48zm236.8 368c7.1-13.1 11.2-28.1 11.2-44v-60c0-13.3 10.7-24 24-24h248c13.3 0 24 10.7 24 24v24c0 44.2-35.8 80-80 80zM80 80c-17.7 0-32 14.3-32 32v48h64v-48c0-17.7-14.3-32-32-32"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            docetl docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Equijoin
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../concepts/pipelines/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../optimization/overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Optimization
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python/examples/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Tutorials & Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../developer-reference/moar-extensibility/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Developer Reference
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../playground/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Tools & Resources
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="docetl docs" class="md-nav__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M0 112c0-41.5 31.6-75.6 72-79.6V32h280c53 0 96 43 96 96v176H272c-39.8 0-72 32.2-72 72v60c0 24.3-19.7 44-44 44s-44-19.7-44-44V208H48c-26.5 0-48-21.5-48-48zm236.8 368c7.1-13.1 11.2-28.1 11.2-44v-60c0-13.3 10.7-24 24-24h248c13.3 0 24 10.7 24 24v24c0 44.2-35.8 80-80 80zM80 80c-17.7 0-32 14.3-32 32v48h64v-48c0-17.7-14.3-32-32-32"/></svg>
+
+    </a>
+    docetl docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../.." class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../pandas/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    User Guide
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            User Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/pipelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pipelines
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets & Frames
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operators & Validation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Output Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    LLM-Powered Operators
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            LLM-Powered Operators
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Map
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resolve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resolve
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reduce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reduce
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Parallel Map
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../filter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Equijoin
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Equijoin
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-matching-job-candidates-to-job-postings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Matching Job Candidates to Job Postings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blocking
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blocking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-blocking-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding Blocking Rules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding Blocking Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#blocking_keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      blocking_keys
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blocking_threshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      blocking_threshold
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-generating-rules-experimental" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auto-generating Rules (Experimental)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equijoin-specific-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Equijoin-Specific Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-cascade-cost-reduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Cascade (cost reduction)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#incorporating-into-a-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Incorporating Into a Pipeline
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rank
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extract
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../link-resolve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Link Resolve
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Auxiliary Operators
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Auxiliary Operators
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../split/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Split
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gather/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gather
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unnest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Unnest
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sample
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    TopK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Code
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../retrievers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Retrievers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../execution/interactive-progress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Interactive Progress View
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../optimization/overview/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Optimization
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../python/examples/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Tutorials & Examples
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../developer-reference/moar-extensibility/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Developer Reference
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../playground/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Tools & Resources
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-matching-job-candidates-to-job-postings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Matching Job Candidates to Job Postings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blocking
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blocking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-blocking-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding Blocking Rules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding Blocking Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#blocking_keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      blocking_keys
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blocking_threshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      blocking_threshold
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-generating-rules-experimental" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auto-generating Rules (Experimental)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equijoin-specific-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Equijoin-Specific Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-cascade-cost-reduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Cascade (cost reduction)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#incorporating-into-a-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Incorporating Into a Pipeline
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="equijoin-operation-experimental">Equijoin Operation (Experimental)</h1>
+<p>The Equijoin operation (experimental) joins two datasets based on LLM-evaluated criteria, allowing matches based on semantic similarity or complex conditions rather than exact equality. It uses many of the same techniques as the <a href="../resolve/">Resolve operation</a>.</p>
+<pre class="mermaid"><code>flowchart LR
+    l1["left 1"] --&gt; m1["left 1 + right 2"]
+    r2["right 2"] --&gt; m1
+    l2["left 2"] --&gt; m2["left 2 + right 1"]
+    r1["right 1"] --&gt; m2
+    ln["..."] --&gt; mn["..."]
+    rn["..."] --&gt; mn</code></pre>
+<h2 id="example-matching-job-candidates-to-job-postings">Example: Matching Job Candidates to Job Postings</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">YAML</label><label for="__tabbed_1_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">match_candidates_to_jobs</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">equijoin</span>
+<span class="w">  </span><span class="nt">comparison_prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">Compare the following job candidate and job posting:</span>
+
+<span class="w">    </span><span class="no">Candidate Skills: {{ left.skills }}</span>
+<span class="w">    </span><span class="no">Candidate Experience: {{ left.years_experience }}</span>
+
+<span class="w">    </span><span class="no">Job Required Skills: {{ right.required_skills }}</span>
+<span class="w">    </span><span class="no">Job Desired Experience: {{ right.desired_experience }}</span>
+
+<span class="w">    </span><span class="no">Is this candidate a good match for the job? Consider both the overlap in skills and the candidate&#39;s experience level. Respond with &quot;True&quot; if it&#39;s a good match, or &quot;False&quot; if it&#39;s not a suitable match.</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">docetl</span>
+
+<span class="n">docetl</span><span class="o">.</span><span class="n">default_model</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o-mini&quot;</span>
+
+<span class="n">candidates</span> <span class="o">=</span> <span class="n">docetl</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s2">&quot;candidates.json&quot;</span><span class="p">)</span>
+<span class="n">job_postings</span> <span class="o">=</span> <span class="n">docetl</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s2">&quot;job_postings.json&quot;</span><span class="p">)</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="n">candidates</span><span class="o">.</span><span class="n">equijoin</span><span class="p">(</span>
+    <span class="n">job_postings</span><span class="p">,</span>
+    <span class="n">comparison_prompt</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Compare the following job candidate and job posting:</span>
+
+<span class="s2">Candidate Skills: {{ left.skills }}</span>
+<span class="s2">Candidate Experience: {{ left.years_experience }}</span>
+
+<span class="s2">Job Required Skills: {{ right.required_skills }}</span>
+<span class="s2">Job Desired Experience: {{ right.desired_experience }}</span>
+
+<span class="s2">Is this candidate a good match for the job? Consider both the overlap in skills and the candidate&#39;s experience level. Respond with &quot;True&quot; if it&#39;s a good match, or &quot;False&quot; if it&#39;s not a suitable match.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Jinja2 Syntax with left and right</p>
+<p>The <code>comparison_prompt</code> uses Jinja2 syntax; reference the left and right documents via <code>left</code> and <code>right</code> (e.g., <code>left.skills</code>).</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Automatic Blocking</p>
+<p>If you don't specify any blocking configuration (<code>blocking_threshold</code>, <code>blocking_conditions</code>, or <code>limit_comparisons</code>), the Equijoin operation will automatically compute an optimal embedding-based blocking threshold at runtime. It samples pairs from your data, runs LLM comparisons on the sample, and finds a threshold that achieves 95% recall by default. You can adjust this with the <code>blocking_target_recall</code> parameter.</p>
+</div>
+<h2 id="blocking">Blocking</h2>
+<p>Equijoin supports the same blocking techniques as Resolve; see the <a href="../resolve/#blocking">Blocking section in the Resolve documentation</a>.</p>
+<h3 id="adding-blocking-rules">Adding Blocking Rules</h3>
+<p>Equijoin lets you specify <strong>explicit blocking logic</strong> to skip record pairs that are obviously unrelated <em>before</em> any LLM calls are made.</p>
+<h4 id="blocking_keys"><code>blocking_keys</code></h4>
+<p>Provide one or more <strong>field names</strong> for each side of the join. The selected values are concatenated and <strong>embedded</strong>; the cosine similarity of the left vs. right embeddings is then compared against <code>blocking_threshold</code> (defaults to <code>1.0</code>). If the similarity meets or exceeds that threshold, the pair moves on to the <code>comparison_prompt</code>; otherwise it is skipped.<br />
+If you omit <code>blocking_keys</code>, <strong>all key–value pairs of each record are embedded by default</strong>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">YAML</label><label for="__tabbed_2_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">blocking_keys</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">left</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">medicine</span>
+<span class="w">  </span><span class="nt">right</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extracted_medications</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># Pass via the blocking_keys= kwarg on an equijoin call</span>
+<span class="n">blocking_keys</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;medicine&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;right&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;extracted_medications&quot;</span><span class="p">],</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h4 id="blocking_threshold"><code>blocking_threshold</code></h4>
+<p>Optionally set a numeric <code>blocking_threshold</code> (0 – 1) representing the minimum cosine similarity (computed with the selected <code>embedding_model</code>) that the concatenated blocking keys must achieve to be considered a candidate pair. Anything below the threshold is filtered out without invoking the LLM.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">YAML</label><label for="__tabbed_3_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">blocking_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.35</span>
+<span class="nt">embedding_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text-embedding-3-small</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># Pass via kwargs on an equijoin call</span>
+<span class="n">blocking_threshold</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span>
+<span class="n">embedding_model</span><span class="o">=</span><span class="s2">&quot;text-embedding-3-small&quot;</span><span class="p">,</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>A full Equijoin step combining both ideas might look like:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">YAML</label><label for="__tabbed_4_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">join_meds_transcripts</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">equijoin</span>
+<span class="w">  </span><span class="nt">blocking_keys</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">left</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">medicine</span>
+<span class="w">    </span><span class="nt">right</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extracted_medications</span>
+<span class="w">  </span><span class="nt">blocking_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.3535</span>
+<span class="w">  </span><span class="nt">embedding_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text-embedding-3-small</span>
+<span class="w">  </span><span class="nt">comparison_prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">Compare the following medication names:</span>
+
+<span class="w">    </span><span class="no">{{ left.medicine }}</span>
+
+<span class="w">    </span><span class="no">{{ right.extracted_medications }}</span>
+
+<span class="w">    </span><span class="no">Determine if these entries refer to the same medication.</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">frame</span> <span class="o">=</span> <span class="n">meds</span><span class="o">.</span><span class="n">equijoin</span><span class="p">(</span>
+    <span class="n">transcripts</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;join_meds_transcripts&quot;</span><span class="p">,</span>
+    <span class="n">blocking_keys</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;medicine&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;right&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;extracted_medications&quot;</span><span class="p">],</span>
+    <span class="p">},</span>
+    <span class="n">blocking_threshold</span><span class="o">=</span><span class="mf">0.3535</span><span class="p">,</span>
+    <span class="n">embedding_model</span><span class="o">=</span><span class="s2">&quot;text-embedding-3-small&quot;</span><span class="p">,</span>
+    <span class="n">comparison_prompt</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Compare the following medication names:</span>
+
+<span class="s2">{{ left.medicine }}</span>
+
+<span class="s2">{{ right.extracted_medications }}</span>
+
+<span class="s2">Determine if these entries refer to the same medication.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h4 id="auto-generating-rules-experimental">Auto-generating Rules (Experimental)</h4>
+<p><code>docetl build pipeline.yaml</code> can call the <strong>Optimizer</strong> to propose <code>blocking_keys</code> and an appropriate <code>blocking_threshold</code> based on a sample of your data. This feature is experimental; always review the suggested rules to ensure they do not exclude valid matches.</p>
+<h2 id="parameters">Parameters</h2>
+<p>Equijoin shares many parameters with Resolve; see the <a href="../resolve/#required-parameters">Parameters section in the Resolve documentation</a>.</p>
+<h3 id="equijoin-specific-parameters">Equijoin-Specific Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>limits</code></td>
+<td>Maximum matches for each left/right item: <code>{"left": n, "right": m}</code></td>
+<td>No limit</td>
+</tr>
+<tr>
+<td><code>blocking_keys</code></td>
+<td>Keys for embedding blocking: <code>{"left": [...], "right": [...]}</code></td>
+<td>All keys from each dataset</td>
+</tr>
+<tr>
+<td><code>blocking_threshold</code></td>
+<td>Embedding similarity threshold for considering pairs</td>
+<td>Auto-computed if not set</td>
+</tr>
+<tr>
+<td><code>blocking_target_recall</code></td>
+<td>Target recall when auto-computing blocking threshold (0.0 to 1.0)</td>
+<td>0.95</td>
+</tr>
+</tbody>
+</table>
+<p>Key differences from Resolve:</p>
+<ul>
+<li><code>resolution_prompt</code> is not used in Equijoin.</li>
+<li><code>blocking_keys</code> uses a dict with <code>left</code> and <code>right</code> keys instead of a simple list.</li>
+</ul>
+<h3 id="model-cascade-cost-reduction">Model Cascade (cost reduction)</h3>
+<p>Like resolve, equijoin supports a <code>cascade</code> block to run a cheap proxy model on
+candidate pairs and only escalate uncertain comparisons to the oracle.
+Default guarantee is <code>precision</code> (don't over-join). See
+<a href="../../optimization/cascades/">Model Cascades with BARGAIN</a> for full details.</p>
+<h2 id="incorporating-into-a-pipeline">Incorporating Into a Pipeline</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">YAML</label><label for="__tabbed_5_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o-mini</span>
+
+<span class="nt">datasets</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">candidates</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/path/to/candidates.json</span>
+<span class="w">  </span><span class="nt">job_postings</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/path/to/job_postings.json</span>
+
+<span class="nt">operations</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name: match_candidates_to_jobs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">equijoin</span>
+<span class="w">    </span><span class="nt">comparison_prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Compare the following job candidate and job posting:</span>
+
+<span class="w">      </span><span class="no">Candidate Skills: {{ left.skills }}</span>
+<span class="w">      </span><span class="no">Candidate Experience: {{ left.years_experience }}</span>
+
+<span class="w">      </span><span class="no">Job Required Skills: {{ right.required_skills }}</span>
+<span class="w">      </span><span class="no">Job Desired Experience: {{ right.desired_experience }}</span>
+
+<span class="w">      </span><span class="no">Is this candidate a good match for the job? Consider both the overlap in skills and the candidate&#39;s experience level. Respond with &quot;True&quot; if it&#39;s a good match, or &quot;False&quot; if it&#39;s not a suitable match.</span>
+
+<span class="nt">pipeline</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">match_candidates_to_jobs</span>
+<span class="w">      </span><span class="nt">operations</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match_candidates_to_jobs</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">left</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">candidates</span>
+<span class="w">            </span><span class="nt">right</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">job_postings</span>
+
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/path/to/matched_candidates_jobs.json&quot;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">docetl</span>
+
+<span class="n">docetl</span><span class="o">.</span><span class="n">default_model</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o-mini&quot;</span>
+
+<span class="n">candidates</span> <span class="o">=</span> <span class="n">docetl</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s2">&quot;/path/to/candidates.json&quot;</span><span class="p">)</span>
+<span class="n">job_postings</span> <span class="o">=</span> <span class="n">docetl</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s2">&quot;/path/to/job_postings.json&quot;</span><span class="p">)</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="n">candidates</span><span class="o">.</span><span class="n">equijoin</span><span class="p">(</span>
+    <span class="n">job_postings</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;match_candidates_to_jobs&quot;</span><span class="p">,</span>
+    <span class="n">comparison_prompt</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Compare the following job candidate and job posting:</span>
+
+<span class="s2">Candidate Skills: {{ left.skills }}</span>
+<span class="s2">Candidate Experience: {{ left.years_experience }}</span>
+
+<span class="s2">Job Required Skills: {{ right.required_skills }}</span>
+<span class="s2">Job Desired Experience: {{ right.desired_experience }}</span>
+
+<span class="s2">Is this candidate a good match for the job? Consider both the overlap in skills and the candidate&#39;s experience level. Respond with &quot;True&quot; if it&#39;s a good match, or &quot;False&quot; if it&#39;s not a suitable match.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">frame</span><span class="o">.</span><span class="n">write_json</span><span class="p">(</span><span class="s2">&quot;/path/to/matched_candidates_jobs.json&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li><strong>Use the Optimizer</strong>: <code>docetl build pipeline.yaml</code> can generate efficient blocking rules for your Equijoin operation.</li>
+<li><strong>Balance Precision and Recall</strong>: When optimizing, consider the trade-off between catching all potential matches and reducing unnecessary comparisons.</li>
+<li><strong>Mind Resource Constraints</strong>: Use <code>limit_comparisons</code> to cap the total number of comparisons for large datasets.</li>
+</ol>
+<p>For best practices that apply to both Resolve and Equijoin, see the <a href="../resolve/#best-practices">Best Practices section in the Resolve documentation</a>.</p>
+<!-- ## Performance Considerations
+
+Equijoin operations can be computationally intensive, especially for large datasets. It uses multiprocessing for initial blocking and a ThreadPoolExecutor for LLM-based comparisons to improve performance. However, be mindful of the following:
+
+- The number of comparisons grows with the product of the sizes of your datasets.
+- Each comparison involves an LLM call, which can be time-consuming and costly.
+- Using optimizer-generated blocking rules can significantly reduce the number of required comparisons.
+
+Always monitor the operation's progress and consider using sampling or more stringent blocking rules if the number of comparisons becomes too large.
+
+The Equijoin operation is particularly useful for scenarios where traditional exact-match joins are insufficient, such as matching job candidates to positions, aligning customer inquiries with product offerings, or connecting research papers with relevant funding opportunities. -->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../filter/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Filter">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Filter
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../rank/" class="md-footer__link md-footer__link--next" aria-label="Next: Rank">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Rank
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.follow", "navigation.footer", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

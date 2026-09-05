@@ -1,0 +1,2717 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../concepts/schemas/">
+      
+      
+        <link rel="next" href="../resolve/">
+      
+      
+      <link rel="icon" href="../../assets/docetl-favicon-color.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Map - docetl docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CSource+Code+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#map-operation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="docetl docs" class="md-header__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M0 112c0-41.5 31.6-75.6 72-79.6V32h280c53 0 96 43 96 96v176H272c-39.8 0-72 32.2-72 72v60c0 24.3-19.7 44-44 44s-44-19.7-44-44V208H48c-26.5 0-48-21.5-48-48zm236.8 368c7.1-13.1 11.2-28.1 11.2-44v-60c0-13.3 10.7-24 24-24h248c13.3 0 24 10.7 24 24v24c0 44.2-35.8 80-80 80zM80 80c-17.7 0-32 14.3-32 32v48h64v-48c0-17.7-14.3-32-32-32"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            docetl docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Map
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../concepts/pipelines/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../optimization/overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Optimization
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python/examples/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Tutorials & Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../developer-reference/moar-extensibility/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Developer Reference
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../playground/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Tools & Resources
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="docetl docs" class="md-nav__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M0 112c0-41.5 31.6-75.6 72-79.6V32h280c53 0 96 43 96 96v176H272c-39.8 0-72 32.2-72 72v60c0 24.3-19.7 44-44 44s-44-19.7-44-44V208H48c-26.5 0-48-21.5-48-48zm236.8 368c7.1-13.1 11.2-28.1 11.2-44v-60c0-13.3 10.7-24 24-24h248c13.3 0 24 10.7 24 24v24c0 44.2-35.8 80-80 80zM80 80c-17.7 0-32 14.3-32 32v48h64v-48c0-17.7-14.3-32-32-32"/></svg>
+
+    </a>
+    docetl docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../.." class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../pandas/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    User Guide
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            User Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/pipelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pipelines
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets & Frames
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operators & Validation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Output Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    LLM-Powered Operators
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            LLM-Powered Operators
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Map
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Map
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-analyzing-long-form-news-articles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Analyzing Long-Form News Articles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#required-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional Parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optional Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limiting-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limiting execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calibration-for-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calibration for Consistency
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pdf-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      PDF Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-equipped-map-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tool-equipped map agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-truncation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Input Truncation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dropping-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dropping Keys
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synthetic-data-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synthetic Data Generation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resolve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resolve
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reduce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reduce
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Parallel Map
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../filter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../equijoin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Equijoin
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rank
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extract
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../link-resolve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Link Resolve
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Auxiliary Operators
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Auxiliary Operators
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../split/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Split
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gather/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gather
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unnest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Unnest
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sample
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    TopK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Code
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../retrievers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Retrievers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../execution/interactive-progress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Interactive Progress View
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../optimization/overview/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Optimization
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../python/examples/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Tutorials & Examples
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../developer-reference/moar-extensibility/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Developer Reference
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../playground/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Tools & Resources
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-analyzing-long-form-news-articles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Analyzing Long-Form News Articles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#required-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional Parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optional Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limiting-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limiting execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calibration-for-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calibration for Consistency
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pdf-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      PDF Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-equipped-map-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tool-equipped map agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-truncation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Input Truncation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dropping-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dropping Keys
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synthetic-data-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synthetic Data Generation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="map-operation">Map Operation</h1>
+<p>The Map operation applies a transformation to each item in your input data.</p>
+<pre class="mermaid"><code>flowchart LR
+    d1["doc 1"] --&gt; o1["doc 1 + new fields"]
+    d2["doc 2"] --&gt; o2["doc 2 + new fields"]
+    d3["doc 3"] --&gt; o3["doc 3 + new fields"]
+    dn["..."] --&gt; on["..."]</code></pre>
+<h2 id="example-analyzing-long-form-news-articles">Example: Analyzing Long-Form News Articles</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">YAML</label><label for="__tabbed_1_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">analyze_news_article</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">map</span>
+<span class="w">  </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">Analyze the following news article:</span>
+<span class="w">    </span><span class="no">&quot;{{ input.article }}&quot;</span>
+
+<span class="w">    </span><span class="no">Provide the following information:</span>
+<span class="w">    </span><span class="no">1. Main topic (1-3 words)</span>
+<span class="w">    </span><span class="no">2. Summary (2-3 sentences)</span>
+<span class="w">    </span><span class="no">3. Key entities mentioned (list up to 5, with brief descriptions)</span>
+<span class="w">    </span><span class="no">4. Sentiment towards the main topic (positive, negative, or neutral)</span>
+<span class="w">    </span><span class="no">5. Potential biases or slants in reporting (if any)</span>
+<span class="w">    </span><span class="no">6. Relevant categories (e.g., politics, technology, environment; list up to 3)</span>
+<span class="w">    </span><span class="no">7. Credibility score (1-10, where 10 is highly credible)</span>
+
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">main_topic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">      </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">      </span><span class="nt">key_entities</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">list[object]</span>
+<span class="w">      </span><span class="nt">sentiment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">      </span><span class="nt">biases</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">list[string]</span>
+<span class="w">      </span><span class="nt">categories</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">list[string]</span>
+<span class="w">      </span><span class="nt">credibility_score</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
+
+<span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o-mini</span>
+<span class="w">  </span><span class="nt">validate</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">len(output[&quot;main_topic&quot;].split()) &lt;= 3</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">len(output[&quot;key_entities&quot;]) &lt;= 5</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">output[&quot;sentiment&quot;] in [&quot;positive&quot;, &quot;negative&quot;, &quot;neutral&quot;]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">len(output[&quot;categories&quot;]) &lt;= 3</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1 &lt;= output[&quot;credibility_score&quot;] &lt;= 10</span>
+<span class="w">  </span><span class="nt">num_retries_on_validate_failure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">docetl</span>
+
+<span class="n">docetl</span><span class="o">.</span><span class="n">default_model</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o-mini&quot;</span>
+
+<span class="n">frame</span> <span class="o">=</span> <span class="n">docetl</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s2">&quot;articles.json&quot;</span><span class="p">)</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Analyze the following news article:</span>
+<span class="s2">&quot;{{ input.article }}&quot;</span>
+
+<span class="s2">Provide the following information:</span>
+<span class="s2">1. Main topic (1-3 words)</span>
+<span class="s2">2. Summary (2-3 sentences)</span>
+<span class="s2">3. Key entities mentioned (list up to 5, with brief descriptions)</span>
+<span class="s2">4. Sentiment towards the main topic (positive, negative, or neutral)</span>
+<span class="s2">5. Potential biases or slants in reporting (if any)</span>
+<span class="s2">6. Relevant categories (e.g., politics, technology, environment; list up to 3)</span>
+<span class="s2">7. Credibility score (1-10, where 10 is highly credible)&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;main_topic&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;key_entities&quot;</span><span class="p">:</span> <span class="s2">&quot;list[object]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sentiment&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;biases&quot;</span><span class="p">:</span> <span class="s2">&quot;list[string]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;categories&quot;</span><span class="p">:</span> <span class="s2">&quot;list[string]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;credibility_score&quot;</span><span class="p">:</span> <span class="s2">&quot;integer&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+    <span class="n">validate</span><span class="o">=</span><span class="p">[</span>
+        <span class="k">lambda</span> <span class="n">output</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;main_topic&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="k">lambda</span> <span class="n">output</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;key_entities&quot;</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="k">lambda</span> <span class="n">output</span><span class="p">:</span> <span class="n">output</span><span class="p">[</span><span class="s2">&quot;sentiment&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;positive&quot;</span><span class="p">,</span> <span class="s2">&quot;negative&quot;</span><span class="p">,</span> <span class="s2">&quot;neutral&quot;</span><span class="p">],</span>
+        <span class="k">lambda</span> <span class="n">output</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">output</span><span class="p">[</span><span class="s2">&quot;credibility_score&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">num_retries_on_validate_failure</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<details class="example">
+<summary>Sample Input and Output</summary>
+<p>Input:
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;article&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;In a groundbreaking move, the European Union announced yesterday a comprehensive plan to transition all member states to 100% renewable energy by 2050. The ambitious proposal, dubbed &#39;Green Europe 2050&#39;, aims to completely phase out fossil fuels and nuclear power across the continent.</span>
+
+<span class="s2">    European Commission President Ursula von der Leyen stated, &#39;This is not just about fighting climate change; it&#39;s about securing Europe&#39;s energy independence and economic future.&#39; The plan includes massive investments in solar, wind, and hydroelectric power, as well as significant funding for research into new energy storage technologies.</span>
+
+<span class="s2">    However, the proposal has faced criticism from several quarters. Some Eastern European countries, particularly Poland and Hungary, argue that the timeline is too aggressive and could damage their economies, which are still heavily reliant on coal. Industry groups have also expressed concern about the potential for job losses in the fossil fuel sector.</span>
+
+<span class="s2">    Environmental groups have largely praised the initiative, with Greenpeace calling it &#39;a beacon of hope in the fight against climate change.&#39; However, some activists argue that the 2050 target is not soon enough, given the urgency of the climate crisis.</span>
+
+<span class="s2">    The plan also includes provisions for a &#39;just transition,&#39; with billions of euros allocated to retraining workers and supporting regions that will be most affected by the shift away from fossil fuels. Additionally, it proposes stricter energy efficiency standards for buildings and appliances, and significant investments in public transportation and electric vehicle infrastructure.</span>
+
+<span class="s2">    Experts are divided on the feasibility of the plan. Dr. Maria Schmidt, an energy policy researcher at the University of Berlin, says, &#39;While ambitious, this plan is achievable with the right political will and technological advancements.&#39; However, Dr. John Smith from the London School of Economics warns, &#39;The costs and logistical challenges of such a rapid transition should not be underestimated.&#39;</span>
+
+<span class="s2">    As the proposal moves forward for debate in the European Parliament, it&#39;s clear that &#39;Green Europe 2050&#39; will be a defining issue for the continent in the coming years, with far-reaching implications for Europe&#39;s economy, environment, and global leadership in climate action.&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></p>
+<p>Output:
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;main_topic&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EU Renewable Energy&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The European Union has announced a plan called &#39;Green Europe 2050&#39; to transition all member states to 100% renewable energy by 2050. The ambitious proposal aims to phase out fossil fuels and nuclear power, invest in renewable energy sources, and includes provisions for a &#39;just transition&#39; to support affected workers and regions.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;key_entities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;European Union&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Political and economic union of 27 member states&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ursula von der Leyen&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;European Commission President&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Poland&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Eastern European country critical of the plan&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hungary&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Eastern European country critical of the plan&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Greenpeace&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Environmental organization supporting the initiative&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;sentiment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;positive&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;biases&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;Slight bias towards environmental concerns over economic impacts&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;More emphasis on supportive voices than critical ones&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;categories&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;Environment&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;Politics&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;Economy&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;credibility_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></p>
+</details>
+<h2 id="required-parameters">Required Parameters</h2>
+<ul>
+<li><code>name</code>: A unique name for the operation.</li>
+<li><code>type</code>: Must be set to "map".</li>
+</ul>
+<h2 id="optional-parameters">Optional Parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>prompt</code></td>
+<td>The prompt template to use for the transformation. Access input variables with <code>input.keyname</code>.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>batch_prompt</code></td>
+<td>Template for processing multiple documents in a single prompt. Access batch with <code>inputs</code> list.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>max_batch_size</code></td>
+<td>Maximum number of documents to process in a single batch</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>output.schema</code></td>
+<td>Schema definition for the output from the LLM.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>output.n</code></td>
+<td>Number of outputs to generate for each input. (only available for OpenAI models; this is used to generate multiple outputs from a single input and automatically turn into a bigger list)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>The language model to use</td>
+<td>Falls back to <code>default_model</code></td>
+</tr>
+<tr>
+<td><code>optimize</code></td>
+<td>Flag to enable operation optimization</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>recursively_optimize</code></td>
+<td>Flag to enable recursive optimization of operators synthesized as part of rewrite rules</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>sample</code></td>
+<td>Number of samples to use for the operation</td>
+<td>Processes all data</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>Maximum number of outputs to produce before stopping</td>
+<td>Processes all data</td>
+</tr>
+<tr>
+<td><code>agent</code></td>
+<td>Python-only <code>docetl.Agent</code> config for tool-equipped map agents</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>validate</code></td>
+<td>List of Python expressions to validate the output</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>flush_partial_results</code></td>
+<td>Write results of individual batches of map operation to disk for faster inspection</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>num_retries_on_validate_failure</code></td>
+<td>Number of retry attempts on validation failure</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>gleaning</code></td>
+<td>Configuration for advanced validation and LLM-based refinement</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>drop_keys</code></td>
+<td>List of keys to drop from the input before processing</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td>Timeout for each LLM call in seconds</td>
+<td>120</td>
+</tr>
+<tr>
+<td><code>max_retries_per_timeout</code></td>
+<td>Maximum number of retries per timeout</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>litellm_completion_kwargs</code></td>
+<td>Additional parameters to pass to LiteLLM completion calls.</td>
+<td>{}</td>
+</tr>
+<tr>
+<td><code>skip_on_error</code></td>
+<td>If true, skip the operation if the LLM returns an error.</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>bypass_cache</code></td>
+<td>If true, bypass the cache for this operation.</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>pdf_url_key</code></td>
+<td>If specified, the key in the input that contains the URL of the PDF to process.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>calibrate</code></td>
+<td>Improve consistency across documents by using sample data as reference anchors.</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>num_calibration_docs</code></td>
+<td>Number of documents to use sample and generate outputs for, for calibration.</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>retriever</code></td>
+<td>Name of a retriever to use for RAG. See <a href="../../retrievers/">Retrievers</a>.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>save_retriever_output</code></td>
+<td>If true, saves the retrieved context to <code>_&lt;operation_name&gt;_retrieved_context</code> in the output.</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<p>Note: If <code>drop_keys</code> is specified, <code>prompt</code> and <code>output</code> become optional parameters.</p>
+<h3 id="limiting-execution">Limiting execution</h3>
+<p>Set <code>limit</code> when you only need the first <em>N</em> map results or want to cap LLM spend. The operation slices the processed dataset to the first <code>limit</code> entries and also stops scheduling new prompts once that many outputs have been produced, even if a prompt returns multiple records. Filter operations inherit this behavior but redefine the count so the limit only applies to records whose filter predicate evaluates to <code>true</code> (see <a href="../filter/#optional-parameters">Filter</a>).</p>
+<div class="admonition info">
+<p class="admonition-title">Validation and Gleaning</p>
+<p>For more details on validation techniques and implementation, see <a href="../../concepts/operators/#validation">operators</a>.</p>
+</div>
+<h3 id="batch-processing">Batch Processing</h3>
+<p>The <code>batch_prompt</code> parameter processes multiple documents in a single prompt. This reduces LLM call counts for simple tasks and short documents, but larger batch sizes (even &gt; 5) can lead to more incorrect results.</p>
+<details class="example">
+<summary>Batch Processing Example</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">YAML</label><label for="__tabbed_2_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">classify_documents</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">map</span>
+<span class="w">  </span><span class="nt">max_batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w">  </span><span class="c1"># Process up to 5 documents in a single LLM call</span>
+<span class="w">  </span><span class="nt">batch_prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">Classify each of the following documents into categories (technology, business, or science):</span>
+
+<span class="w">    </span><span class="no">{% for doc in inputs %}</span>
+<span class="w">    </span><span class="no">Document {{loop.index}}:</span>
+<span class="w">    </span><span class="no">{{doc.text}}</span>
+<span class="w">    </span><span class="no">{% endfor %}</span>
+
+<span class="w">    </span><span class="no">Provide a classification for each document.</span>
+<span class="w">  </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">Classify the following document:</span>
+<span class="w">    </span><span class="no">{{input.text}}</span>
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;classify_documents&quot;</span><span class="p">,</span>
+    <span class="n">max_batch_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>  <span class="c1"># Process up to 5 documents in a single LLM call</span>
+    <span class="n">batch_prompt</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Classify each of the following documents into categories (technology, business, or science):</span>
+
+<span class="s2">{</span><span class="si">% f</span><span class="s2">or doc in inputs %}</span>
+<span class="s2">Document {{loop.index}}:</span>
+<span class="s2">{{doc.text}}</span>
+<span class="s2">{</span><span class="si">% e</span><span class="s2">ndfor %}</span>
+
+<span class="s2">Provide a classification for each document.&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Classify the following document:</span>
+<span class="s2">{{input.text}}&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+<p>When using batch processing:</p>
+<ol>
+<li>The <code>batch_prompt</code> template receives an <code>inputs</code> list containing the batch of documents</li>
+<li>Use <code>max_batch_size</code> to control how many documents are processed in each batch</li>
+<li>You must also provide a <code>prompt</code> parameter that will be used in case the batch prompt's response cannot be parsed into the output schema</li>
+<li>Gleaning and validation are applied to each document in the batch individually, after the batch has been processed by the LLM</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Batch Size Considerations</p>
+<p>Choose your <code>max_batch_size</code> carefully:</p>
+<ul>
+<li>Larger batches may be more efficient but risk hitting token limits</li>
+<li>Start with smaller batches (3-5 documents) and adjust based on your needs</li>
+<li>Consider document length when setting batch size</li>
+</ul>
+</div>
+<h3 id="calibration-for-consistency">Calibration for Consistency</h3>
+<p>With <code>calibrate: true</code>, the operation samples a subset of documents, processes them with the original prompt, and uses those results to generate reference anchors that are appended to the prompt for all documents. Use it for:</p>
+<ul>
+<li>Classification tasks where documents are evaluated relative to each other</li>
+<li>Rating/scoring operations that need consistent scales</li>
+<li>Subjective judgments that benefit from concrete examples</li>
+<li>Datasets that vary widely, when consistency matters more than individual accuracy (works best with 20+ documents)</li>
+</ul>
+<details class="example">
+<summary>Document Priority Classification with Calibration</summary>
+<p>Imagine you're processing a large collection of customer support tickets and want to classify them by priority. Without calibration, the LLM might be inconsistent - a "medium" priority ticket early in processing might be classified as "high" later when the LLM sees more severe issues.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">YAML</label><label for="__tabbed_3_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">classify_ticket_priority</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">map</span>
+<span class="w">  </span><span class="nt">calibrate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">  </span><span class="c1"># Enable calibration</span>
+<span class="w">  </span><span class="nt">num_calibration_docs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span><span class="w">  </span><span class="c1"># Use 15 tickets for calibration</span>
+<span class="w">  </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">Classify the following customer support ticket by priority level:</span>
+
+<span class="w">    </span><span class="no">Subject: {{ input.subject }}</span>
+<span class="w">    </span><span class="no">Description: {{ input.description }}</span>
+<span class="w">    </span><span class="no">Customer Tier: {{ input.customer_tier }}</span>
+
+<span class="w">    </span><span class="no">Classify as: low, medium, high, or critical</span>
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">priority</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">      </span><span class="nt">reasoning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o-mini</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;classify_ticket_priority&quot;</span><span class="p">,</span>
+    <span class="n">calibrate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Enable calibration</span>
+    <span class="n">num_calibration_docs</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>  <span class="c1"># Use 15 tickets for calibration</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Classify the following customer support ticket by priority level:</span>
+
+<span class="s2">Subject: {{ input.subject }}</span>
+<span class="s2">Description: {{ input.description }}</span>
+<span class="s2">Customer Tier: {{ input.customer_tier }}</span>
+
+<span class="s2">Classify as: low, medium, high, or critical&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;priority&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="s2">&quot;reasoning&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">}},</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p><strong>How calibration works:</strong></p>
+<ol>
+<li><strong>Sample</strong>: Randomly selects 15 tickets from your dataset (using seed=42 for reproducibility)</li>
+<li><strong>Process</strong>: Runs the original prompt on these 15 tickets</li>
+<li><strong>Analyze</strong>: An LLM analyzes the sample results and generates reference anchors</li>
+<li><strong>Augment</strong>: Appends these reference anchors to your original prompt</li>
+<li><strong>Execute</strong>: Processes all tickets with the augmented prompt</li>
+</ol>
+<p><strong>Example calibration output:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Original prompt gets augmented with something like:</span>
+<span class="c1"># </span>
+<span class="c1"># For reference, consider &#39;Server completely down for 500+ users&#39; → critical as your baseline for critical issues.</span>
+<span class="c1"># Documents similar to &#39;Login button not working for one user&#39; → low priority.</span>
+<span class="c1"># For reference, consider &#39;Payment processing delays affecting checkout&#39; → high as your standard for high priority issues.</span>
+</code></pre></div></p>
+</details>
+<div class="admonition note">
+<p class="admonition-title">Calibration Considerations</p>
+<ul>
+<li>Adds a small overhead cost (processes calibration samples + calibration analysis)</li>
+<li>Uses a fixed seed (42) for reproducible sampling</li>
+<li>The calibration LLM call uses temperature=0.0 for consistent results</li>
+</ul>
+</div>
+<h2 id="advanced-features">Advanced Features</h2>
+<h3 id="pdf-processing">PDF Processing</h3>
+<p>The Map operation can directly process PDFs using Claude or Gemini models. To use this feature:</p>
+<ol>
+<li>Your input dataset must contain a key representing the URL of the PDF to process</li>
+<li>Specify this field name using the <code>pdf_url_key</code> parameter in your map operation</li>
+<li>The URLs must be publicly accessible or accessible to your environment</li>
+</ol>
+<details class="example">
+<summary>PDF Processing Example</summary>
+<p>Here's an example of processing a dataset of papers, where each paper is represented by a URL.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">YAML</label><label for="__tabbed_4_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">datasets</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">papers</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;papers/urls.json&quot;</span><span class="w">  </span><span class="c1"># Contains documents with PDF URLs</span>
+
+<span class="nt">default_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini/gemini-2.0-flash</span><span class="w">  </span><span class="c1"># or claude models</span>
+<span class="nt">operations</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extract_paper_info</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">map</span>
+<span class="w">    </span><span class="nt">pdf_url_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">url</span><span class="w">  </span><span class="c1"># Tells DocETL which field contains the PDF URL</span>
+<span class="w">    </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Summarize the paper.</span>
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">paper_info</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+
+<span class="nt">pipeline</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extract_paper_info</span>
+<span class="w">      </span><span class="nt">input</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">papers</span>
+<span class="w">      </span><span class="nt">operations</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extract_paper_info</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">docetl</span>
+
+<span class="n">docetl</span><span class="o">.</span><span class="n">default_model</span> <span class="o">=</span> <span class="s2">&quot;gemini/gemini-2.0-flash&quot;</span>  <span class="c1"># or claude models</span>
+
+<span class="n">frame</span> <span class="o">=</span> <span class="n">docetl</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s2">&quot;papers/urls.json&quot;</span><span class="p">)</span>  <span class="c1"># Contains documents with PDF URLs</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;extract_paper_info&quot;</span><span class="p">,</span>
+    <span class="n">pdf_url_key</span><span class="o">=</span><span class="s2">&quot;url&quot;</span><span class="p">,</span>  <span class="c1"># Tells DocETL which field contains the PDF URL</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Summarize the paper.&quot;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;paper_info&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Your input data (<code>papers/urls.json</code>) should contain documents with PDF URLs:
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card.pdf&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="err">...</span>
+<span class="p">]</span>
+</code></pre></div></p>
+<p>DocETL will:
+1. Download each PDF
+2. Extract the text content
+3. Pass the content to the LLM with your prompt
+4. Return the processed results:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card.pdf&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;paper_info&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This paper introduces Claude 3.5 Haiku and the upgraded Claude 3.5 Sonnet...&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">...</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
+<h3 id="tool-equipped-map-agents">Tool-equipped map agents</h3>
+<p>For Python pipelines, pass <code>agent=docetl.Agent(...)</code> when a map operation should
+call tools before returning its structured output. The operation's <code>model=</code>
+still controls model selection. Function tools wrapped with <code>@docetl.tool</code> work
+through the OpenAI Agents SDK tool loop; OpenAI-hosted tools such as web search
+or hosted shell require an OpenAI-compatible hosted-tool path.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">docetl</span>
+
+<span class="nd">@docetl</span><span class="o">.</span><span class="n">tool</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">lookup_sla</span><span class="p">(</span><span class="n">customer_tier</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return support entitlements for a customer tier.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;enterprise&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;response_hours&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;escalation&quot;</span><span class="p">:</span> <span class="s2">&quot;page-on-call&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;growth&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;response_hours&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;escalation&quot;</span><span class="p">:</span> <span class="s2">&quot;queue-lead&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;free&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;response_hours&quot;</span><span class="p">:</span> <span class="mi">48</span><span class="p">,</span> <span class="s2">&quot;escalation&quot;</span><span class="p">:</span> <span class="s2">&quot;self-serve&quot;</span><span class="p">},</span>
+    <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">customer_tier</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="p">{</span><span class="s2">&quot;response_hours&quot;</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span> <span class="s2">&quot;escalation&quot;</span><span class="p">:</span> <span class="s2">&quot;standard&quot;</span><span class="p">})</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">docetl</span><span class="o">.</span><span class="n">Agent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">lookup_sla</span><span class="p">],</span> <span class="n">max_turns</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_tool_calls</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="p">(</span>
+        <span class="s2">&quot;Use lookup_sla to classify this ticket and explain the next action: &quot;</span>
+        <span class="s2">&quot;{{ input.ticket }} / tier={{ input.customer_tier }}&quot;</span>
+    <span class="p">),</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;priority&quot;</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span><span class="p">,</span> <span class="s2">&quot;next_action&quot;</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span><span class="p">}},</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;azure/gpt-4o-mini&quot;</span><span class="p">,</span>
+    <span class="n">agent</span><span class="o">=</span><span class="n">agent</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Plain Python tools execute as trusted Python in your process. OpenAI Agents SDK
+tools, including sandbox/native tools where supported by the SDK backend, can be
+passed through in Python agent configs. Agent configs are Python-only and cannot
+be exported to YAML.</p>
+<p>See the <a href="../../api-reference/python/#tool-equipped-mapfilterreduce">Python API reference</a>
+for the full API and the
+<a href="../../examples/tool-equipped-research-agents/">Tool-Equipped Agents tutorial</a> for
+a map/reduce example with web search, hosted shell, and specialist subagents.</p>
+<h3 id="input-truncation">Input Truncation</h3>
+<p>If the input doesn't fit within the token limit, DocETL automatically truncates tokens from the middle of the input data, preserving the beginning and end which often contain more important context. A warning is displayed when truncation occurs.</p>
+<h3 id="batching">Batching</h3>
+<p>To limit how many documents are processed concurrently, set <code>max_batch_size</code>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">YAML</label><label for="__tabbed_5_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extract_summaries</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">map</span>
+<span class="w">  </span><span class="nt">max_batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">  </span><span class="nt">clustering_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">random</span>
+<span class="w">  </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">Summarize this text: &quot;{{ input.text }}&quot;</span>
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;extract_summaries&quot;</span><span class="p">,</span>
+    <span class="n">max_batch_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">clustering_method</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">,</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;Summarize this text: &quot;{{ input.text }}&quot;&#39;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>In the above config, there will be no more than 5 API calls to the LLM at a time (i.e., 5 documents processed at a time, one per API call).</p>
+<h3 id="dropping-keys">Dropping Keys</h3>
+<p>A map operation with only <code>drop_keys</code> acts as a no-op that removes the listed key-value pairs (no LLM calls).</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">YAML</label><label for="__tabbed_6_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drop_keys_example</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">map</span>
+<span class="w">  </span><span class="nt">drop_keys</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;keyname1&quot;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;keyname2&quot;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;drop_keys_example&quot;</span><span class="p">,</span>
+    <span class="n">drop_keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;keyname1&quot;</span><span class="p">,</span> <span class="s2">&quot;keyname2&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li><strong>Optimize for Scale</strong>: For large datasets, use <code>sample</code> to test your operation before running on the full dataset.</li>
+<li><strong>Use Tools</strong>: Tools can run any Python code, including calling other APIs, for calculations the LLM might get wrong.</li>
+</ol>
+<h3 id="synthetic-data-generation">Synthetic Data Generation</h3>
+<p>Set <code>output.n</code> greater than 1 to generate multiple outputs per input, returned as separate items. This multiplies your dataset size by <code>n</code>.</p>
+<details class="example">
+<summary>Synthetic Email Generation Example</summary>
+<p>Imagine you have a dataset of prospects and want to generate multiple email templates for each person. Here's how to generate 10 different email templates per prospect:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">YAML</label><label for="__tabbed_7_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">datasets</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">prospects</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;prospects.json&quot;</span><span class="w">  </span><span class="c1"># Contains names, companies, roles, etc.</span>
+
+<span class="nt">operations</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">generate_email_templates</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">map</span>
+<span class="w">    </span><span class="nt">bypass_cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">optimize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">n</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">  </span><span class="c1"># Generate 10 unique emails per prospect</span>
+<span class="w">      </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">subject</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;str&quot;</span>
+<span class="w">        </span><span class="nt">body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;str&quot;</span>
+<span class="w">        </span><span class="nt">call_to_action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;str&quot;</span>
+<span class="w">    </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Create a personalized cold outreach email for the following prospect:</span>
+
+<span class="w">      </span><span class="no">Name: {{ input.name }}</span>
+<span class="w">      </span><span class="no">Company: {{ input.company }}</span>
+<span class="w">      </span><span class="no">Role: {{ input.role }}</span>
+<span class="w">      </span><span class="no">Industry: {{ input.industry }}</span>
+
+<span class="w">      </span><span class="no">The email should:</span>
+<span class="w">      </span><span class="no">- Have a compelling subject line</span>
+<span class="w">      </span><span class="no">- Be brief (3-5 sentences)</span>
+<span class="w">      </span><span class="no">- Mention a specific pain point for their industry</span>
+<span class="w">      </span><span class="no">- Include a clear call to action</span>
+<span class="w">      </span><span class="no">- Sound natural and conversational, not sales-y</span>
+
+<span class="w">      </span><span class="no">Your response should be formatted as:</span>
+<span class="w">      </span><span class="no">Subject: [Your subject line]</span>
+
+<span class="w">      </span><span class="no">[Your email body]</span>
+
+<span class="w">      </span><span class="no">Call to action: [Your specific call to action]</span>
+
+<span class="nt">pipeline</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email_generation</span>
+<span class="w">      </span><span class="nt">input</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prospects</span>
+<span class="w">      </span><span class="nt">operations</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">generate_email_templates</span>
+
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;email_templates.json&quot;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">docetl</span>
+
+<span class="n">frame</span> <span class="o">=</span> <span class="n">docetl</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s2">&quot;prospects.json&quot;</span><span class="p">)</span>  <span class="c1"># Contains names, companies, roles, etc.</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;generate_email_templates&quot;</span><span class="p">,</span>
+    <span class="n">bypass_cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">optimize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># Generate 10 unique emails per prospect</span>
+        <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;subject&quot;</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;call_to_action&quot;</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Create a personalized cold outreach email for the following prospect:</span>
+
+<span class="s2">Name: {{ input.name }}</span>
+<span class="s2">Company: {{ input.company }}</span>
+<span class="s2">Role: {{ input.role }}</span>
+<span class="s2">Industry: {{ input.industry }}</span>
+
+<span class="s2">The email should:</span>
+<span class="s2">- Have a compelling subject line</span>
+<span class="s2">- Be brief (3-5 sentences)</span>
+<span class="s2">- Mention a specific pain point for their industry</span>
+<span class="s2">- Include a clear call to action</span>
+<span class="s2">- Sound natural and conversational, not sales-y</span>
+
+<span class="s2">Your response should be formatted as:</span>
+<span class="s2">Subject: [Your subject line]</span>
+
+<span class="s2">[Your email body]</span>
+
+<span class="s2">Call to action: [Your specific call to action]&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">frame</span><span class="o">.</span><span class="n">write_json</span><span class="p">(</span><span class="s2">&quot;email_templates.json&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>With this configuration, if your prospects.json file has 50 prospects, the output will contain 500 email templates (50 prospects × 10 emails each).</p>
+</details>
+<div class="admonition note">
+<p class="admonition-title">Important Considerations</p>
+<ul>
+<li>The <code>output.n</code> parameter is only available for OpenAI models</li>
+<li>Higher values of <code>n</code> will increase the cost of your operation proportionally</li>
+<li>For optimal results, keep your prompt focused and clear about generating diverse outputs</li>
+<li>When using pandas, the <code>n</code> parameter can be passed directly to the <code>map</code> method</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../concepts/schemas/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Output Schemas">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Output Schemas
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../resolve/" class="md-footer__link md-footer__link--next" aria-label="Next: Resolve">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Resolve
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.follow", "navigation.footer", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

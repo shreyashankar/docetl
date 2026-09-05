@@ -1,0 +1,1774 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../plan-rewrites/">
+      
+      
+        <link rel="next" href="../moar/">
+      
+      
+      <link rel="icon" href="../../assets/docetl-favicon-color.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Model Cascades (BARGAIN) - docetl docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CSource+Code+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#model-cascades-with-bargain" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="docetl docs" class="md-header__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M0 112c0-41.5 31.6-75.6 72-79.6V32h280c53 0 96 43 96 96v176H272c-39.8 0-72 32.2-72 72v60c0 24.3-19.7 44-44 44s-44-19.7-44-44V208H48c-26.5 0-48-21.5-48-48zm236.8 368c7.1-13.1 11.2-28.1 11.2-44v-60c0-13.3 10.7-24 24-24h248c13.3 0 24 10.7 24 24v24c0 44.2-35.8 80-80 80zM80 80c-17.7 0-32 14.3-32 32v48h64v-48c0-17.7-14.3-32-32-32"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            docetl docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Model Cascades (BARGAIN)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../concepts/pipelines/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Optimization
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python/examples/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Tutorials & Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../developer-reference/moar-extensibility/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Developer Reference
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../playground/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Tools & Resources
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="docetl docs" class="md-nav__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M0 112c0-41.5 31.6-75.6 72-79.6V32h280c53 0 96 43 96 96v176H272c-39.8 0-72 32.2-72 72v60c0 24.3-19.7 44-44 44s-44-19.7-44-44V208H48c-26.5 0-48-21.5-48-48zm236.8 368c7.1-13.1 11.2-28.1 11.2-44v-60c0-13.3 10.7-24 24-24h248c13.3 0 24 10.7 24 24v24c0 44.2-35.8 80-80 80zM80 80c-17.7 0-32 14.3-32 32v48h64v-48c0-17.7-14.3-32-32-32"/></svg>
+
+    </a>
+    docetl docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../.." class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../concepts/pipelines/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    User Guide
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Optimization
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Optimization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan-rewrites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plan Rewrites
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Model Cascades (BARGAIN)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Model Cascades (BARGAIN)
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enabling-a-cascade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enabling a cascade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embedding-models-as-the-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding models as the proxy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guarantees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guarantees
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Guarantees">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guaranteeing-both-at-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guaranteeing both at once
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resolve-equijoin" class="md-nav__link">
+    <span class="md-ellipsis">
+      resolve / equijoin
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-the-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reading the output
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    MOAR Optimizer
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            MOAR Optimizer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../moar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../moar/getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../moar/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../moar/evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Evaluation Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../moar/results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Understanding Results
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../moar/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../moar/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../python/examples/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Tutorials & Examples
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../developer-reference/moar-extensibility/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Developer Reference
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../playground/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Tools & Resources
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enabling-a-cascade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enabling a cascade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embedding-models-as-the-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding models as the proxy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guarantees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guarantees
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Guarantees">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guaranteeing-both-at-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guaranteeing both at once
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resolve-equijoin" class="md-nav__link">
+    <span class="md-ellipsis">
+      resolve / equijoin
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-the-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reading the output
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="model-cascades-with-bargain">Model Cascades with BARGAIN</h1>
+<p>Three DocETL operators issue an LLM call whose output is a single <strong>binary</strong>
+value: <code>filter</code> (keep/drop), and <code>resolve</code> / <code>equijoin</code> (match/no-match on
+candidate pairs). For these, a cheap "proxy" model is usually right, and only
+the hard cases need the expensive "oracle" (the operator's existing <code>model</code> or
+<code>comparison_model</code>).</p>
+<p>A <strong>model cascade</strong> runs the proxy on everything, learns a confidence
+threshold from a small oracle-labeled sample, trusts the proxy above the
+threshold, and escalates the rest — while preserving a <strong>statistical
+guarantee</strong> that holds with probability <code>1 - delta</code>.</p>
+<pre class="mermaid"><code>flowchart LR
+    A[All items] --&gt; B["Proxy scores&lt;br/&gt;every item"]
+    B --&gt; C["BARGAIN learns a&lt;br/&gt;confidence threshold from&lt;br/&gt;≤ label_budget oracle labels"]
+    C --&gt;|"confident"| D["Proxy's answer"]
+    C --&gt;|"uncertain"| E["Oracle's answer"]
+    D --&gt; F["Output:&lt;br/&gt;guarantee ≥ target&lt;br/&gt;w.p. 1 − delta"]
+    E --&gt; F</code></pre>
+<p>The statistical core is <strong>BARGAIN</strong>: Sepanta Zeighami, Shreya Shankar, Aditya
+Parameswaran. <a href="https://arxiv.org/abs/2509.02896">"Cut Costs, Not Accuracy: LLM-Powered Data Processing with
+Guarantees."</a> <em>ACM SIGMOD 2026.</em>
+(<a href="https://github.com/ucbepic/BARGAIN">code</a>) DocETL depends on the BARGAIN
+library for threshold learning and guarantee certification, and wraps it with
+thin adapters for each operator.</p>
+<h2 id="enabling-a-cascade">Enabling a cascade</h2>
+<p>Add an opt-in <code>cascade:</code> block to a supported operator:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">YAML</label><label for="__tabbed_1_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">is_relevant</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">filter</span>
+<span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o</span><span class="w">                  </span><span class="c1"># oracle (unchanged)</span>
+<span class="w">  </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Is</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">document</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">climate</span><span class="nv"> </span><span class="s">policy?</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">input.text</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> schema</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> keep</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bool&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">  </span><span class="nt">cascade</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">proxy_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o-mini</span><span class="w">     </span><span class="c1"># the cheap model</span>
+<span class="w">    </span><span class="nt">guarantee</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">recall</span><span class="w">            </span><span class="c1"># default for filter</span>
+<span class="w">    </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.95</span><span class="w">                 </span><span class="c1"># keep &gt;= 95% of truly-relevant docs</span>
+<span class="w">    </span><span class="nt">delta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span><span class="w">                  </span><span class="c1"># guarantee holds w.p. 1 - delta</span>
+<span class="w">    </span><span class="nt">label_budget</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span><span class="w">            </span><span class="c1"># max oracle calls to learn the threshold</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">pipeline</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;is_relevant&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Is this document about climate policy? {{ input.text }}&quot;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;keep&quot;</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">}},</span>
+    <span class="n">cascade</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;proxy_model&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;guarantee&quot;</span><span class="p">:</span> <span class="s2">&quot;recall&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
+        <span class="s2">&quot;delta&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
+        <span class="s2">&quot;label_budget&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Everything else about the pipeline is unchanged — run it with <code>docetl run
+pipeline.yaml</code> or <code>.collect()</code> as usual.</p>
+<h2 id="parameters">Parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>proxy_model</code></td>
+<td>string</td>
+<td>The cheap model for the proxy pass (required). A chat model or an embedding model — see below</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>guarantee</code></td>
+<td>string</td>
+<td><code>accuracy</code>, <code>precision</code>, or <code>recall</code> (see <a href="#guarantees">Guarantees</a>)</td>
+<td>operator-specific</td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td>float</td>
+<td>Target value for the guarantee metric, strictly inside <code>(0, 1)</code> (required)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>delta</code></td>
+<td>float</td>
+<td>Failure probability; the guarantee holds with probability <code>1 - delta</code></td>
+<td><code>0.05</code></td>
+</tr>
+<tr>
+<td><code>label_budget</code></td>
+<td>int</td>
+<td>Maximum oracle calls spent learning the confidence threshold (<code>precision</code> / <code>recall</code> only; <code>precision+recall</code> adapts its oracle usage and ignores this)</td>
+<td><code>400</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>target</code> must be strictly between 0 and 1; <code>target: 1.0</code> is rejected at
+validation. A target of exactly 100% cannot be certified from a finite oracle
+sample — use <code>0.99</code> instead.</p>
+<h3 id="embedding-models-as-the-proxy">Embedding models as the proxy</h3>
+<p><code>proxy_model</code> can be an embedding model (e.g. <code>text-embedding-3-small</code>),
+detected from litellm's model registry. The cascade then:</p>
+<ul>
+<li>embeds every item (in batches),</li>
+<li>oracle-labels a training sample (half of <code>label_budget</code>, at most 200) and
+  fits a logistic regression on those embeddings,</li>
+<li>uses the regression's probabilities as the proxy scores,</li>
+<li>runs the threshold search with the remaining budget, on rows disjoint from
+  the training sample.</li>
+</ul>
+<p>Training rows keep their oracle answers in the output. If all training labels
+come back the same class, the regression cannot be fit and every item goes to
+the oracle.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">YAML</label><label for="__tabbed_2_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">is_relevant</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">filter</span>
+<span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o</span>
+<span class="w">  </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Is</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">review</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">shipping</span><span class="nv"> </span><span class="s">problems?</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">input.text</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> schema</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> keep</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bool&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">  </span><span class="nt">cascade</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">proxy_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text-embedding-3-small</span>
+<span class="w">    </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.95</span>
+<span class="w">    </span><span class="nt">label_budget</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200</span><span class="w">   </span><span class="c1"># half is used to fit the regression</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">pipeline</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;is_relevant&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Is this review about shipping problems? {{ input.text }}&quot;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;keep&quot;</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">}},</span>
+    <span class="n">cascade</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;proxy_model&quot;</span><span class="p">:</span> <span class="s2">&quot;text-embedding-3-small&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
+        <span class="s2">&quot;label_budget&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>  <span class="c1"># half is used to fit the regression</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="guarantees">Guarantees</h2>
+<table>
+<thead>
+<tr>
+<th>Guarantee</th>
+<th>What it means</th>
+<th>Best for</th>
+<th>BARGAIN procedure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accuracy</code></td>
+<td>Output matches the oracle on ≥ <code>target</code> fraction of items</td>
+<td>Any binary operator</td>
+<td>BARGAIN_A</td>
+</tr>
+<tr>
+<td><code>precision</code></td>
+<td>Of items returned positive, ≥ <code>target</code> are truly positive</td>
+<td><code>resolve</code> / <code>equijoin</code> (don't over-merge)</td>
+<td>BARGAIN_P</td>
+</tr>
+<tr>
+<td><code>recall</code></td>
+<td>Of truly-positive items, ≥ <code>target</code> are returned</td>
+<td><code>filter</code> (don't drop relevant docs)</td>
+<td>BARGAIN_R</td>
+</tr>
+<tr>
+<td><code>precision+recall</code></td>
+<td>Both precision and recall ≥ <code>target</code>, jointly</td>
+<td>When neither error direction is acceptable</td>
+<td>BARGAIN_PR</td>
+</tr>
+</tbody>
+</table>
+<h3 id="guaranteeing-both-at-once">Guaranteeing both at once</h3>
+<p><code>guarantee: precision+recall</code> enforces both metrics at <code>target</code>
+simultaneously. It learns two thresholds — items above the precision
+threshold take the proxy's positive answer, items below the recall threshold
+take the proxy's negative answer, and the oracle labels the band in between.
+Oracle usage adapts to how well the proxy separates the data (<code>label_budget</code>
+is ignored).</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">YAML</label><label for="__tabbed_3_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">is_relevant</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">filter</span>
+<span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o</span>
+<span class="w">  </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Is</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">document</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">climate</span><span class="nv"> </span><span class="s">policy?</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">input.text</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="w">  </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> schema</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> keep</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bool&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">  </span><span class="nt">cascade</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">proxy_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o-mini</span>
+<span class="w">    </span><span class="nt">guarantee</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">precision+recall</span>
+<span class="w">    </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.9</span><span class="w">     </span><span class="c1"># precision &gt;= 0.9 AND recall &gt;= 0.9, w.p. 1 - delta</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">pipeline</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;is_relevant&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Is this document about climate policy? {{ input.text }}&quot;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;keep&quot;</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">}},</span>
+    <span class="n">cascade</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;proxy_model&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;guarantee&quot;</span><span class="p">:</span> <span class="s2">&quot;precision+recall&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>  <span class="c1"># precision &gt;= 0.9 AND recall &gt;= 0.9, w.p. 1 - delta</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>When <code>guarantee</code> is omitted, the operator's natural default applies:
+<code>filter</code> → <code>recall</code>, <code>resolve</code> / <code>equijoin</code> → <code>precision</code>. Quality is always
+measured against the oracle's answers, treated as ground truth.</p>
+<p>If the oracle sample is too small to certify the <code>target</code> at the chosen
+<code>delta</code>, the engine errs toward the guarantee — escalating or keeping more
+items — rather than silently violating it. Give <code>label_budget</code> enough room
+for a meaningful sample on small datasets.</p>
+<h3 id="resolve-equijoin">resolve / equijoin</h3>
+<p>For pair operators, the cascade runs over the candidate pairs produced by
+<strong>existing blocking</strong>: proxy on all pairs, oracle on a calibrated subset.
+Matched pairs feed the existing clustering (resolve) / join (equijoin)
+unchanged.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">YAML</label><label for="__tabbed_4_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dedupe</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resolve</span>
+<span class="w">  </span><span class="nt">comparison_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o</span>
+<span class="w">  </span><span class="nt">comparison_prompt</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Are</span><span class="nv"> </span><span class="s">these</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">same</span><span class="nv"> </span><span class="s">entity?</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">input1.name</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">input2.name</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="w">  </span><span class="nt">blocking_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.8</span>
+<span class="w">  </span><span class="nt">cascade</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> proxy_model</span><span class="p">:</span><span class="w"> </span><span class="nv">gpt-4o-mini</span><span class="p p-Indicator">,</span><span class="nt"> target</span><span class="p">:</span><span class="w"> </span><span class="nv">0.9</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w">    </span><span class="c1"># guarantee=precision</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">pipeline</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;dedupe&quot;</span><span class="p">,</span>
+    <span class="n">comparison_model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="n">comparison_prompt</span><span class="o">=</span><span class="s2">&quot;Are these the same entity? {{ input1.name }} / {{ input2.name }}&quot;</span><span class="p">,</span>
+    <span class="n">blocking_threshold</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">cascade</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;proxy_model&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">},</span>  <span class="c1"># guarantee=precision</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="reading-the-output">Reading the output</h2>
+<p>While the operator runs, the cascade logs what it did:</p>
+<div class="highlight"><pre><span></span><code>Cascade filter &#39;is_relevant&#39;
+           proxy     gpt-4o-mini · 1000 scored · $0.0200
+           oracle    gpt-4o · 137 sampled for calibration (budget 300) · $0.4000
+           guarantee recall ≥ 95%  δ=0.05
+           threshold 0.847 proxy confidence
+           result    863 proxy-accepted + 137 calibration samples → 1000 items
+           total cost $0.4200
+</code></pre></div>
+<p>All 1000 items were proxy-scored; 137 oracle calls learned the threshold, and
+the remaining 863 were decided by the proxy alone — versus 1000 oracle calls
+without the cascade. The same numbers are available programmatically as
+<code>op.cascade_stats</code> (<code>n_items</code>, <code>proxy_calls</code>, <code>oracle_calls</code>,
+<code>escalation_rate</code>, <code>guarantee</code>, <code>target</code>, <code>delta</code>).</p>
+<p>Results are cached, keyed on the operation's config and a signature of the
+input items: an identical re-run replays the recorded result without new
+model calls. Set <code>bypass_cache: true</code> to force recomputation.</p>
+<h2 id="limitations">Limitations</h2>
+<ul>
+<li><strong>Binary predictions only</strong> — <code>filter</code>, <code>resolve</code>, <code>equijoin</code>. Multiclass
+  (<code>map</code> with enum) is not supported.</li>
+<li>Chat-model proxies score via <strong>single-token logprobs</strong>, so the provider
+  must return logprobs (a clear error is raised otherwise). Embedding-model
+  proxies don't have this requirement.</li>
+<li>Retrieval context and PDF inputs are not wired into the cascade path;
+  combining <code>cascade</code> with a <code>retriever</code> or <code>pdf_url_key</code> is <strong>rejected at
+  config validation</strong> rather than silently dropping context.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../plan-rewrites/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Plan Rewrites">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Plan Rewrites
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../moar/" class="md-footer__link md-footer__link--next" aria-label="Next: Introduction">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Introduction
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.follow", "navigation.footer", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

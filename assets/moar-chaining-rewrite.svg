@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="570" viewBox="0 0 940 570" role="img" aria-labelledby="title desc">
+  <title id="title">A map operation before and after a chaining rewrite</title>
+  <desc id="desc">Before the rewrite, one map identifies new diagnoses and associates treatments in a single model call. After the rewrite, one map identifies new conditions and a second map extracts treatments using the summary and the new conditions.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+    <style>
+      .panel { fill: #f8fafc; stroke: #e2e8f0; stroke-width: 2; }
+      .eyebrow { font: 700 12px Inter, Arial, sans-serif; fill: #64748b; letter-spacing: 1.2px; }
+      .heading { font: 650 21px Inter, Arial, sans-serif; fill: #0f172a; }
+      .node-text { font: 600 14px Inter, Arial, sans-serif; fill: #0f172a; text-anchor: middle; }
+      .detail { font: 400 13px Inter, Arial, sans-serif; fill: #475569; text-anchor: middle; }
+      .step { font: 700 10px Inter, Arial, sans-serif; fill: #0369a1; letter-spacing: 1px; }
+      .bullet { font: 400 13px Inter, Arial, sans-serif; fill: #334155; }
+      .input { fill: #ffffff; stroke: #94a3b8; stroke-width: 2; }
+      .operation { fill: #e0f2fe; stroke: #0284c7; stroke-width: 2; }
+      .intermediate { fill: #fef3c7; stroke: #d97706; stroke-width: 2; }
+      .output { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; }
+      .arrow { fill: none; stroke: #64748b; stroke-width: 2; marker-end: url(#arrow); }
+      .divider { stroke: #bae6fd; stroke-width: 1.5; }
+    </style>
+  </defs>
+
+  <rect class="panel" x="15" y="15" width="440" height="540" rx="18"/>
+  <text class="eyebrow" x="45" y="52">BEFORE</text>
+  <text class="heading" x="45" y="80">One complex map</text>
+
+  <rect class="input" x="150" y="105" width="170" height="52" rx="10"/>
+  <text class="node-text" x="235" y="137">summary</text>
+  <path class="arrow" d="M 235 157 L 235 192"/>
+
+  <rect class="operation" x="75" y="192" width="320" height="178" rx="12"/>
+  <text class="node-text" x="235" y="224">extract_new_treatments</text>
+  <line class="divider" x1="100" y1="242" x2="370" y2="242"/>
+  <text class="detail" x="235" y="268">One model call must:</text>
+  <circle cx="112" cy="298" r="4" fill="#0284c7"/>
+  <text class="bullet" x="126" y="303">identify newly diagnosed conditions</text>
+  <circle cx="112" cy="330" r="4" fill="#0284c7"/>
+  <text class="bullet" x="126" y="335">associate treatments with each condition</text>
+
+  <path class="arrow" d="M 235 370 L 235 410"/>
+  <rect class="output" x="150" y="410" width="170" height="52" rx="10"/>
+  <text class="node-text" x="235" y="442">treatments</text>
+
+  <rect class="panel" x="485" y="15" width="440" height="540" rx="18"/>
+  <text class="eyebrow" x="515" y="52">AFTER</text>
+  <text class="heading" x="515" y="80">Two dependent maps</text>
+
+  <rect class="input" x="620" y="105" width="170" height="52" rx="10"/>
+  <text class="node-text" x="705" y="137">summary</text>
+  <path class="arrow" d="M 705 157 L 705 184"/>
+
+  <rect class="operation" x="555" y="184" width="300" height="78" rx="12"/>
+  <text class="step" x="575" y="207">STEP 1</text>
+  <text class="node-text" x="705" y="228">identify_new_conditions</text>
+  <text class="detail" x="705" y="248">reads summary</text>
+
+  <path class="arrow" d="M 705 262 L 705 290"/>
+  <rect class="intermediate" x="610" y="290" width="190" height="52" rx="10"/>
+  <text class="node-text" x="705" y="322">new_conditions</text>
+  <path class="arrow" d="M 705 342 L 705 370"/>
+
+  <rect class="operation" x="555" y="370" width="300" height="78" rx="12"/>
+  <text class="step" x="575" y="393">STEP 2</text>
+  <text class="node-text" x="705" y="414">extract_treatments</text>
+  <text class="detail" x="705" y="434">reads summary + new_conditions</text>
+
+  <path class="arrow" d="M 705 448 L 705 476"/>
+  <rect class="output" x="620" y="476" width="170" height="52" rx="10"/>
+  <text class="node-text" x="705" y="508">treatments</text>
+</svg>

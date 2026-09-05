@@ -1,0 +1,3038 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../execution/interactive-progress/">
+      
+      
+        <link rel="next" href="../../pandas/">
+      
+      
+      <link rel="icon" href="../../assets/docetl-favicon-color.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Python API Reference - docetl docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CSource+Code+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="docetl docs" class="md-header__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M0 112c0-41.5 31.6-75.6 72-79.6V32h280c53 0 96 43 96 96v176H272c-39.8 0-72 32.2-72 72v60c0 24.3-19.7 44-44 44s-44-19.7-44-44V208H48c-26.5 0-48-21.5-48-48zm236.8 368c7.1-13.1 11.2-28.1 11.2-44v-60c0-13.3 10.7-24 24-24h248c13.3 0 24 10.7 24 24v24c0 44.2-35.8 80-80 80zM80 80c-17.7 0-32 14.3-32 32v48h64v-48c0-17.7-14.3-32-32-32"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            docetl docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python API Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="#FDB515"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../concepts/pipelines/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../optimization/overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Optimization
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python/examples/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Tutorials & Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../developer-reference/moar-extensibility/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Developer Reference
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../playground/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Tools & Resources
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="docetl docs" class="md-nav__button md-logo" aria-label="docetl docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M0 112c0-41.5 31.6-75.6 72-79.6V32h280c53 0 96 43 96 96v176H272c-39.8 0-72 32.2-72 72v60c0 24.3-19.7 44-44 44s-44-19.7-44-44V208H48c-26.5 0-48-21.5-48-48zm236.8 368c7.1-13.1 11.2-28.1 11.2-44v-60c0-13.3 10.7-24 24-24h248c13.3 0 24 10.7 24 24v24c0 44.2-35.8 80-80 80zM80 80c-17.7 0-32 14.3-32 32v48h64v-48c0-17.7-14.3-32-32-32"/></svg>
+
+    </a>
+    docetl docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ucbepic/docetl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ucbepic/docetl
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../.." class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../pandas/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    User Guide
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            User Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/pipelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pipelines
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets & Frames
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operators & Validation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Output Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    LLM-Powered Operators
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            LLM-Powered Operators
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Map
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/resolve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resolve
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/reduce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reduce
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/parallel-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Parallel Map
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/filter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/equijoin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Equijoin
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/rank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rank
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/extract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extract
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/link-resolve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Link Resolve
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Auxiliary Operators
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Auxiliary Operators
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/split/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Split
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/gather/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gather
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/unnest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Unnest
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sample
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/topk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    TopK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operators/code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Code
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../retrievers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Retrievers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../execution/interactive-progress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Interactive Progress View
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Python API Reference
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python API Reference
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick start
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reading Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frame
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frame">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llm-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LLM Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#map" class="md-nav__link">
+    <span class="md-ellipsis">
+      .map()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      .filter()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce" class="md-nav__link">
+    <span class="md-ellipsis">
+      .reduce()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-equipped-mapfilterreduce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tool-equipped map/filter/reduce
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resolve" class="md-nav__link">
+    <span class="md-ellipsis">
+      .resolve()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extract" class="md-nav__link">
+    <span class="md-ellipsis">
+      .extract()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel_map" class="md-nav__link">
+    <span class="md-ellipsis">
+      .parallel_map()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equijoin" class="md-nav__link">
+    <span class="md-ellipsis">
+      .equijoin()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structural-operations-no-llm-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structural Operations (no LLM calls)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-operations-no-llm-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Operations (no LLM calls)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retriever" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retriever
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspection-no-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspection (no execution)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminal-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminal Actions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Terminal Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cost-token-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cost &amp; Token Tracking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimization
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../optimization/overview/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Optimization
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../python/examples/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Tutorials & Examples
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../developer-reference/moar-extensibility/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Developer Reference
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../playground/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Tools & Resources
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick start
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reading Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frame
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frame">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llm-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LLM Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#map" class="md-nav__link">
+    <span class="md-ellipsis">
+      .map()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      .filter()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce" class="md-nav__link">
+    <span class="md-ellipsis">
+      .reduce()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-equipped-mapfilterreduce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tool-equipped map/filter/reduce
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resolve" class="md-nav__link">
+    <span class="md-ellipsis">
+      .resolve()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extract" class="md-nav__link">
+    <span class="md-ellipsis">
+      .extract()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel_map" class="md-nav__link">
+    <span class="md-ellipsis">
+      .parallel_map()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equijoin" class="md-nav__link">
+    <span class="md-ellipsis">
+      .equijoin()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structural-operations-no-llm-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structural Operations (no LLM calls)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-operations-no-llm-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Operations (no LLM calls)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retriever" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retriever
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspection-no-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspection (no execution)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminal-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminal Actions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Terminal Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cost-token-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cost &amp; Token Tracking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimization
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="python-api-reference">Python API Reference</h1>
+<p>The Python API lets you build, run, and optimize DocETL pipelines with chainable operations.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">docetl</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Deprecated: the typed <code>Pipeline</code> class</p>
+<p>The older object API (<code>from docetl.api import Pipeline</code> with <code>MapOp</code>,
+<code>ReduceOp</code>, etc.) is deprecated in favor of the Frame API documented on
+this page.</p>
+</div>
+<hr />
+<h2 id="quick-start">Quick start</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">docetl</span>
+
+<span class="n">docetl</span><span class="o">.</span><span class="n">default_model</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o-mini&quot;</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">docetl</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s2">&quot;input.json&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">map</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Classify this document: {{ input.text }}&quot;</span><span class="p">,</span>
+        <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">}},</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Is this document about technology? {{ input.text }}&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">reduce</span><span class="p">(</span>
+        <span class="n">reduce_key</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">,</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Summarize these documents: {</span><span class="si">% f</span><span class="s2">or item in inputs %}{{ item.text }}{</span><span class="si">% e</span><span class="s2">ndfor %}&quot;</span><span class="p">,</span>
+        <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">}},</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="p">)</span>
+</code></pre></div>
+<h2 id="configuration">Configuration</h2>
+<p>Set global defaults as module-level attributes:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docetl.default_model</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Default LLM model for all operations</td>
+</tr>
+<tr>
+<td><code>docetl.agent_model</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Model for optimizer rewrites</td>
+</tr>
+<tr>
+<td><code>docetl.max_threads</code></td>
+<td><code>int</code></td>
+<td><code>cpu_count * 4</code></td>
+<td>Concurrent threads</td>
+</tr>
+<tr>
+<td><code>docetl.bypass_cache</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>Skip LLM cache</td>
+</tr>
+<tr>
+<td><code>docetl.intermediate_dir</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Directory for intermediate results (a relative path resolves against the working directory at run time)</td>
+</tr>
+<tr>
+<td><code>docetl.rate_limits</code></td>
+<td><code>dict</code></td>
+<td><code>None</code></td>
+<td>Rate limits per model</td>
+</tr>
+<tr>
+<td><code>docetl.fallback_models</code></td>
+<td><code>list[str]</code></td>
+<td><code>None</code></td>
+<td>Fallback chain on failure</td>
+</tr>
+<tr>
+<td><code>docetl.fallback_embedding_models</code></td>
+<td><code>list[str]</code></td>
+<td><code>None</code></td>
+<td>Fallback embedding models</td>
+</tr>
+<tr>
+<td><code>docetl.system_prompt</code></td>
+<td><code>dict</code></td>
+<td><code>None</code></td>
+<td><code>{"dataset_description": ..., "persona": ...}</code> applied to all operations</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Precedence.</strong> Settings layer from most to least specific: a per-operation
+parameter (e.g. <code>model=</code> on <code>.map()</code>) beats per-pipeline settings carried by a
+Frame (set when loading a YAML via <code>Frame.from_yaml</code>), which beat the
+module-level <code>docetl.*</code> globals above, which beat built-in defaults. Loading a
+YAML never changes the globals — its settings travel with that Frame only.</p>
+<hr />
+<h2 id="reading-data">Reading Data</h2>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docetl.read_json(path)</code></td>
+<td>Load from JSON file</td>
+</tr>
+<tr>
+<td><code>docetl.read_csv(path)</code></td>
+<td>Load from CSV file</td>
+</tr>
+<tr>
+<td><code>docetl.read_parquet(path)</code></td>
+<td>Load from Parquet file</td>
+</tr>
+<tr>
+<td><code>docetl.read_dir(path)</code></td>
+<td>One row per file in a directory (recursive): <code>text</code> is the file's content, plus <code>filename</code> and <code>path</code>. PDF/Word/PowerPoint/Excel are converted to text; other files read as UTF-8</td>
+</tr>
+<tr>
+<td><code>docetl.from_list(data)</code></td>
+<td>Load from a list of dicts</td>
+</tr>
+<tr>
+<td><code>docetl.Frame.from_yaml(path)</code></td>
+<td>Load from a YAML pipeline config</td>
+</tr>
+</tbody>
+</table>
+<p>All return a <code>Frame</code>.</p>
+<hr />
+<h2 id="frame">Frame</h2>
+<p>A lazy pipeline — operations are recorded but not executed until a terminal action is called. Frames are immutable; every operation returns a new <code>Frame</code>.</p>
+<h3 id="llm-operations">LLM Operations</h3>
+<h4 id="map"><code>.map()</code></h4>
+<p>Applies an LLM prompt to each document independently.</p>
+<div class="highlight"><pre><span></span><code><span class="n">frame</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Classify: {{ input.text }}&quot;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>prompt</code></td>
+<td><code>str</code></td>
+<td>—</td>
+<td>Jinja2 template. Access fields via <code>{{ input.key }}</code>.</td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td><code>dict</code></td>
+<td>—</td>
+<td>Output schema, e.g. <code>{"schema": {"field": "str"}}</code></td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Override default model</td>
+</tr>
+<tr>
+<td><code>validate</code></td>
+<td><code>list[str \| callable]</code></td>
+<td><code>None</code></td>
+<td>Validators: expression strings over <code>output</code>, or callables taking the output dict (callables can't be exported to YAML)</td>
+</tr>
+<tr>
+<td><code>num_retries_on_validate_failure</code></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>Retries on validation failure</td>
+</tr>
+<tr>
+<td><code>sample</code></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>Process only N documents</td>
+</tr>
+<tr>
+<td><code>agent</code></td>
+<td><code>docetl.Agent</code></td>
+<td><code>None</code></td>
+<td>Tool-equipped agent using the OpenAI Agents SDK</td>
+</tr>
+<tr>
+<td><code>drop_keys</code></td>
+<td><code>list[str]</code></td>
+<td><code>None</code></td>
+<td>Keys to remove from output</td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>Timeout per LLM call (seconds)</td>
+</tr>
+<tr>
+<td><code>max_batch_size</code></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>Batch size for batch processing</td>
+</tr>
+<tr>
+<td><code>batch_prompt</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Jinja2 template for batch mode</td>
+</tr>
+<tr>
+<td><code>retriever</code></td>
+<td><code>Retriever</code></td>
+<td><code>None</code></td>
+<td>Retriever for context augmentation</td>
+</tr>
+<tr>
+<td><code>optimize</code></td>
+<td><code>bool</code></td>
+<td><code>None</code></td>
+<td>Mark for optimization</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>Max documents to process</td>
+</tr>
+</tbody>
+</table>
+<h4 id="filter"><code>.filter()</code></h4>
+<p>Keeps or removes documents based on an LLM prompt. Output schema must have one boolean field.</p>
+<div class="highlight"><pre><span></span><code><span class="n">frame</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Is this about technology? {{ input.text }}&quot;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;is_tech&quot;</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>prompt</code></td>
+<td><code>str</code></td>
+<td>—</td>
+<td>Jinja2 template</td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td><code>dict</code></td>
+<td>—</td>
+<td>Schema with one boolean field</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Override default model</td>
+</tr>
+<tr>
+<td><code>validate</code></td>
+<td><code>list[str \| callable]</code></td>
+<td><code>None</code></td>
+<td>Validators: expression strings or callables over the output dict</td>
+</tr>
+<tr>
+<td><code>agent</code></td>
+<td><code>docetl.Agent</code></td>
+<td><code>None</code></td>
+<td>Tool-equipped agent using the OpenAI Agents SDK</td>
+</tr>
+<tr>
+<td><code>retriever</code></td>
+<td><code>Retriever</code></td>
+<td><code>None</code></td>
+<td>Retriever for context augmentation</td>
+</tr>
+<tr>
+<td><code>cascade</code></td>
+<td><code>dict</code></td>
+<td><code>None</code></td>
+<td><a href="../../optimization/cascades/">Model cascade</a>: run a cheap proxy (chat or embedding model) on all items and escalate only uncertain ones, with a statistical guarantee. Also available on <code>resolve</code> and <code>equijoin</code>.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">frame</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Is this review about shipping problems? {{ input.text }}&quot;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;keep&quot;</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">}},</span>
+    <span class="n">cascade</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;proxy_model&quot;</span><span class="p">:</span> <span class="s2">&quot;text-embedding-3-small&quot;</span><span class="p">,</span> <span class="s2">&quot;guarantee&quot;</span><span class="p">:</span> <span class="s2">&quot;recall&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span> <span class="s2">&quot;label_budget&quot;</span><span class="p">:</span> <span class="mi">120</span><span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div>
+<h4 id="reduce"><code>.reduce()</code></h4>
+<p>Groups documents by key and reduces each group with an LLM.</p>
+<div class="highlight"><pre><span></span><code><span class="n">frame</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span>
+    <span class="n">reduce_key</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">,</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Summarize: {</span><span class="si">% f</span><span class="s2">or item in inputs %}{{ item.text }}{</span><span class="si">% e</span><span class="s2">ndfor %}&quot;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>reduce_key</code></td>
+<td><code>str \| list[str]</code></td>
+<td>—</td>
+<td>Key(s) to group by. Use <code>"_all"</code> for one group.</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td><code>str</code></td>
+<td>—</td>
+<td>Jinja2 template. Iterate with <code>{% for item in inputs %}</code>.</td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td><code>dict</code></td>
+<td>—</td>
+<td>Output schema</td>
+</tr>
+<tr>
+<td><code>fold_prompt</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Prompt for incremental folding</td>
+</tr>
+<tr>
+<td><code>fold_batch_size</code></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>Items per fold iteration</td>
+</tr>
+<tr>
+<td><code>merge_prompt</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Prompt for merging fold results</td>
+</tr>
+<tr>
+<td><code>pass_through</code></td>
+<td><code>bool</code></td>
+<td><code>None</code></td>
+<td>Pass through non-reduced keys</td>
+</tr>
+<tr>
+<td><code>associative</code></td>
+<td><code>bool</code></td>
+<td><code>None</code></td>
+<td>Enable parallel reduction</td>
+</tr>
+<tr>
+<td><code>agent</code></td>
+<td><code>docetl.Agent</code></td>
+<td><code>None</code></td>
+<td>Tool-equipped agent using the OpenAI Agents SDK</td>
+</tr>
+<tr>
+<td><code>retriever</code></td>
+<td><code>Retriever</code></td>
+<td><code>None</code></td>
+<td>Retriever for context augmentation</td>
+</tr>
+</tbody>
+</table>
+<h4 id="tool-equipped-mapfilterreduce">Tool-equipped map/filter/reduce</h4>
+<p>Use <code>docetl.Agent</code> when an operation should call tools over multiple turns
+before returning DocETL's structured output. DocETL adapts Python functions into
+OpenAI Agents SDK tools and routes the operation's LiteLLM model through the
+SDK's LiteLLM integration.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">docetl</span>
+
+<span class="nd">@docetl</span><span class="o">.</span><span class="n">tool</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">lookup_sla</span><span class="p">(</span><span class="n">customer_tier</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return support entitlements for a customer tier.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;enterprise&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;response_hours&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;escalation&quot;</span><span class="p">:</span> <span class="s2">&quot;page-on-call&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;growth&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;response_hours&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;escalation&quot;</span><span class="p">:</span> <span class="s2">&quot;queue-lead&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;free&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;response_hours&quot;</span><span class="p">:</span> <span class="mi">48</span><span class="p">,</span> <span class="s2">&quot;escalation&quot;</span><span class="p">:</span> <span class="s2">&quot;self-serve&quot;</span><span class="p">},</span>
+    <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">customer_tier</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="p">{</span><span class="s2">&quot;response_hours&quot;</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span> <span class="s2">&quot;escalation&quot;</span><span class="p">:</span> <span class="s2">&quot;standard&quot;</span><span class="p">})</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">docetl</span><span class="o">.</span><span class="n">Agent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">lookup_sla</span><span class="p">],</span> <span class="n">max_turns</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_tool_calls</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">rows</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">docetl</span><span class="o">.</span><span class="n">from_list</span><span class="p">([</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;ticket&quot;</span><span class="p">:</span> <span class="s2">&quot;Production API latency is above the SLO.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;customer_tier&quot;</span><span class="p">:</span> <span class="s2">&quot;enterprise&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">])</span>
+    <span class="o">.</span><span class="n">map</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="p">(</span>
+            <span class="s2">&quot;Use lookup_sla to classify this ticket and explain the next action: &quot;</span>
+            <span class="s2">&quot;{{ input.ticket }} / tier={{ input.customer_tier }}&quot;</span>
+        <span class="p">),</span>
+        <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;priority&quot;</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span><span class="p">,</span> <span class="s2">&quot;next_action&quot;</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span><span class="p">}},</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;azure/gpt-4o-mini&quot;</span><span class="p">,</span>
+        <span class="n">agent</span><span class="o">=</span><span class="n">agent</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>The model is still specified on the operation (<code>model=</code>) or through
+<code>docetl.default_model</code>; use LiteLLM model names such as <code>azure/gpt-4o-mini</code>,
+<code>anthropic/...</code>, or <code>together_ai/...</code>. The selected model/provider must work
+with the OpenAI Agents SDK LiteLLM integration and the requested tools. Plain
+Python function tools execute as trusted Python in your process; OpenAI Agents
+SDK sandbox/native tools may provide isolation where that SDK/backend supports
+it. Agent configs are Python-only and cannot be exported to YAML. See OpenAI's
+<a href="https://developers.openai.com/api/docs/guides/agents">Agents SDK guide</a> and
+<a href="https://openai.github.io/openai-agents-python/tools/">tools guide</a> for hosted
+tool behavior.</p>
+<p>Agents can also expose specialist agents as tools. Use this when a manager agent
+should keep ownership of the DocETL output while delegating a bounded task:</p>
+<div class="highlight"><pre><span></span><code><span class="n">specialist</span> <span class="o">=</span> <span class="n">docetl</span><span class="o">.</span><span class="n">Agent</span><span class="p">(</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;Extract numeric evidence from the supplied text.&quot;</span><span class="p">,</span>
+    <span class="n">max_turns</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">manager</span> <span class="o">=</span> <span class="n">docetl</span><span class="o">.</span><span class="n">Agent</span><span class="p">(</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">specialist</span><span class="o">.</span><span class="n">as_tool</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;extract_numeric_evidence&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Extract numeric evidence for the manager agent.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">max_turns</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>The specialist uses the same operation-level LiteLLM model as the manager unless
+you pass an SDK-native tool object with its own model configuration. This follows
+OpenAI's
+<a href="https://developers.openai.com/api/docs/guides/agents/orchestration">agents-as-tools orchestration pattern</a>.</p>
+<p>For a persistent shell/sandbox filesystem on OpenAI, create a hosted container
+once and bind shell tools to it:</p>
+<div class="highlight"><pre><span></span><code><span class="n">sandbox</span> <span class="o">=</span> <span class="n">docetl</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">Sandbox</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;docetl-research&quot;</span><span class="p">,</span>
+    <span class="n">network</span><span class="o">=</span><span class="s2">&quot;disabled&quot;</span><span class="p">,</span>
+    <span class="n">memory_limit</span><span class="o">=</span><span class="s2">&quot;1g&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">bash</span> <span class="o">=</span> <span class="n">sandbox</span><span class="o">.</span><span class="n">bash</span><span class="p">()</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">docetl</span><span class="o">.</span><span class="n">Agent</span><span class="p">(</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">bash</span><span class="p">],</span>
+    <span class="n">max_turns</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">max_tool_calls</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Reuse <code>bash</code> across a manager and its specialist subagents when they should read
+and write the same hosted filesystem. If you only need an ephemeral shell tool,
+use <code>docetl.tools.bash(...)</code>, which uses <code>container_auto</code>. Pass durable data
+between DocETL operations through output schemas, not only through hidden
+sandbox files.</p>
+<p><code>docetl.tools.Sandbox.create(...)</code> is OpenAI-specific: it calls the OpenAI
+Containers API and returns shell tools using <code>container_reference</code>. It is not
+portable to Claude, Together, or other LiteLLM providers. For provider-portable
+tooling, use <code>@docetl.tool</code> Python functions, MCP tools, or provider-native SDK
+tools. See OpenAI's
+<a href="https://developers.openai.com/api/docs/guides/agents/sandboxes">sandbox agents guide</a>.</p>
+<p>For an end-to-end example, see the
+<a href="../../examples/tool-equipped-research-agents/">Tool-Equipped Agents tutorial</a>.</p>
+<h4 id="resolve"><code>.resolve()</code></h4>
+<p>Deduplicates entities by pairwise LLM comparison.</p>
+<div class="highlight"><pre><span></span><code><span class="n">frame</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span>
+    <span class="n">comparison_prompt</span><span class="o">=</span><span class="s2">&quot;Same person? {{ input1.name }} vs {{ input2.name }}&quot;</span><span class="p">,</span>
+    <span class="n">resolution_prompt</span><span class="o">=</span><span class="s2">&quot;Canonical name: {</span><span class="si">% f</span><span class="s2">or e in inputs %}{{ e.name }}{</span><span class="si">% e</span><span class="s2">ndfor %}&quot;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>comparison_prompt</code></td>
+<td><code>str</code></td>
+<td>—</td>
+<td>Jinja2 template comparing <code>{{ input1 }}</code> and <code>{{ input2 }}</code></td>
+</tr>
+<tr>
+<td><code>resolution_prompt</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Prompt for resolving matched groups</td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td><code>dict</code></td>
+<td><code>None</code></td>
+<td>Output schema</td>
+</tr>
+<tr>
+<td><code>blocking_keys</code></td>
+<td><code>list[str]</code></td>
+<td><code>None</code></td>
+<td>Keys for blocking</td>
+</tr>
+<tr>
+<td><code>blocking_threshold</code></td>
+<td><code>float</code></td>
+<td><code>None</code></td>
+<td>Similarity threshold</td>
+</tr>
+<tr>
+<td><code>embedding_model</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Model for blocking embeddings</td>
+</tr>
+<tr>
+<td><code>optimize</code></td>
+<td><code>bool</code></td>
+<td><code>None</code></td>
+<td>Mark for optimization</td>
+</tr>
+</tbody>
+</table>
+<h4 id="extract"><code>.extract()</code></h4>
+<p>Extracts information from documents with line-level precision.</p>
+<div class="highlight"><pre><span></span><code><span class="n">frame</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Extract key findings from this paper.&quot;</span><span class="p">,</span>
+    <span class="n">document_keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>prompt</code></td>
+<td><code>str</code></td>
+<td>—</td>
+<td>Extraction prompt</td>
+</tr>
+<tr>
+<td><code>document_keys</code></td>
+<td><code>list[str]</code></td>
+<td>—</td>
+<td>Keys containing document text</td>
+</tr>
+<tr>
+<td><code>retriever</code></td>
+<td><code>Retriever</code></td>
+<td><code>None</code></td>
+<td>Retriever for context augmentation</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parallel_map"><code>.parallel_map()</code></h4>
+<p>Runs multiple prompts on each document in parallel.</p>
+<div class="highlight"><pre><span></span><code><span class="n">frame</span><span class="o">.</span><span class="n">parallel_map</span><span class="p">(</span>
+    <span class="n">prompts</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;prompt&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="s2">&quot;output_keys&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;field1&quot;</span><span class="p">]},</span> <span class="o">...</span><span class="p">],</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;field1&quot;</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span><span class="p">,</span> <span class="s2">&quot;field2&quot;</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+</code></pre></div>
+<h4 id="equijoin"><code>.equijoin()</code></h4>
+<p>Joins two datasets by LLM comparison.</p>
+<div class="highlight"><pre><span></span><code><span class="n">right</span> <span class="o">=</span> <span class="n">docetl</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s2">&quot;other.json&quot;</span><span class="p">)</span>
+<span class="n">frame</span><span class="o">.</span><span class="n">equijoin</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">comparison_prompt</span><span class="o">=</span><span class="s2">&quot;Are these related? {{ left.x }} {{ right.y }}&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="structural-operations-no-llm-calls">Structural Operations (no LLM calls)</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.split(split_key, method, method_kwargs)</code></td>
+<td>Split documents into chunks</td>
+</tr>
+<tr>
+<td><code>.gather(content_key, doc_id_key, order_key)</code></td>
+<td>Add surrounding context to chunks</td>
+</tr>
+<tr>
+<td><code>.unnest(unnest_key)</code></td>
+<td>Flatten a list field into separate rows</td>
+</tr>
+<tr>
+<td><code>.cluster(embedding_keys)</code></td>
+<td>Cluster documents by embedding similarity</td>
+</tr>
+<tr>
+<td><code>.sample(samples, method)</code></td>
+<td>Sample a subset of documents</td>
+</tr>
+</tbody>
+</table>
+<h3 id="code-operations-no-llm-calls">Code Operations (no LLM calls)</h3>
+<p><code>code</code> takes any callable, e.g., a lambda, or a string of Python source defining a <code>transform</code> function (the YAML form).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.code_map(code=lambda doc: {...})</code></td>
+<td>Per-document Python transform</td>
+</tr>
+<tr>
+<td><code>.code_filter(code=lambda doc: bool(...))</code></td>
+<td>Per-document Python filter (return bool)</td>
+</tr>
+<tr>
+<td><code>.code_reduce(reduce_key, code=lambda items: {...})</code></td>
+<td>Per-group Python aggregation</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="retriever">Retriever</h2>
+<p>Augment LLM operations with retrieved context from a LanceDB index.</p>
+<div class="highlight"><pre><span></span><code><span class="n">retriever</span> <span class="o">=</span> <span class="n">docetl</span><span class="o">.</span><span class="n">Retriever</span><span class="p">(</span>
+    <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;knowledge_base&quot;</span><span class="p">,</span>
+    <span class="n">index_dir</span><span class="o">=</span><span class="s2">&quot;./lance_index&quot;</span><span class="p">,</span>
+    <span class="n">index_types</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;fts&quot;</span><span class="p">,</span> <span class="s2">&quot;embedding&quot;</span><span class="p">],</span>
+    <span class="n">fts</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index_phrase&quot;</span><span class="p">:</span> <span class="s2">&quot;{{ input.text }}&quot;</span><span class="p">,</span> <span class="s2">&quot;query_phrase&quot;</span><span class="p">:</span> <span class="s2">&quot;{{ input.question }}&quot;</span><span class="p">},</span>
+    <span class="n">embedding</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;text-embedding-3-small&quot;</span><span class="p">,</span> <span class="s2">&quot;index_phrase&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="s2">&quot;query_phrase&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">},</span>
+    <span class="n">query</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;hybrid&quot;</span><span class="p">,</span> <span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td><code>str \| list[dict]</code></td>
+<td>—</td>
+<td>File path or in-memory records to index (alternative to <code>dataset</code>)</td>
+</tr>
+<tr>
+<td><code>dataset</code></td>
+<td><code>str</code></td>
+<td>—</td>
+<td>Name of an existing pipeline dataset or step output to index</td>
+</tr>
+<tr>
+<td><code>index_dir</code></td>
+<td><code>str</code></td>
+<td>—</td>
+<td>Directory for the LanceDB index</td>
+</tr>
+<tr>
+<td><code>index_types</code></td>
+<td><code>list[str]</code></td>
+<td>—</td>
+<td><code>["fts"]</code>, <code>["embedding"]</code>, or both</td>
+</tr>
+<tr>
+<td><code>fts</code></td>
+<td><code>dict</code></td>
+<td><code>None</code></td>
+<td>Full-text search config (<code>index_phrase</code>, <code>query_phrase</code>)</td>
+</tr>
+<tr>
+<td><code>embedding</code></td>
+<td><code>dict</code></td>
+<td><code>None</code></td>
+<td>Embedding config (<code>model</code>, <code>index_phrase</code>, <code>query_phrase</code>)</td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td><code>dict</code></td>
+<td><code>None</code></td>
+<td>Query config (<code>mode</code>, <code>top_k</code>)</td>
+</tr>
+<tr>
+<td><code>build_index</code></td>
+<td><code>str</code></td>
+<td><code>"if_missing"</code></td>
+<td><code>"if_missing"</code>, <code>"always"</code>, or <code>"never"</code></td>
+</tr>
+</tbody>
+</table>
+<p>Pass to any LLM operation via <code>retriever=</code>. Retrieved context is available as <code>{{ retrieval_context }}</code> in prompts.</p>
+<p>Pass exactly one of <code>data</code> (a file path or list of dicts to index) or <code>dataset</code> (the name of an existing pipeline dataset — the frame's own input or a previous step's output, <code>step_&lt;operation_name&gt;</code>). See the <a href="../../retrievers/">Retrievers guide</a>.</p>
+<hr />
+<h2 id="inspection-no-execution">Inspection (no execution)</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Return Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>frame.schema()</code></td>
+<td><code>dict[str, str]</code></td>
+<td>Output schema from operation definitions, including structural ops (split/unnest/gather/extract). Best-effort: <code>code_*</code> op outputs can't be known statically</td>
+</tr>
+<tr>
+<td><code>frame.count()</code></td>
+<td><code>int</code></td>
+<td>Input count (no ops) or output count (executes if ops present)</td>
+</tr>
+<tr>
+<td><code>frame.to_yaml()</code></td>
+<td><code>str</code></td>
+<td>Export pipeline as YAML config</td>
+</tr>
+<tr>
+<td><code>frame.to_yaml(path)</code></td>
+<td><code>str</code></td>
+<td>Also write YAML to file</td>
+</tr>
+<tr>
+<td><code>frame.to_python()</code></td>
+<td><code>str</code></td>
+<td>Export as Python source code</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="terminal-actions">Terminal Actions</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Return Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>frame.show(max=5)</code></td>
+<td><code>DataFrame</code></td>
+<td>Run on a sample and print results. Works on bare datasets too.</td>
+</tr>
+<tr>
+<td><code>frame.collect()</code></td>
+<td><code>list[dict]</code></td>
+<td>Execute the pipeline, return the result rows</td>
+</tr>
+<tr>
+<td><code>frame.to_pandas()</code></td>
+<td><code>DataFrame</code></td>
+<td>Execute the pipeline, return a pandas DataFrame</td>
+</tr>
+<tr>
+<td><code>frame.write_json(path)</code></td>
+<td><code>None</code></td>
+<td>Execute and write to JSON</td>
+</tr>
+<tr>
+<td><code>frame.write_csv(path)</code></td>
+<td><code>None</code></td>
+<td>Execute and write to CSV</td>
+</tr>
+<tr>
+<td><code>frame.write_parquet(path)</code></td>
+<td><code>None</code></td>
+<td>Execute and write to Parquet</td>
+</tr>
+</tbody>
+</table>
+<p>Terminal actions are memoized on the Frame: repeated calls with an unchanged configuration reuse the previous result instead of re-running the pipeline. Changing ops, in-memory data, or <code>docetl.*</code> settings invalidates the memo; edits to input <em>files</em> between calls are not detected.</p>
+<h3 id="cost-token-tracking">Cost &amp; Token Tracking</h3>
+<div class="highlight"><pre><span></span><code><span class="n">rows</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cost: $</span><span class="si">{</span><span class="n">frame</span><span class="o">.</span><span class="n">total_cost</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tokens: </span><span class="si">{</span><span class="n">frame</span><span class="o">.</span><span class="n">token_usage</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cost: $</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;_total_cost&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># also on the DataFrame</span>
+</code></pre></div>
+<hr />
+<h2 id="optimization">Optimization</h2>
+<div class="highlight"><pre><span></span><code><span class="nd">@docetl</span><span class="o">.</span><span class="n">register_eval</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+    <span class="n">correct</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;correct&quot;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">correct</span><span class="p">}</span>
+
+<span class="n">optimized</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span>
+    <span class="n">eval_fn</span><span class="o">=</span><span class="n">evaluate</span><span class="p">,</span>
+    <span class="n">metric_key</span><span class="o">=</span><span class="s2">&quot;score&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eval_fn</code></td>
+<td><code>Callable</code></td>
+<td><strong>required</strong></td>
+<td>Scores pipeline output. Returns a dict of metrics.</td>
+</tr>
+<tr>
+<td><code>metric_key</code></td>
+<td><code>str</code></td>
+<td><strong>required</strong></td>
+<td>Key in eval_fn's return dict to optimize</td>
+</tr>
+<tr>
+<td><code>models</code></td>
+<td><code>list[str]</code></td>
+<td>Auto-detect</td>
+<td>LiteLLM model names to explore</td>
+</tr>
+<tr>
+<td><code>agent_model</code></td>
+<td><code>str</code></td>
+<td>Auto-select</td>
+<td>Model for rewrite agent</td>
+</tr>
+<tr>
+<td><code>max_iterations</code></td>
+<td><code>int</code></td>
+<td><code>20</code></td>
+<td>Search budget</td>
+</tr>
+<tr>
+<td><code>save_dir</code></td>
+<td><code>str</code></td>
+<td>Temp dir</td>
+<td>Where to save results</td>
+</tr>
+<tr>
+<td><code>exploration_weight</code></td>
+<td><code>float</code></td>
+<td><code>1.414</code></td>
+<td>UCB exploration constant</td>
+</tr>
+<tr>
+<td><code>dataset_path</code></td>
+<td><code>str</code></td>
+<td>Pipeline's dataset</td>
+<td>Sample dataset for optimization</td>
+</tr>
+<tr>
+<td><code>max_threads</code></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>Max concurrent LLM calls per run</td>
+</tr>
+<tr>
+<td><code>max_concurrent_agents</code></td>
+<td><code>int</code></td>
+<td><code>3</code></td>
+<td>Parallel MCTS search agents</td>
+</tr>
+</tbody>
+</table>
+<p>Returns an optimized <code>Frame</code>. Access search results via <code>optimized.search_results</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Method / Property</th>
+<th>Return Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.best()</code></td>
+<td><code>OptimizedPipeline</code></td>
+<td>Highest-accuracy solution</td>
+</tr>
+<tr>
+<td><code>.cheapest()</code></td>
+<td><code>OptimizedPipeline</code></td>
+<td>Lowest-cost solution</td>
+</tr>
+<tr>
+<td><code>.frontier</code></td>
+<td><code>list[OptimizedPipeline]</code></td>
+<td>All Pareto-optimal solutions</td>
+</tr>
+<tr>
+<td><code>.to_df()</code></td>
+<td><code>DataFrame</code></td>
+<td>All explored plans</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../execution/interactive-progress/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Interactive Progress View">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Interactive Progress View
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../pandas/" class="md-footer__link md-footer__link--next" aria-label="Next: Pandas Accessor">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Pandas Accessor
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.follow", "navigation.footer", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

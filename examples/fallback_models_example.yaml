@@ -1,0 +1,60 @@
+# Example configuration demonstrating LiteLLM fallback models for reliability
+# 
+# This example shows how to configure fallback models that will be automatically
+# tried when API errors or content errors occur with the primary model.
+
+datasets:
+  example_dataset:
+    type: file
+    path: example_data/example.json
+
+# Default language model for all operations unless overridden
+default_model: gpt-4o-mini
+
+# Fallback models for completion/chat operations
+# Models will be tried in order when API errors or content errors occur
+fallback_models:
+  # First fallback model
+  - model_name: gpt-3.5-turbo
+    litellm_params:
+      temperature: 0.0
+  # Second fallback model
+  - model_name: claude-3-haiku-20240307
+    litellm_params:
+      temperature: 0.0
+
+# Fallback models for embedding operations
+# Separate configuration for embedding model fallbacks
+fallback_embedding_models:
+  - model_name: text-embedding-3-small
+    litellm_params: {}
+  - model_name: text-embedding-ada-002
+    litellm_params: {}
+
+# Alternative simple format (just model names):
+# fallback_models:
+#   - gpt-3.5-turbo
+#   - claude-3-haiku-20240307
+#
+# fallback_embedding_models:
+#   - text-embedding-3-small
+#   - text-embedding-ada-002
+
+operations:
+  - name: example_map
+    type: map
+    prompt: "Extract key information from: {{ input.contents }}"
+    output:
+      schema:
+        extracted_info: "str"
+
+pipeline:
+  steps:
+    - name: process_data
+      input: example_dataset
+      operations:
+        - example_map
+
+  output:
+    type: file
+    path: example_output.json
